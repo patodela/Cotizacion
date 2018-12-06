@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SistCotizacion
 {
-    public class test1
+    public class ClaseTest
     {
 
 
