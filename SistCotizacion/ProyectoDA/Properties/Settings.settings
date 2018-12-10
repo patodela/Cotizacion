@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProyectoDA.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="sConexion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DESKTOP-PM1UH5T;cotizacion;sa</Value>
+    </Setting>
+    <Setting Name="sPassConexion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Abc123456</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
