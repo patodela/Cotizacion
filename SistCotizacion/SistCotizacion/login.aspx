@@ -26,11 +26,13 @@
 			    	<form accept-charset="UTF-8" role="form" runat="server">
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="Usuario" name="usuario" type="text">
+			    		    
+                            <asp:TextBox ID="txt_usuario" required="required" placeholder="Usuario" runat="server" class="form-control"></asp:TextBox>
 
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
+			    			
+                                <asp:TextBox ID="txtPassword" required="required" runat="server" placeholder="Contraseña" class="form-control" TextMode="Password"></asp:TextBox>
 			    		</div>		    		
 			    		
                         <asp:Button class="btn btn-lg btn-success btn-block" ID="ButtonLogin" runat="server" Text="Ingresar" OnClick="ButtonLogin_Click" />

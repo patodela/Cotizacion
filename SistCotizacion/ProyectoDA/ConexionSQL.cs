@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoDA
 {
-    class ConexionSQL
+    public class ConexionSQL
     {
 
         public bool bError;
@@ -119,7 +119,7 @@ namespace ProyectoDA
             {
 
                 SqlParameter plError = new SqlParameter();
-                plError.ParameterName = "@lError";
+                plError.ParameterName = "@bError";
                 plError.Direction = ParameterDirection.Output;
                 plError.SqlDbType = SqlDbType.Int;
 
