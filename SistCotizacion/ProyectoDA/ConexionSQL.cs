@@ -16,36 +16,72 @@ namespace ProyectoDA
 
         private string ConectionString;
 
-        public ConexionSQL(string sServer, string sBase, string sUser, string sPass)
+        //public ConexionSQL(string sServer, string sBase, string sUser, string sPass)
+        //{
+        //    try
+        //    {
+
+        //        SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder();
+        //        sb["Data source"] = sServer;
+        //        sb["Initial Catalog"] = sBase;
+        //        sb["UID"] = sUser;
+        //        sb["PWD"] = sPass;
+
+        //        ConectionString = sb.ConnectionString;
+
+
+        //        bError = false;
+
+        //    }
+        //    catch (SqlException eSql)
+        //    {
+
+        //        bError = true;
+        //        sError = eSql.Message;
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        bError = true;
+        //        sError = e.Message;
+
+        //    }
+        //}
+
+        private SqlConnection Conexion = new SqlConnection("server=localhost;user id=sa;database=cotizacion;password=Welcome01");
+        public SqlConnection AbrirConexion()
         {
             try
             {
-
-                SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder();
-                sb["Data source"] = sServer;
-                sb["Initial Catalog"] = sBase;
-                sb["UID"] = sUser;
-                sb["PWD"] = sPass;
-
-                ConectionString = sb.ConnectionString;
-
-
-                bError = false;
+                if (Conexion.State == System.Data.ConnectionState.Closed)
+                {
+                    Conexion.Open();
+                }
 
             }
-            catch (SqlException eSql)
+            catch (Exception ex)
             {
 
-                bError = true;
-                sError = eSql.Message;
-
+                throw new Exception(ex.Message);
             }
-            catch (Exception e)
+            return Conexion;
+        }
+        public SqlConnection CerrarConexion()
+        {
+            try
             {
-                bError = true;
-                sError = e.Message;
+                if (Conexion.State == System.Data.ConnectionState.Open)
+                {
+                    Conexion.Close();
+                }
 
             }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            return Conexion;
         }
 
         public DataSet Seleccionar(SqlCommand Cmd)
@@ -144,6 +180,7 @@ namespace ProyectoDA
                 sc.CommandType = CommandType.StoredProcedure;
                 sc.CommandText = Sp;
                 sc.CommandTimeout = 0;
+
 
 
                 foreach (SqlParameter param in lSqlParam)
