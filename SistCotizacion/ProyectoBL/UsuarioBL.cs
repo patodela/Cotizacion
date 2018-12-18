@@ -18,11 +18,7 @@ namespace ProyectoBL
         private string codUsuario { get; set; }
         private string sPasswd { get; set; }
 
-        //public UsuarioBL(string coduser, string spass)
-        //{
-        //    codUsuario = coduser;
-        //    sPasswd = spass;
-        //}
+        
 
         public DataTable existeUsuario(string codUsuario, string sPasswd)
         {
