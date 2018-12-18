@@ -6,10 +6,11 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>-IMPEX-</title>
-     <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/submenu.css" rel="stylesheet" />
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-
+    <script src="Scripts/submenu.js"></script>
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -20,48 +21,111 @@
 
 
     <div class="container">
-
-        <!-- Static navbar -->
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Project name</a>
+                    <a class="navbar-brand" href="\index.aspx">IMPEX SPA.</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                        <li><a href="../navbar-static-top/">Static top</a></li>
-                        <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
+                <ul class="nav navbar-nav">                
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tu Asesor Impex<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Crear Cotizacion</a></li>
+                            <li><a href="#">Consulta a tu Asesor</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Operaciones<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Especiales</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Crear Cotizacion</a></li>
+                                    <li><a href="#">Solicitud de Ajustes</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Herramientas</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Analisis</a></li>
+                                    <li><a href="#">Calculadoras</a></li>
+                                    <li><a href="#">Doumentos</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventario</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Egreso</a></li>
+                                    <li><a href="#">Ingreso</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenedores</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="\EntidadAlmacen.aspx">Almacen</a></li>
+                                    <li><a href="\EntidadCliente.aspx">Cliente</a></li>
+                                    <li><a href="\EntidadPersonal.aspx">Peronal</a></li>
+                                    <li><a href="#">Proveedor</a></li>
+                                    <li><a href="#">Usuario</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                   <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Libros<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Fichas</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Almacen</a></li>
+                                    <li><a href="#">Cliente</a></li>
+                                    <li><a href="#">Peronal</a></li>
+                                    <li><a href="#">Proveedor</a></li>
+                                    <li><a href="#">Usuario</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Informes</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Compras</a></li>
+                                    <li><a href="#">Inventario</a></li>
+                                    <li><a href="#">Produccion</a></li>
+                                    <li><a href="#">Ventas</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventario</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Egreso</a></li>
+                                    <li><a href="#">Ingreso</a></li>
+                                    <li><a href="#">Existencias</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Operaciones</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">En Proceso</a></li>
+                                    <li><a href="#">Historicas</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configuracion<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Contabilidad</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Plan de Cuentas Contables</a></li>
+                                    <li><a href="#">Plan de Cuentas de Costos</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sku</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Plan de Sku Usuarios</a></li>
+                                    <li><a href="#">Usuarios de Impex</a></li>
+                                </ul>
+                            </li>                          
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Nombre Usuario</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
+                </ul>
             </div>
-            <!--/.container-fluid -->
         </nav>
-
         <!-- Main component for a primary marketing message or call to action -->
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolderNavContenido" runat="server">
@@ -72,7 +136,7 @@
     </div>
     <!-- /container -->
 
-   
+
 
 </body>
 </html>
