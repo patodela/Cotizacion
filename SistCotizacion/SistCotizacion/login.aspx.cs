@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ProyectoBL;
+using System;
+using System.Data;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using ProyectoBL;
-
 
 namespace SistCotizacion
 {
@@ -18,17 +14,27 @@ namespace SistCotizacion
 
         protected void ButtonLogin_Click(object sender, EventArgs e)
         {
+            DataTable dtUsuario = new DataTable();
             string usuario = txt_usuario.Text.Trim();
             string pass = txtPassword.Text.Trim();
 
-            UsuarioBL ubl = new UsuarioBL(usuario,pass);
-            if (ubl.existeUsuario())
+            UsuarioBL ubl = new UsuarioBL();
+            dtUsuario = ubl.existeUsuario(usuario, pass);
+            if (dtUsuario.Rows.Count >= 1 )
             {
-                Response.Redirect(@"\index.aspx");
+                if (bool.Parse(dtUsuario.Rows[0]["activo"].ToString()))
+                {
+                    Response.Redirect(@"\index.aspx");
+
+                }
+                else {
+                    //mostrar mensaje usuario no activo
+                }
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('"+ubl.sError.Replace("'","")+"')", true);
+                //nombre o pass incorrecto
+               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ubl.sError.Replace("'", "") + "')", true);
             }
 
 
