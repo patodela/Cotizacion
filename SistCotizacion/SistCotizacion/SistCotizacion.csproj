@@ -70,7 +70,9 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="EntidadAlmacen.aspx" />
     <Content Include="EntidadCliente.aspx" />
+    <Content Include="EntidadPersonal.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
@@ -101,12 +103,26 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntidadAlmacen.aspx.cs">
+      <DependentUpon>EntidadAlmacen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EntidadAlmacen.aspx.designer.cs">
+      <DependentUpon>EntidadAlmacen.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EntidadCliente.aspx.cs">
       <DependentUpon>EntidadCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="EntidadCliente.aspx.designer.cs">
       <DependentUpon>EntidadCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EntidadPersonal.aspx.cs">
+      <DependentUpon>EntidadPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EntidadPersonal.aspx.designer.cs">
+      <DependentUpon>EntidadPersonal.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
