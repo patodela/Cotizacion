@@ -15,40 +15,9 @@ namespace ProyectoDA
         public string sError;
 
         private string ConectionString;
+       
 
-        //public ConexionSQL(string sServer, string sBase, string sUser, string sPass)
-        //{
-        //    try
-        //    {
-
-        //        SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder();
-        //        sb["Data source"] = sServer;
-        //        sb["Initial Catalog"] = sBase;
-        //        sb["UID"] = sUser;
-        //        sb["PWD"] = sPass;
-
-        //        ConectionString = sb.ConnectionString;
-
-
-        //        bError = false;
-
-        //    }
-        //    catch (SqlException eSql)
-        //    {
-
-        //        bError = true;
-        //        sError = eSql.Message;
-
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        bError = true;
-        //        sError = e.Message;
-
-        //    }
-        //}
-
-        private SqlConnection Conexion = new SqlConnection("server=localhost;user id=sa;database=cotizacion;password=Welcome01");
+        private SqlConnection Conexion = new SqlConnection("server=localhost;user id=sa;database=cotizacion;password=Abc123456");
         public SqlConnection AbrirConexion()
         {
             try

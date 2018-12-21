@@ -29,12 +29,13 @@ namespace SistCotizacion
                 }
                 else {
                     //mostrar mensaje usuario no activo
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Usuario no se encuentra activo para iniciar sesión.')", true);
                 }
             }
             else
             {
-                //nombre o pass incorrecto
-               // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + ubl.sError.Replace("'", "") + "')", true);
+                //no existe
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Usuario no se encuentra registrado en el sistema.')", true);
             }
 
 
