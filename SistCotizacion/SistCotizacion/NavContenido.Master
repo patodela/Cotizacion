@@ -18,8 +18,9 @@
 </head>
 <body>
 
-
-
+     <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
     <div class="container">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -58,11 +59,11 @@
                             </li>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenedores</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="\EntidadAlmacen.aspx">Almacen</a></li>
+                                    <li><a href="\Almacen\Almacen.aspx">Almacen</a></li>
                                     <li><a href="\EntidadCliente.aspx">Cliente</a></li>
                                     <li><a href="\EntidadPersonal.aspx">Peronal</a></li>
                                     <li><a href="\EntidadProveedor.aspx">Proveedor</a></li>
-                                    <li><a href="\EntidadUsuario.aspx">Usuario</a></li>
+                                    <li><a href="\Usuario\Usuario.aspx">Usuario</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -121,7 +122,8 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Nombre Usuario</a></li>
+                    <li><span class="glyphicon glyphicon-user"></span>
+                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario"></asp:Label><br>
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                 </ul>
             </div>
@@ -134,9 +136,35 @@
 
 
     </div>
-    <!-- /container -->
-
-
+    <!-- /container  --> 
+            <asp:HiddenField ID="hfLanzaMensaje" runat="server" />
+    <ajaxToolkit:ModalPopupExtender ID="mpeMensaje" runat="server" BackgroundCssClass="modalBackground"
+        DynamicServicePath="" Enabled="True" TargetControlID="hfLanzaMensaje" PopupControlID="pMensaje"
+        PopupDragHandleControlID="pMensaje" OkControlID="btnAceptarMensaje">
+    </ajaxToolkit:ModalPopupExtender>
+         
+    <asp:Panel ID="pMensaje" runat="server">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <asp:UpdatePanel ID="udpEditableHeader" runat="server">
+                    <ContentTemplate>
+                        <asp:Label ID="litMensajeTitulo" runat="server" Text="Anexo"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div class="panel-body">
+                <asp:UpdatePanel ID="udpEditableBody" runat="server">
+                    <ContentTemplate>
+                        <asp:Label ID="litMensajeTexto" runat="server" Text="Label"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div class="panel-footer" style="text-align: right">
+                <asp:LinkButton ID="btnAceptarMensaje" class="btn btn-primary" runat="server">Aceptar</asp:LinkButton>
+            </div>
+        </div>
+    </asp:Panel>
+</form>
 
 </body>
 </html>
