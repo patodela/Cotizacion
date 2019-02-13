@@ -17,7 +17,7 @@ namespace ProyectoDA
         private string ConectionString;
        
 
-        private SqlConnection Conexion = new SqlConnection("server=localhost;user id=sa;database=cotizacion;password=Abc123456");
+        private SqlConnection Conexion = new SqlConnection("server=204.93.168.25;user id=impexcom_sistema;database=impexcom_cotizacion;password=Abc123456");
         public SqlConnection AbrirConexion()
         {
             try

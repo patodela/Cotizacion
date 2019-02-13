@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=18.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.18.1.1\lib\net40\AjaxControlToolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +84,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
+    <Content Include="Almacen\Almacen.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -104,6 +109,7 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Usuarios\Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,14 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Almacen\Almacen.aspx.cs">
+      <DependentUpon>Almacen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Almacen\Almacen.aspx.designer.cs">
+      <DependentUpon>Almacen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PContenidoPostLogin.cs" />
     <Compile Include="NavContenido.Master.cs">
       <DependentUpon>NavContenido.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -174,11 +188,22 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuarios\Usuarios.aspx.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Usuarios.aspx.designer.cs">
+      <DependentUpon>Usuarios.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSSQLSUL\MSSQLSUL.csproj">
+      <Project>{97bddbef-07c7-4e16-bb28-340219e61b0d}</Project>
+      <Name>MSSQLSUL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProyectoBL\ProyectoBL.csproj">
       <Project>{c067028c-5185-48aa-be1c-8f8530e50068}</Project>
       <Name>ProyectoBL</Name>

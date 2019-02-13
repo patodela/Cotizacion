@@ -36,6 +36,7 @@
 			    		</div>		    		
 			    		
                         <asp:Button class="btn btn-lg btn-success btn-block" ID="ButtonLogin" runat="server" Text="Ingresar" OnClick="ButtonLogin_Click" />
+                         <asp:Label ID="lblMensaje" runat="server" Visible="False"></asp:Label>
 			    	</fieldset>
 			      	</form>
 			    </div>
