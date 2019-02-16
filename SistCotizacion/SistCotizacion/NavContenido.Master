@@ -122,8 +122,8 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><span class="glyphicon glyphicon-user"></span>
-                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario"></asp:Label><br>
+                    <li><span class="glyphicon glyphicon-user" style="color:#FF0000;"></span>
+                     <asp:Label ID="lblUsuario" runat="server" Text="Usuario" ForeColor="#CCCCCC"></asp:Label></li>
                     <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir</a></li>
                 </ul>
             </div>

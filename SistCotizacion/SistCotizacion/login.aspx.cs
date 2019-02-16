@@ -10,7 +10,7 @@ namespace SistCotizacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblMensaje.Visible = false;
         }
 
         protected void ButtonLogin_Click(object sender, EventArgs e)
@@ -37,13 +37,13 @@ namespace SistCotizacion
                             lblMensaje.Text = "Su contraseña Expiro, Por favor cambiela.";
                             break;
                     }
-
-
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                lblMensaje.Text = ex.Message;
+                lblMensaje.Visible = true;
+                //throw new Exception(ex.Message);
             }
 
 

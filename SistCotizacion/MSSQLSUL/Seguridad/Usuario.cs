@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,15 +15,19 @@ namespace MSSQLSUL.Seguridad
         public String StringConexion { get; set; }
         public String NombreUsuario { get; set; }
         public String Clave { get; set; }
-        private EstadoUsuario vEstado;
-        private int P_ID_USUARIO;
-        private int P_DIAS_EXPIRACION;
-        private String P_MSJ_EXPIRACION;
-        private String P_HOST_SMTP;
-        private String P_NOMBRE_ROL;
-        private String P_CLAVE_ROL;
-
-        public EstadoUsuario EstadoUsuario
+        private EstadoUsuario vEstado;       
+        private string codUsuario { get; set; }
+        private string sPasswd { get; set; }
+        private int id_usuario { get; set; }
+        private int id_tipo_usuario { get; set; }
+        private string cod_usuario { get; set; }
+        private string pwd_usuario { get; set; }
+        private DateTime fecha_ingreso { get; set; }
+        private bool activo { get; set; }
+        private DateTime fecha_actualizacion { get; set; }
+        public string Rol { get; } 
+        public string ClaveRol { get; }
+        public EstadoUsuario EstadoUsuario 
         {
             get
             {
@@ -30,70 +35,15 @@ namespace MSSQLSUL.Seguridad
             }
         }
 
-        public int ID
-        {
-            get
-            {
-                return P_ID_USUARIO;
-            }
-        }
-        public int DiasExpiracion
-        {
-            get
-            {
-                return P_DIAS_EXPIRACION;
-            }
-        }
-
-        public String MensajeExpiracion
-        {
-            get
-            {
-                return P_MSJ_EXPIRACION;
-            }
-        }
-
-        public String HostSMTP
-        {
-            get
-            {
-                return P_HOST_SMTP;
-            }
-        }
-
-        public String Rol
-        {
-            get
-            {
-                return P_NOMBRE_ROL;
-            }
-        }
-
-        public String ClaveRol
-        {
-            get
-            {
-                return P_CLAVE_ROL;
-            }
-        }
-
-
-
         public Usuario(String vUser, String vPass)
         {
             // Tenemos que crear el string de conexion primero
-
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
             builder.DataSource = "204.93.168.25";
             builder.InitialCatalog = "impexcom_cotizacion";
             builder.UserID = "impexcom_sistema";
             builder.Password = "Abc123456";
-
-            //TextBox5.Text = builder.ConnectionString;​        
-
-
-
             StringConexion = builder.ConnectionString;
 
             // Ahora veremos si podemos ingresar.
@@ -109,44 +59,38 @@ namespace MSSQLSUL.Seguridad
                 throw new Exception("No se pudo conectar a la base de datos.<br/>" + ex.Message);
 
             }
-            //Dictionary<string,object> vParam = new Dictionary<string,object>();
+            Dictionary<string, object> vParam = new Dictionary<string, object>();
 
 
 
-            //     vParam.Add("P_APLICACION", 23);
-            //     vParam.Add("P_USUARIO_RED", ""); //IN VARCHAR2,
-            //     vParam.Add("P_USUARIO_SISTEMA", vUser);
-
-            //     vParam.Add("P_ID_USUARIO", 0);//OUT NUMBER,
-            //     vParam.Add("P_DIAS_EXPIRACION", 0);//OUT NUMBER,
-            //     vParam.Add("P_HOST_SMTP", "") ;//OUT VARCHAR2,
-            //     vParam.Add("P_MSJ_EXPIRACION", ""); //OUT VARCHAR2,
-            //     vParam.Add("P_NOMBRE_ROL", ""); //OUT VARCHAR2,
-            //     vParam.Add("P_CLAVE_ROL", "") ;//OUT VARCHAR2,
-
+            vParam.Add("@sUsuario", vUser);
+            vParam.Add("@sPass", vPass);
+            //vParam.Add("P_NOMBRE_ROL", "");// OUT
 
             try
             {
-                //    string vError = "";
-                //    int vResp = int.Parse((vCon.ExecNumber("SA.FX_CONECTAR", ref vError,vParaMetros:vParam).ToString()));
+                //aca tengo que ver si existe el usuario en BD
+                string vError = "";
+                DataTable vResp = vCon.Ejecutar("sp_existe_usuario", ref vError, vParaMetros: vParam);
+                if (vResp.Rows.Count > 0)
+                {
+                    vEstado = EstadoUsuario.Logeado;
+                    id_usuario = int.Parse(vResp.Rows[0]["id_usuario"].ToString());
+                    id_tipo_usuario = int.Parse(vResp.Rows[0]["id_tipo_usuario"].ToString());
+                    NombreUsuario = vResp.Rows[0]["nombre"].ToString();
+                    cod_usuario = vResp.Rows[0]["cod_usuario"].ToString();
+                    pwd_usuario = vResp.Rows[0]["pwd_usuario"].ToString();
+                    fecha_ingreso = DateTime.Parse(vResp.Rows[0]["fecha_ingreso"].ToString());
+                    activo = bool.Parse(vResp.Rows[0]["activo"].ToString());
+                    fecha_actualizacion = DateTime.Parse(vResp.Rows[0]["fecha_actualizacion"].ToString());
+                    
+                }
+                else
+                {
+                    vEstado = EstadoUsuario.NoLogeado; //No pudo ingresar                    
+                }
 
-                //    vEstado = (EstadoUsuario)vResp;
-                //    switch(vEstado){
-                //        case EstadoUsuario.NoLogeado: //No pudo ingresar
-                //            break;
-                //        case EstadoUsuario.Logeado: //Acceso Correcto
-                //            P_NOMBRE_ROL = vParam["P_NOMBRE_ROL"].ToString();
-                //            P_CLAVE_ROL = vParam["P_CLAVE_ROL"].ToString();
 
-                //            P_ID_USUARIO = int.Parse(vParam["P_ID_USUARIO"].ToString());
-                //            P_DIAS_EXPIRACION =  int.Parse(vParam["P_DIAS_EXPIRACION"].ToString());
-                //            P_HOST_SMTP = vParam["P_HOST_SMTP"].ToString();
-                //            break;
-                //        case EstadoUsuario.PassExpirado: //Clave Expirada
-                //            P_MSJ_EXPIRACION = vParam["P_MSJ_EXPIRACION"].ToString();
-                //            break;
-                //}
-                vEstado = EstadoUsuario.Logeado;
                 vCon.Confirmar();
             }
             catch (Exception ex)
