@@ -7,126 +7,135 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace SistCotizacion {
+namespace SistCotizacion.Mantenedores {
     
     
-    public partial class NavContenido {
+    public partial class Almacen {
         
         /// <summary>
-        /// Control head.
+        /// Control UpdatePanel2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// Control form1.
+        /// Control txtNTickets.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox txtNTickets;
         
         /// <summary>
-        /// Control ScriptManager1.
+        /// Control txtFechaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaInicio;
         
         /// <summary>
-        /// Control lblUsuario.
+        /// Control txtFechaFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuario;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaFin;
         
         /// <summary>
-        /// Control ContentPlaceHolderNavContenido.
+        /// Control dwlFClasificacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolderNavContenido;
+        protected global::System.Web.UI.WebControls.DropDownList dwlFClasificacion;
         
         /// <summary>
-        /// Control hfLanzaMensaje.
+        /// Control dwlEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfLanzaMensaje;
+        protected global::System.Web.UI.WebControls.DropDownList dwlEstado;
         
         /// <summary>
-        /// Control mpeMensaje.
+        /// Control btnBuscarSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender mpeMensaje;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarSolicitud;
         
         /// <summary>
-        /// Control pMensaje.
+        /// Control btnlimpiarSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pMensaje;
+        protected global::System.Web.UI.WebControls.LinkButton btnlimpiarSolicitud;
         
         /// <summary>
-        /// Control udpEditableHeader.
+        /// Control btnagregarSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpEditableHeader;
+        protected global::System.Web.UI.WebControls.LinkButton btnagregarSolicitud;
         
         /// <summary>
-        /// Control litMensajeTitulo.
+        /// Control btnEditarSolicitud.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litMensajeTitulo;
+        protected global::System.Web.UI.WebControls.LinkButton btnEditarSolicitud;
         
         /// <summary>
-        /// Control udpEditableBody.
+        /// Control btnEliminarAnexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel udpEditableBody;
+        protected global::System.Web.UI.WebControls.LinkButton btnEliminarAnexo;
         
         /// <summary>
-        /// Control litMensajeTexto.
+        /// Control btnVerAnexo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litMensajeTexto;
+        protected global::System.Web.UI.WebControls.LinkButton btnVerAnexo;
         
         /// <summary>
-        /// Control btnAceptarMensaje.
+        /// Control UpdatePanel1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAceptarMensaje;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
+        /// Control griSolicitudes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView griSolicitudes;
     }
 }
