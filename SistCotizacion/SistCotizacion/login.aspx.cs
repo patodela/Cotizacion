@@ -1,4 +1,5 @@
-﻿using ProyectoBL;
+﻿using MSSQLSUL.Seguridad;
+using ProyectoBL;
 using System;
 using System.Data;
 using System.Web.UI;
@@ -9,36 +10,88 @@ namespace SistCotizacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblMensaje.Visible = false;
         }
 
         protected void ButtonLogin_Click(object sender, EventArgs e)
         {
-            DataTable dtUsuario = new DataTable();
-            string usuario = txt_usuario.Text.Trim();
-            string pass = txtPassword.Text.Trim();
-
-            UsuarioBL ubl = new UsuarioBL();
-            dtUsuario = ubl.existeUsuario(usuario, pass);
-            if (dtUsuario.Rows.Count >= 1 )
+            try
             {
-                if (bool.Parse(dtUsuario.Rows[0]["activo"].ToString()))
-                {
-                    Response.Redirect(@"\index.aspx");
+                MSSQLSUL.Seguridad.Usuario vUsuario = new MSSQLSUL.Seguridad.Usuario(txt_usuario.Text, txtPassword.Text);
 
-                }
-                else {
-                    //mostrar mensaje usuario no activo
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Usuario no se encuentra activo para iniciar sesión.')", true);
+                if (vUsuario != null)
+                {
+                    switch (vUsuario.EstadoUsuario)
+                    {
+                        case EstadoUsuario.Logeado:
+                            Session["Usuario"] = vUsuario;
+                            Response.Redirect("/index.aspx", false);
+                            break;
+                        case EstadoUsuario.NoLogeado:
+                            lblMensaje.Visible = true;
+                            lblMensaje.Text = "Ingreso no válido.";
+                            break;
+                        case EstadoUsuario.PassExpirado:
+                            //En este caso debemos pedir que cambie el password.
+                            lblMensaje.Visible = true;
+                            lblMensaje.Text = "Su contraseña Expiro, Por favor cambiela.";
+                            break;
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                //no existe
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Usuario no se encuentra registrado en el sistema.')", true);
+                lblMensaje.Text = ex.Message;
+                lblMensaje.Visible = true;
+                //throw new Exception(ex.Message);
             }
 
 
         }
+
+        private void CerrarSession()
+        {
+            Session.Clear();
+            Session.RemoveAll();
+        }
+
+
+        protected void Ingresar(Object sender, EventArgs e)
+        {
+
+            try
+            {
+                MSSQLSUL.Seguridad.Usuario vUsuario = new MSSQLSUL.Seguridad.Usuario(txt_usuario.Text, txtPassword.Text);
+
+                if (vUsuario != null)
+                {
+                    switch (vUsuario.EstadoUsuario)
+                    {
+                        case EstadoUsuario.Logeado:
+                            Session["Usuario"] = vUsuario;
+                            Response.Redirect("/Principal.aspx", false);
+                            break;
+                        case EstadoUsuario.NoLogeado:
+                            lblMensaje.Visible = true;
+                            lblMensaje.Text = "Ingreso no válido.";
+                            break;
+                        case EstadoUsuario.PassExpirado:
+                            //En este caso debemos pedir que cambie el password.
+                            lblMensaje.Visible = true;
+                            lblMensaje.Text = "Su contraseña Expiro, Por favor cambiela.";
+                            break;
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+
     }
 }
