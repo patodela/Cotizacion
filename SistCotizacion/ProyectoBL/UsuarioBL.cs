@@ -15,15 +15,11 @@ namespace ProyectoBL
         public bool bError { get; set; }
         public string sError { get; set; }
 
-        private string codUsuario { get; set; }
-        private string sPasswd { get; set; }
+        //private string codUsuario { get; set; }
+        //private string sPasswd { get; set; }
 
-        
+        public DataTable ObtenerUsuarios(MSSQLSUL.Seguridad.Usuario Usr) {
 
-        public DataTable existeUsuario(string codUsuario, string sPasswd)
-        {
-            dt = usuario.existeUsuario(codUsuario, sPasswd);
-           return dt;
 
         }
 
