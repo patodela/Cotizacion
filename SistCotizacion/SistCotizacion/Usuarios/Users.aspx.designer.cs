@@ -10,7 +10,7 @@
 namespace SistCotizacion.Usuarios {
     
     
-    public partial class Usuarios {
+    public partial class Users {
         
         /// <summary>
         /// Control UpdatePanel2.

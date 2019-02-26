@@ -42,12 +42,16 @@
   <ItemGroup>
     <Compile Include="AlmacenDA.cs" />
     <Compile Include="ClienteDA.cs" />
-    <Compile Include="ConexionSQL.cs" />
     <Compile Include="PersonalDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioDA.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MSSQLSUL\MSSQLSUL.csproj">
+      <Project>{97bddbef-07c7-4e16-bb28-340219e61b0d}</Project>
+      <Name>MSSQLSUL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

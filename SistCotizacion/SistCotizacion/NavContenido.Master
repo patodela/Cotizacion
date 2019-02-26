@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NavContenido.master.cs" Inherits="SistCotizacion.NavContenido" %>
-
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -63,7 +63,7 @@
                                     <li><a href="\EntidadCliente.aspx">Cliente</a></li>
                                     <li><a href="\EntidadPersonal.aspx">Peronal</a></li>
                                     <li><a href="\EntidadProveedor.aspx">Proveedor</a></li>
-                                    <li><a href="\Usuarios\Usuarios.aspx">Usuario</a></li>
+                                    <li><a href="\Usuarios\Users.aspx">Usuario</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -138,10 +138,10 @@
     </div>
     <!-- /container  --> 
             <asp:HiddenField ID="hfLanzaMensaje" runat="server" />
-    <ajaxToolkit:ModalPopupExtender ID="mpeMensaje" runat="server" BackgroundCssClass="modalBackground"
+    <asp:ModalPopupExtender ID="mpeMensaje" runat="server" BackgroundCssClass="modalBackground"
         DynamicServicePath="" Enabled="True" TargetControlID="hfLanzaMensaje" PopupControlID="pMensaje"
         PopupDragHandleControlID="pMensaje" OkControlID="btnAceptarMensaje">
-    </ajaxToolkit:ModalPopupExtender>
+    </asp:ModalPopupExtender>
          
     <asp:Panel ID="pMensaje" runat="server">
         <div class="panel panel-primary">
@@ -165,6 +165,5 @@
         </div>
     </asp:Panel>
 </form>
-
 </body>
 </html>
