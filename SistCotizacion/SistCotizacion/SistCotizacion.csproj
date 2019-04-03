@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Catalogo.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -83,6 +84,7 @@
     <Content Include="EntidadUsuario.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.aspx" />
+    <Content Include="Libro_Ingresos.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Almacen\Almacen.aspx" />
     <Content Include="Organizador_Familias.aspx" />
@@ -114,6 +116,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Catalogo.aspx.cs">
+      <DependentUpon>Catalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Catalogo.aspx.designer.cs">
+      <DependentUpon>Catalogo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Cotizacion.aspx.cs">
       <DependentUpon>Cotizacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -163,6 +172,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Libro_Ingresos.aspx.cs">
+      <DependentUpon>Libro_Ingresos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Libro_Ingresos.aspx.designer.cs">
+      <DependentUpon>Libro_Ingresos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,6 +194,7 @@
       <DependentUpon>Almacen.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master\PContenidoPostLogin.cs" />
+    <Compile Include="Master\Utility.cs" />
     <Compile Include="NavContenido.Master.cs">
       <DependentUpon>NavContenido.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

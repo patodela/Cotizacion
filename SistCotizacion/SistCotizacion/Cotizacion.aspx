@@ -4,7 +4,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
-    <form runat="server">
+  
      <div class="panel panel-default">
             <div class="panel-heading text-center"><strong>COTIZACION</strong></div>
             <div class="panel-body">
@@ -336,5 +336,5 @@
                      </div>
                 </div>
           </div>
-    </form> 
+  
 </asp:Content>
