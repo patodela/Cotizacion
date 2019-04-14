@@ -84,6 +84,7 @@
     <Content Include="EntidadUsuario.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.aspx" />
+    <Content Include="IngresoProducto.aspx" />
     <Content Include="Libro_Ingresos.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Almacen\Almacen.aspx" />
@@ -172,6 +173,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="IngresoProducto.aspx.cs">
+      <DependentUpon>IngresoProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IngresoProducto.aspx.designer.cs">
+      <DependentUpon>IngresoProducto.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Libro_Ingresos.aspx.cs">
       <DependentUpon>Libro_Ingresos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -232,6 +240,10 @@
     <ProjectReference Include="..\ProyectoBL\ProyectoBL.csproj">
       <Project>{c067028c-5185-48aa-be1c-8f8530e50068}</Project>
       <Name>ProyectoBL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProyectoDA\ProyectoDA.csproj">
+      <Project>{48c24b59-325a-4b38-b4b3-cdcfaec7a5d3}</Project>
+      <Name>ProyectoDA</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
