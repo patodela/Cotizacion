@@ -1,45 +1,145 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="Cotizacion.aspx.cs" Inherits="SistCotizacion.Cotizacion" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="CotNacional.aspx.cs" Inherits="SistCotizacion.Cotizacion.CotNacional" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="Content/cotizacion.css" rel="stylesheet" />
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
-   
-     <div class="panel panel-default">
+<div class="panel panel-default">
             <div class="panel-heading text-center"><strong>COTIZACION</strong></div>
             <div class="panel-body">
-                 <div class="table-responsive">
+                
+                     <table class="table table-bordered" id="titulo">
+                         <%--<thead >--%>
+                             <tr >
+                                  <td colspan="2">Titulo</td>
+                                 <td rowspan="3" width="50%" >LOGO EMPRESA AQUI</td>
+                             </tr>                            
+                       <%--  </thead>--%>
+                         <%--<tbody class="text-center">--%>
+                             <tr>
+                                 <td  colspan="2"><strong>Bajada Titulo</strong></td>
+                                                                                                   
+                             </tr>  
+                             <tr>
+                                 <td  colspan="2" ><strong>Subtitulo</strong></td> 
+                                                               
+                             </tr>                            
+                         <%--</tbody>--%>
+                     </table>
                      <table class="table table-bordered" id="tablaCabeceraCotizacion">
                          <thead >
-                             <tr >
-                                  <th class="alert-danger text-center" colspan="2">Cotizacion de Servicio</th>
-                                 <th rowspan="6">LOGO EMPRESA AQUI</th>
-                             </tr>                            
+                             <tr>
+                                 <th>0</th>
+                                 <th colspan="11" class="text-center">Informacion de Documento</th>
+                             </tr>                                                           
                          </thead>
                          <tbody class="text-center">
+                             <tr >
+                                  <th colspan="6" class="text-center">Cotizacion</th>
+                                 <th colspan ="6" class="text-center">Orden</th>
+                             </tr>  
+                             <tr>                                 
+                                 <td colspan="2">COTIZACIÓN Nº</td >
+                                 <td colspan="2">
+                                     <asp:Label ID="lblNumberCot" runat="server"></asp:Label></td >
+                                 <td >Act.</td >
+                                 <td ><asp:Label ID="lblAct" runat="server"></asp:Label></td >
+                                 <td colspan="2">Autorizacion Nº</td >
+                                 <td colspan="2"></td >
+                                 <td >Act.</td >
+                                 <td >8</td >
+                             </tr> 
+                             <tr>                                 
+                                 <td colspan="2">Emision/Aprobacions</td >
+                                 <td colspan="2">
+                                     <asp:Label ID="Label1" runat="server"></asp:Label></td >
+                                 <td colspan="2">Act.</td >                                 
+                                 <td colspan="2">Emision/Autorizacion</td >
+                                 <td colspan="2">&nbsp;</td >
+                                 <td colspan="2">Act.</td >                                
+                             </tr>        
                              <tr>
-                                 <td class="active" colspan="2"><strong>Servicios Generales</strong></td>
-                                 
-                             </tr>
+                                 <td colspan="2">Validad Hasta</td >                                 
+                                 <td colspan="4"></td >
+                                 <td colspan="2">Validad Hasta</td >
+                                 <td colspan="4"></td > 
+                             </tr>  
                              <tr>
-                                 <td><strong>Cotización S.Nº</strong></td>
-                                 <td></td>
-                             </tr>
-                              <tr>
-                                 <td><strong>Fecha de emisión</strong></td>
-                                 <td></td>
-                             </tr>
-                              <tr>
-                                 <td><strong>Válida hasta</strong></td>
-                                 <td></td>
-                             </tr>
-                              <tr>
-                                 <td><strong>ESTADO</strong></td>
-                                 <td></td>
-                             </tr>
+                                 <td colspan="2">Estado</td >                                 
+                                 <td colspan="4"></td >
+                                 <td colspan="2">Estado</td >
+                                 <td colspan="4"></td > 
+                             </tr> 
+                             <tr>
+                                 <td colspan="6">Documentos Adjuntos</td>
+                                 <td colspan="6">Divisas</td>
+                             </tr>              
+                             <tr>
+                                 <td colspan="2">Catalogo Nº</td >                                 
+                                 <td colspan="4"></td >
+                                 <td colspan="2">CLP</td >
+                                 <td colspan="4"></td > 
+                             </tr>       
+                              <tr>                                 
+                                 <td colspan="2">Hoja de Aforo/Instrucciones Nº</td >
+                                 <td colspan="2"></td >
+                                 <td colspan="2"></td >                                 
+                                 <td colspan="2">USD ; T/C</td >
+                                 <td colspan="4"></td >                                                               
+                             </tr> 
+                             <tr>                                 
+                                 <td colspan="2">Seguimientos OP/FN Nº</td >
+                                 <td colspan="2"></td >
+                                 <td colspan="2"></td >                                 
+                                 <td colspan="2">UF ; T/C</td >
+                                 <td colspan="4"></td >                                                               
+                             </tr>                      
                          </tbody>
                      </table>
+                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                <asp:Table ID="Table1" runat="server" class="table table-bordered" >
+                     <%-- <asp:TableHeaderRow>
+                        
+                            <asp:TableRow>
+                                <th colspan="9" class="text-center">Listado de Mercancias</th>
+                            </asp:TableRow>
+                                <tr>
+                                 <th>Nº</th>
+                                 <th>Imagen</th>
+                                 <th>Codigo SKU</th>
+                                 <th>Descripcion</th>
+                                 <th>Detalle</th>
+                                 <th>Costo Unitario</th>
+                                 <th>Cantidad</th>
+                                 <th>UM</th>
+                                 <th>Costo Total</th>                           
+                            </tr>
+                        </asp:TableHeaderRow>--%>
+                    
+                                                                                  
+                            <%-- <asp:TableRow ID="fila1" runat="server">
+                               <asp:TableCell rowspan="5">Nº</asp:TableCell>
+                                 <asp:TableCell rowspan="5">Imagen</asp:TableCell>
+                                 <asp:TableCell rowspan="2">Codigo SKU</asp:TableCell>                                 
+                                 <asp:TableCell rowspan ="5">Descripcion</asp:TableCell>
+                                 <asp:TableCell>Detalle</asp:TableCell>
+                                 <asp:TableCell>Costo Unitario</asp:TableCell>
+                                 <asp:TableCell rowspan ="5" ColumnSpan ="2">Cantidad</asp:TableCell>                                 
+                                 <asp:TableCell>Costo Total</asp:TableCell>
+                             </asp:TableRow>
+                             <asp:TableRow ID="fila2" runat="server">
+                                 <asp:TableCell rowspan="2">Detalle</asp:TableCell>
+                                 <asp:TableCell rowspan="2">Costo Unitario</asp:TableCell>
+                                 <asp:TableCell rowspan="2">Costo Total</asp:TableCell>
+                             </asp:TableRow>
+                             <asp:TableRow ID="fila3" runat="server"> 
+                                 <asp:TableCell rowspan="3">provedor</asp:TableCell>
+                             </asp:TableRow>
+                             <asp:TableRow ID="fila4" runat="server">
+                                 <asp:TableCell rowspan="2">Detalle</asp:TableCell>
+                                 <asp:TableCell rowspan="2">Costo Unitario</asp:TableCell>
+                                 <asp:TableCell rowspan="2">Costo Total</asp:TableCell>
+                             </asp:TableRow>          --%>        
 
+                      </asp:Table>
                      <table class="table table-bordered" id="tablaSubCabeceraCotizacion">
                          <thead>
                              <tr>
@@ -74,6 +174,7 @@
                                  <td><strong>Intrucciones de pago al proveedor</strong></td>
                                  <td rowspan="2"> sadasdasdas</td>
                              </tr>
+
                          </tbody>
                      </table>
 
@@ -333,7 +434,7 @@
                              <tr><td></td><td></td></tr>
                          </tbody>
                      </table>
-                     </div>
+                    
                 </div>
           </div>
 
