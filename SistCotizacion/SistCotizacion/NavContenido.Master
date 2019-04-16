@@ -32,7 +32,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tu Asesor Impex<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="\Cotizacion.aspx">Crear Cotizacion</a></li>
+                            <li><a href="\Cotizacion\CotNacional.aspx">Crear Cotizacion</a></li>
                             <li><a href="#">Consulta a tu Asesor</a></li>
                         </ul>
                     </li>
@@ -41,7 +41,7 @@
                         <ul class="dropdown-menu">
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Especiales</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Crear Cotizacion</a></li>
+                                    <li><a href="\Cotizacion\CotNacional.aspx">Crear Cotizacion</a></li>
                                     <li><a href="#">Solicitud de Ajustes</a></li>
                                 </ul>
                             </li>
