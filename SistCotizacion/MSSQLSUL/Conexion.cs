@@ -16,6 +16,7 @@ namespace MSSQLSUL
         private int vNivelRecursivo;
         private const int TIMEOUT_CONEXION = 90;
         private Seguridad.Usuario vUser;
+        private string Strconection;
 
         public Conexion(Seguridad.Usuario vUsuario)
         {
@@ -31,7 +32,21 @@ namespace MSSQLSUL
             }
         }
 
-        ~Conexion()
+        public Conexion(string conexion)
+        {
+            if (conexion == null)
+            {
+                throw new Exception("No se puede crear la conexión porque no se ha provisto una cadena de conexión válida.");
+            }
+            else
+            {
+                Strconection = conexion;
+                _Con = new SqlConnection(Strconection);
+                vNivelRecursivo = 0;
+            }
+        }
+
+       Conexion()
         {
             if (_Tran != null)
             { //como hay transaccion
@@ -207,10 +222,11 @@ namespace MSSQLSUL
                         }
                     }
                 }
-                else
-                {
-                    cmdTmp.CommandType = CommandType.Text;
-                }
+                
+            }
+            else
+            {
+                cmdTmp.CommandType = CommandType.Text;
             }
 
             try

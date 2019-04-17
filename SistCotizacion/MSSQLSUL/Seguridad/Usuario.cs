@@ -18,7 +18,7 @@ namespace MSSQLSUL.Seguridad
         private EstadoUsuario vEstado;       
         private string codUsuario { get; set; }
         private string sPasswd { get; set; }
-        private int id_usuario { get; set; }
+        public int id_usuario { get; set; }
         private int id_tipo_usuario { get; set; }
         private string cod_usuario { get; set; }
         private string pwd_usuario { get; set; }

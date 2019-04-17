@@ -40,9 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrganizadorBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MSSQLSUL\MSSQLSUL.csproj">
+      <Project>{97bddbef-07c7-4e16-bb28-340219e61b0d}</Project>
+      <Name>MSSQLSUL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProyectoDA\ProyectoDA.csproj">
       <Project>{48c24b59-325a-4b38-b4b3-cdcfaec7a5d3}</Project>
       <Name>ProyectoDA</Name>
