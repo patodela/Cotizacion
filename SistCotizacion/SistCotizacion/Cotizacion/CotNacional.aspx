@@ -94,7 +94,7 @@
                              </tr>                      
                          </tbody>
                      </table>
-                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click1" />
                 <asp:Table ID="Table1" runat="server" class="table table-bordered" >
                      <%-- <asp:TableHeaderRow>
                         
@@ -115,7 +115,7 @@
                         </asp:TableHeaderRow>--%>
                     
                                                                                   
-                            <%-- <asp:TableRow ID="fila1" runat="server">
+                             <asp:TableRow ID="fila1" runat="server">
                                <asp:TableCell rowspan="5">Nº</asp:TableCell>
                                  <asp:TableCell rowspan="5">Imagen</asp:TableCell>
                                  <asp:TableCell rowspan="2">Codigo SKU</asp:TableCell>                                 
@@ -137,7 +137,7 @@
                                  <asp:TableCell rowspan="2">Detalle</asp:TableCell>
                                  <asp:TableCell rowspan="2">Costo Unitario</asp:TableCell>
                                  <asp:TableCell rowspan="2">Costo Total</asp:TableCell>
-                             </asp:TableRow>          --%>        
+                             </asp:TableRow>               
 
                       </asp:Table>
                      <table class="table table-bordered" id="tablaSubCabeceraCotizacion">

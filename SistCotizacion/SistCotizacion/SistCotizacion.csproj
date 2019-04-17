@@ -201,7 +201,9 @@
     <Compile Include="Almacen\Almacen.aspx.designer.cs">
       <DependentUpon>Almacen.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Master\PContenidoPostLogin.cs" />
+    <Compile Include="Master\PContenidoPostLogin.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Master\Utility.cs" />
     <Compile Include="NavContenido.Master.cs">
       <DependentUpon>NavContenido.Master</DependentUpon>

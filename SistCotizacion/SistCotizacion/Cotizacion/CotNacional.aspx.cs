@@ -13,11 +13,16 @@ namespace SistCotizacion.Cotizacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (! IsPostBack){
-                Table1 = (Table)Session["table1"];
+            if (!IsPostBack)
+            {
+               
             }
-            
-
+            else {
+                if ((Table)Session["table1"] != null)
+                {
+                    Table1 = (Table)Session["table1"];
+                }
+            }
         }
         private void agregarProducto()
         {
@@ -99,11 +104,12 @@ namespace SistCotizacion.Cotizacion
             Session["table1"] = Table1;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            
-            agregarProducto();
 
+
+        protected void Button1_Click1(object sender, EventArgs e)
+        {
+            agregarProducto();
+            Table1.DataBind();
         }
     }
 }

@@ -58,6 +58,42 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Table Table1;
         
         /// <summary>
+        /// Control fila1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow fila1;
+        
+        /// <summary>
+        /// Control fila2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow fila2;
+        
+        /// <summary>
+        /// Control fila3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow fila3;
+        
+        /// <summary>
+        /// Control fila4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow fila4;
+        
+        /// <summary>
         /// Control txtDpto.
         /// </summary>
         /// <remarks>
