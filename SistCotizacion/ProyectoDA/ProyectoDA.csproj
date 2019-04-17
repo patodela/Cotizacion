@@ -45,6 +45,7 @@
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="OrganizadorDA.cs" />
     <Compile Include="PersonalDA.cs" />
+    <Compile Include="ProductoCombinacionSKUDA.cs" />
     <Compile Include="ProductoDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioDA.cs" />

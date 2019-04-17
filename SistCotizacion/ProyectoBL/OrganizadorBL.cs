@@ -123,13 +123,13 @@ namespace ProyectoBL
                 case "VAR_PRINCIPAL_ARTICULO":
                     cant = Convert.ToInt32(LimiteTabla.VAR_PRINCIPAL_ARTICULO);
                     break;
-                case "VPC_CARACTERISTICA_1":
+                case "VCP_CARACTERISTICA_1":
                     cant = Convert.ToInt32(LimiteTabla.VCP_CARACTERISTICA_1);
                     break;
-                case "VPC_CARACTERISTICA_2":
+                case "VCP_CARACTERISTICA_2":
                     cant = Convert.ToInt32(LimiteTabla.VCP_CARACTERISTICA_2);
                     break;
-                case "VPC_CARACTERISTICA_3":
+                case "VCP_CARACTERISTICA_3":
                     cant = Convert.ToInt32(LimiteTabla.VCP_CARACTERISTICA_3);
                     break;
                 case "VAR_CUANTIFICACION_SECUNDARIA":

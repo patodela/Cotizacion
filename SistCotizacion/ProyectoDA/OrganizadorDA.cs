@@ -218,11 +218,11 @@ namespace ProyectoDA
                 string query = string.Empty;
                 if (_tipoTabla.ToString().Equals(nombreTabla.VAR_IDENTI_COMBINACION_1.ToString()) || _tipoTabla.ToString().Equals(nombreTabla.VAR_CUANTI_COMBINACION_1.ToString()))
                 {
-                    query = "SELECT right([cod_comb_1],1) as cant  FROM[dbo].["+_tipoTabla.ToString()+"] WHERE cod_letra = '"+ codLetra + "' order by[cod_comb_1] desc";
+                    query = "SELECT ISNULL(MAX(right(cod_comb_1,len(cod_comb_1)-1)),0) as cant  FROM[dbo].[" + _tipoTabla.ToString()+"] WHERE cod_letra = '"+ codLetra + "'";
                 }
                 else if(_tipoTabla.ToString().Equals(nombreTabla.VAR_IDENTI_COMBINACION_2) || _tipoTabla.ToString().Equals(nombreTabla.VAR_CUANTI_COMBINACION_2.ToString()))
                 {
-                    query = "SELECT right([cod_comb_2],1) as cant  FROM[dbo].[" + _tipoTabla.ToString() + "] WHERE cod_letra = '" + codLetra + "' order by[cod_comb_2] desc";
+                    query = "SELECT ISNULL(MAX(right(cod_comb_2,len(cod_comb_2)-1)),0) as cant  FROM[dbo].[" + _tipoTabla.ToString() + "] WHERE cod_letra = '" + codLetra + "'";
                 }
                 else
                 {
