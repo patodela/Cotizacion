@@ -18,6 +18,9 @@
         });
     </script>
 
+    <link href="Content/StylePaginacionGridview.css" rel="stylesheet" />
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
 
@@ -73,14 +76,7 @@
                 </div>
 
             </div>
-               
-                
-                
 
-               
-
-              
-               
            
         </div>
        </div>
@@ -105,9 +101,18 @@
                     </div>
                     <div class="col-md-4 col-md-offset-4">
                         <div class="input-group input-group-sm">
+                             <span class="input-group-btn">
+                              <asp:LinkButton ID="btnLimpiar" runat="server" CssClass="btn btn-success" ToolTip="Refrescar" OnClick="btnLimpiar_Click">
+                                  <span aria-hidden="true" class="glyphicon glyphicon-refresh"></span>
+                              </asp:LinkButton>
+                          </span>
                             <asp:TextBox ID="txtBuscar" CssClass="form-control" placeholder="Producto..." runat="server"></asp:TextBox>
                             <span class="input-group-btn">
-                               <asp:Button ID="btnBuscar" CssClass="btn btn-default" runat="server" Text="Buscar" />
+                               
+                                <asp:LinkButton ID="btnBuscar" runat="server" CssClass="btn btn-info" ToolTip="Buscar" OnClick="btnBuscar_Click">
+                                  <span aria-hidden="true" class=" glyphicon glyphicon-search"></span>
+                              </asp:LinkButton>
+                               <%--<asp:Button ID="btnBuscar" CssClass="btn btn-default" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />--%>
                             </span>
                         </div>
                        
@@ -116,7 +121,7 @@
             </div>
   <div class="panel-body">
     <div class="row">
-        <asp:GridView CssClass="table table-bordered table-responsive" ID="gridProductos" runat="server" AutoGenerateColumns="False" OnRowDataBound="gridProductos_RowDataBound" >
+        <asp:GridView CssClass="table table-bordered table-responsive" ID="gridProductos" runat="server" AutoGenerateColumns="False" OnRowDataBound="gridProductos_RowDataBound" AllowPaging="True" OnPageIndexChanging="gridProductos_PageIndexChanging" >
             <Columns>
                 <asp:BoundField DataField="id_producto" HeaderText="Nº">
                 <HeaderStyle Width="50px" />
@@ -169,6 +174,10 @@
 <HeaderStyle Width="50px"></HeaderStyle>
                 </asp:TemplateField>
             </Columns>
+            <EmptyDataTemplate>
+                No se encontraron datos...
+            </EmptyDataTemplate>
+            <PagerStyle CssClass="pagination-ys" />
         </asp:GridView>
     </div>
   </div>

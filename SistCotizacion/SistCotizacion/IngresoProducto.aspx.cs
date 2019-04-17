@@ -12,6 +12,7 @@ namespace SistCotizacion
 {
     public partial class IngresoProducto : System.Web.UI.Page
     {
+       
         MSSQLSUL.Seguridad.Usuario DataUser;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,6 +83,7 @@ namespace SistCotizacion
                 List<ProductoDA> listProd = new List<ProductoDA>();
                 _producto.operacion = "S";
                 listProd = _producto.Obtener(_producto);
+                Session["ListProductos"] = listProd;
                 gridProductos.DataSource = listProd;
                 gridProductos.DataBind();
             }
@@ -110,7 +112,7 @@ namespace SistCotizacion
 
                 lblIdProd.Text = row.Cells[0].Text;
                 ImageEdicion.ImageUrl = (row.FindControl("ImageProducto") as Image).ImageUrl;//1
-                txtNombreEdit.Text = row.Cells[2].Text;
+                txtNombreEdit.Text = (row.FindControl("Nombre") as Label).Text;//2
                 txtSku1Edit.Text = row.Cells[3].Text;
                 txtSku2Edit.Text = row.Cells[4].Text;
             }
@@ -192,5 +194,51 @@ namespace SistCotizacion
 
         }
 
+        protected void gridProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                gridProductos.PageIndex = e.NewPageIndex;
+                List<ProductoDA> listProd = new List<ProductoDA>((List<ProductoDA>)Session["ListProductos"]);
+                gridProductos.DataSource = listProd;
+                gridProductos.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public void FillBuscarByName(string _Name)
+        {
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                string _Name = txtBuscar.Text;
+                List<ProductoDA> listProd  = new List<ProductoDA>((List<ProductoDA>)Session["ListProductos"]);
+                listProd = listProd.FindAll(a => a.nombre.Contains(_Name));
+                gridProductos.DataSource = listProd;
+                gridProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            List<ProductoDA> listProd = new List<ProductoDA>((List<ProductoDA>)Session["ListProductos"]);
+            txtBuscar.Text = string.Empty;
+            gridProductos.DataSource = listProd;
+            gridProductos.DataBind();
+        }
     }
 }

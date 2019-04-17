@@ -18,7 +18,7 @@ namespace SistCotizacion
        MSSQLSUL.Seguridad.Usuario DataUser;
         protected void Page_Load(object sender, EventArgs e)
         {
-             if (!IsPostBack)
+             if (!Page.IsPostBack)
             {
                 DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
                 BindGridviewOrganizador(gv_organizador,DataUser);
@@ -518,7 +518,7 @@ namespace SistCotizacion
                              where p.Field<string>("descripcion") != null
                         select new
                         {
-                            id_fam = p.Field<Byte>("id_fam"),
+                            id_fam = p.Field<int>("id_fam"),
                             descripcion = p.Field<string>("cod_fam") +"-"+ p.Field<string>("descripcion")
                         };
             combobox.DataSource = datasource;
