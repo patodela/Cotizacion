@@ -18,6 +18,8 @@ namespace SistCotizacion
             {
                 GVProductos.DataSource = SqlDataSourceBuscaProductosByName;
                 GVProductos.DataBind();
+                GridSku.DataSource = SqlDataSourceSelectSKUGrid;
+                GridSku.DataBind();
             }
         }
 
@@ -78,7 +80,8 @@ namespace SistCotizacion
                     id_usuario = DataUser.id_usuario
                 };
                 combinacionSku.IngresarSKU(combinacionSku);
-
+                GridSku.DataSource = SqlDataSourceSelectSKUGrid;
+                GridSku.DataBind();
                 
             }
             catch (Exception)
@@ -94,6 +97,11 @@ namespace SistCotizacion
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBuscarSKU_Click(object sender, EventArgs e)
         {
 
         }

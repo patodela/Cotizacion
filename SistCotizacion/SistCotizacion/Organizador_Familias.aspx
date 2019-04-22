@@ -188,7 +188,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="(00 a 999)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="labelCodigoOrg" runat="server" Text='<%# String.Format("{0:00}", Eval("id_articulo")) %>'></asp:Label>
+                                                    <asp:Label ID="labelCodigoOrg" runat="server" Text='<%# String.Format("{0:000}", Eval("id_articulo")) %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <HeaderStyle CssClass="active text-center"></HeaderStyle>
@@ -432,7 +432,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="(A000 a Z999)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="labelidcarac2" runat="server" Text='<%# String.Format("{0:000}", Eval("id_comb_1")) %>'></asp:Label>
+                                                    <asp:Label ID="labelidcarac2" runat="server" Text='<%# Bind("cod_comb_1") %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <HeaderStyle CssClass="active text-center"></HeaderStyle>
@@ -477,7 +477,7 @@
                                         <Columns>
                                             <asp:TemplateField HeaderText="(A000 a Z999)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblcombi2" runat="server" Text='<%# String.Format("{0:000}", Eval("id_comb_2")) %>'></asp:Label>
+                                                    <asp:Label ID="lblcombi2" runat="server" Text='<%# Bind("cod_comb_2") %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <HeaderStyle CssClass="active text-center"></HeaderStyle>

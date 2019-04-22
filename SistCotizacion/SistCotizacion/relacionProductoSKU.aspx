@@ -5,10 +5,12 @@
         $(document).ready(function () {
             $('input[type=text][id*=txtBuscar]').keyup(function () {
                 var test = $(this).val();
-                $("table[id*=gridProductos] tr").show();
+                $("table[id*=GridSku] tr").show();
                 if (test.length != 0) {
-                    $("table[id*=gridProductos] tr:has('span')").each(function () {
-                        if ($(this).find("span[id*=Nombre]:contains(" + test + ")").length == 0)
+                    $("table[id*=GridSku] tr:has('span')").each(function () {
+                        if ($(this).find("span[id*=lblSKU]:contains(" + test + ")").length == 0)
+                            $(this).hide();
+                        if ($(this).find("span[id*=lblNombreProducto]:contains(" + test + ")").length == 0)
                             $(this).hide();
                     });
                 }
@@ -204,7 +206,7 @@ select id_comb_1,cod_comb_1 + ' - '+descripcion as descripcion from [dbo].[var_i
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-md-4">
-                                <strong>Listado productos ingresados.</strong>
+                                <strong>Listado combinacion SKU</strong>
                             </div>
                             <div class="col-md-4 col-md-offset-4">
                                 <div class="input-group input-group-sm">
@@ -216,7 +218,7 @@ select id_comb_1,cod_comb_1 + ' - '+descripcion as descripcion from [dbo].[var_i
                                     <asp:TextBox ID="txtBuscar" CssClass="form-control" placeholder="Producto..." runat="server"></asp:TextBox>
                                     <span class="input-group-btn">
 
-                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-info" ToolTip="Buscar">
+                                        <asp:LinkButton ID="btnBuscarSKU" runat="server" CssClass="btn btn-info" ToolTip="Buscar" OnClick="btnBuscarSKU_Click">
                                   <span aria-hidden="true" class=" glyphicon glyphicon-search"></span>
                                         </asp:LinkButton>
                                         <%--<asp:Button ID="btnBuscar" CssClass="btn btn-default" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />--%>
@@ -227,34 +229,33 @@ select id_comb_1,cod_comb_1 + ' - '+descripcion as descripcion from [dbo].[var_i
                         </div>
                     </div>
                     <div class="panel-body">
-                        
-                        <asp:GridView CssClass="table table-bordered table-responsive" ID="GridSku" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridSku_PageIndexChanging" DataSourceID="SqlDataSourceSelectSKUGrid" AutoGenerateEditButton="True">
+                        <div class="table-responsive">
+                        <asp:GridView CssClass="table table-bordered" ID="GridSku" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridSku_PageIndexChanging" DataKeyNames="idcombisku" AutoGenerateEditButton="True">
 
                             <Columns>
-                                <asp:BoundField DataField="idcombisku" HeaderText="idcombisku" InsertVisible="False" ReadOnly="True" SortExpression="idcombisku" />
-                                <asp:BoundField DataField="Nombre_Prodcuto" HeaderText="Nombre_Prodcuto" SortExpression="Nombre_Prodcuto"></asp:BoundField>
-                                <asp:BoundField DataField="Nombre_Prodcuto" HeaderText="Nombre_Prodcuto" SortExpression="Nombre_Prodcuto" />
-                                <asp:BoundField DataField="Nombre_Organizador" HeaderText="Nombre_Organizador" ReadOnly="True" SortExpression="Nombre_Organizador" />
-                                <asp:BoundField DataField="Nombre_Familia" HeaderText="Nombre_Familia" ReadOnly="True" SortExpression="Nombre_Familia" />
-                                <asp:BoundField DataField="id_grupo" HeaderText="id_grupo" ReadOnly="True" InsertVisible="False" SortExpression="id_grupo" Visible="False"></asp:BoundField>
-
-                                <asp:TemplateField HeaderText="Nombre_Articulo" SortExpression="Nombre_Articulo">
-                                    <EditItemTemplate>
-                                        <%--<asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Nombre_Articulo") %>'></asp:TextBox>--%>
-                                        <asp:DropDownList ID="cmboEditGrupo" runat="server" SelectedValue='<%# Eval("id_grupo") %>' DataSourceID="SqlDataSourceGrupos" DataTextField="Nombre_Grupo" DataValueField="id_grupo"></asp:DropDownList>
-                                    </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Nombre_Articulo") %>'></asp:Label>
+                                <asp:TemplateField HeaderText="SKU" SortExpression="sku">
+                                      <ItemTemplate>
+                                        <asp:Label ID="lblSKU" runat="server" Text='<%# Bind("sku") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                    <asp:BoundField DataField="Caracteristica_1" HeaderText="Caracteristica_1" SortExpression="Caracteristica_1" />
-                                    <asp:BoundField DataField="Caracteristica_2" HeaderText="Caracteristica_2" SortExpression="Caracteristica_2" />
-                                    <asp:BoundField DataField="Caracteristica_3" HeaderText="Caracteristica_3" SortExpression="Caracteristica_3" />
-                                    <asp:BoundField DataField="Combinacion_1" HeaderText="Combinacion_1" SortExpression="Combinacion_1" />
-                                    <asp:BoundField DataField="Combinacion_2" HeaderText="Combinacion_2" SortExpression="Combinacion_2" />
-                                    <asp:BoundField DataField="fecha_ingreso" HeaderText="fecha_ingreso" SortExpression="fecha_ingreso" />
-                                    <asp:BoundField DataField="Nombre_Usuario" HeaderText="Nombre_Usuario" SortExpression="Nombre_Usuario" />
-                                    <asp:BoundField DataField="fecha_actualiza" HeaderText="fecha_actualiza" SortExpression="fecha_actualiza" />
+                                <asp:TemplateField HeaderText="Producto" SortExpression="Nombre_Prodcuto">
+                                     <ItemTemplate>
+                                        <asp:Label ID="lblNombreProducto" runat="server" Text='<%# Bind("Nombre_Prodcuto") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="Nombre_Organizador" HeaderText="Organizador" SortExpression="Nombre_Organizador" ReadOnly="True" />
+                                <asp:BoundField DataField="Nombre_Familia" HeaderText="Familia" ReadOnly="True" SortExpression="Nombre_Familia" />
+                                <asp:BoundField DataField="Nombre_Grupo" HeaderText="Grupo" ReadOnly="True" SortExpression="Nombre_Grupo"></asp:BoundField>
+
+                                    <asp:BoundField DataField="Nombre_Articulo" HeaderText="Articulo" SortExpression="Nombre_Articulo" ReadOnly="True" />
+                                    <asp:BoundField DataField="Caracteristica_1" HeaderText="Caracteristica 1" SortExpression="Caracteristica_1" ReadOnly="True" />
+                                    <asp:BoundField DataField="Caracteristica_2" HeaderText="Caracteristica 2" SortExpression="Caracteristica_2" ReadOnly="True" />
+                                    <asp:BoundField DataField="Caracteristica_3" HeaderText="Caracteristica 3" SortExpression="Caracteristica_3" ReadOnly="True" />
+                                    <asp:BoundField DataField="Combinacion_1" HeaderText="Combinacion 1" SortExpression="Combinacion_1" ReadOnly="True" />
+                                    <asp:BoundField DataField="Combinacion_2" HeaderText="Combinacion 2" SortExpression="Combinacion_2" ReadOnly="True" />
+                                    <asp:BoundField DataField="fecha_ingreso" HeaderText="Fecha registro" SortExpression="fecha_ingreso" />
+                                    <asp:BoundField DataField="Nombre_Usuario" HeaderText="Usuario" SortExpression="Nombre_Usuario" />
+                                <asp:BoundField DataField="fecha_actualiza" HeaderText="Fecha Actualizacion" SortExpression="fecha_actualiza" />
                                 </Columns>
                               
                                 <EmptyDataTemplate>
@@ -262,21 +263,27 @@ select id_comb_1,cod_comb_1 + ' - '+descripcion as descripcion from [dbo].[var_i
                                 </EmptyDataTemplate>
                                 <PagerStyle CssClass="pagination-ys" />
                             </asp:GridView>
-                      
-                        <asp:SqlDataSource ID="SqlDataSourceSelectSKUGrid" runat="server" ConnectionString="<%$ ConnectionStrings:impexcom_cotizacionConnectionString %>" SelectCommand="
-SELECT 
+                      </div>
+                        <asp:SqlDataSource ID="SqlDataSourceSelectSKUGrid" runat="server" ConnectionString="<%$ ConnectionStrings:impexcom_cotizacionConnectionString %>" SelectCommand="SELECT 
 s.[idcombisku],
+ps.sku,
  p.nombre as Nombre_Prodcuto,
  cod_org+' - '+ o.descripcion as Nombre_Organizador,
  cod_fam+' - '+f.descripcion as Nombre_Familia,
 g.id_grupo,
  RIGHT('00'+CONVERT(varchar,g.id_grupo),2) +' - '+g.Nombre_Grupo AS Nombre_Grupo,
- A.Nombre_Articulo,
- C1.material as Caracteristica_1,
- C2.Talla as Caracteristica_2,
- C3.Piedra_Principal as Caracteristica_3,
- CB1.descripcion as Combinacion_1,
- CB2.descripcion as Combinacion_2,
+ a.id_articulo,
+ RIGHT('000'+CONVERT(varchar,a.id_articulo),3)+' - '+ A.Nombre_Articulo as Nombre_Articulo,
+ c1.id_car1,
+ RIGHT('00'+CONVERT(varchar,C1.id_car1),2)+' - '+ C1.material as Caracteristica_1,
+ C2.id_car2,
+ RIGHT('00'+CONVERT(varchar,C2.id_car2),2)+' - '+C2.Talla as Caracteristica_2,
+ C3.id_car3,
+ RIGHT('00'+CONVERT(varchar,C3.id_car3),2)+' - '+C3.Piedra_Principal as Caracteristica_3,
+ CB1.id_comb_1,
+ CB1.COD_COMB_1 +' - '+ CB1.descripcion as Combinacion_1,
+  CB2.id_comb_2,
+ CB2.COD_COMB_2 +' - '+ CB2.descripcion as Combinacion_2,
  s.fecha_ingreso,
  u.nombre as Nombre_Usuario,
  s.fecha_actualiza
@@ -303,7 +310,11 @@ Join [dbo].[var_identi_combinacion_2] CB2
 on CB2.id_comb_2 = s.id_comb2
 JOIN  [dbo].[usuario] u
 on u.id_usuario = s.id_usuario
+jOIN [impexcom_sistema].[producto_sku] PS
+on PS.idcombisku = s.idcombisku
 WHERE s.activo = 1
+
+
 "></asp:SqlDataSource>
                       
                     </div>
