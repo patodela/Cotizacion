@@ -5,12 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>-IMPEX-</title>
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/submenu.css" rel="stylesheet" />
-    <script src="Scripts/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/submenu.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript"  src="../Scripts/submenu.js"></script>
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -93,6 +94,7 @@
                                     <li><a href="#">Egreso</a></li>
                                     <li><a href="#">Ingreso</a></li>
                                     <li><a href="#">Existencias</a></li>
+                                    <li><a href="\IngresoProducto.aspx">Ingreso de Producto</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Operaciones</a>
@@ -114,7 +116,7 @@
                             </li>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sku</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Plan de Sku Usuarios</a></li>
+                                    <li><a href="\Organizador_Familias.aspx">Mantenedor SKU</a></li>
                                     <li><a href="#">Usuarios de Impex</a></li>
                                 </ul>
                             </li>                          

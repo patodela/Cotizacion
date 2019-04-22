@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
 
-      <form runat="server">
+    
         <div class="panel panel-default">
             <div class="panel-heading text-center"><strong>REGISTRO DE PERSONAL</strong></div>
             <div class="panel-body">
@@ -179,5 +179,5 @@
                 <asp:Button ID="bntRegistraEntidadPersonal" class="btn btn-info" runat="server" Text="Ingresar" />
             </div>
         </div>
-    </form>
+
 </asp:Content>
