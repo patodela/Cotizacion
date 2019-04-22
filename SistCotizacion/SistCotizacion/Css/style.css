@@ -1,0 +1,30 @@
+﻿body {
+}
+.Color1 {
+    background-color:#666666;
+    color:white;
+    font-weight:bold;
+}
+.Color2 {
+    background-color:#999999;
+    font-weight:bold;
+}
+.Color3 {
+    background-color:#CCCCCC;
+    font-weight:bold;
+}.Color4 {
+    background-color:#DEDEDE;
+    font-weight:bold;
+}
+.logo {
+   
+}
+.border {
+    border: 1px solid #000;
+}
+.popupgrande {
+    width: 90%;
+    Margin-left: auto;
+    Margin-right: auto;
+}
+

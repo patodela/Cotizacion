@@ -1,23 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="Organizador_Familias.aspx.cs" Inherits="SistCotizacion.Organizador_Familias" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     
+
     <script type="text/javascript">
 
         $(document).ready(function () {
-           
+
             var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "1";
-                $('#TabPanel a[href="#' + tabName + '"]').tab('show');
-                $("#TabPanel a").click(function () {
-                    $("[id*=TabName]").val($(this).attr("href").replace("#", ""));
-                });
+            $('#TabPanel a[href="#' + tabName + '"]').tab('show');
+            $("#TabPanel a").click(function () {
+                $("[id*=TabName]").val($(this).attr("href").replace("#", ""));
+            });
         });
-        
-</script>
+
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
-   
+
 
     <h2>Mantenedor SKU</h2>
     <hr />
@@ -182,9 +182,9 @@
                                             <asp:TextBox ID="txtArticulo" CssClass="form-control" placeholder="Nombre Articulo" runat="server"></asp:TextBox>
                                         </div>
                                         <asp:Button ID="btnAddArticulo" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddArticulo_Click" />
-                                       
+
                                     </div>
-                                     <asp:GridView CssClass="table table-bordered table-hover" ID="Gv_Articulo" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="Gv_Articulo_RowCancelingEdit" OnRowEditing="Gv_Articulo_RowEditing" DataKeyNames="id_articulo" OnRowUpdating="Gv_Articulo_RowUpdating">
+                                    <asp:GridView CssClass="table table-bordered table-hover" ID="Gv_Articulo" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="Gv_Articulo_RowCancelingEdit" OnRowEditing="Gv_Articulo_RowEditing" DataKeyNames="id_articulo" OnRowUpdating="Gv_Articulo_RowUpdating">
                                         <Columns>
                                             <asp:TemplateField HeaderText="(00 a 999)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
@@ -236,7 +236,7 @@
                                             <asp:TextBox ID="txtCaracteristica1" CssClass="form-control" placeholder="Caracteristica 1: Material" runat="server"></asp:TextBox>
                                         </div>
                                         <asp:Button ID="btnMaterial" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnMaterial_Click" />
-                                        
+
                                     </div>
                                     <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac1" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Carac1_RowCancelingEdit" OnRowEditing="GV_Carac1_RowEditing" DataKeyNames="id_car1" OnRowUpdating="GV_Carac1_RowUpdating">
                                         <Columns>
@@ -281,9 +281,9 @@
                                             <asp:TextBox ID="txtCarac2" CssClass="form-control" placeholder="Caracteristica 2: Talla" runat="server"></asp:TextBox>
                                         </div>
                                         <asp:Button ID="btnAddCarac2" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddCarac2_Click" />
-                                       
+
                                     </div>
-                                     <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac2" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Carac2_RowCancelingEdit" OnRowEditing="GV_Carac2_RowEditing" DataKeyNames="id_car2" OnRowUpdating="GV_Carac2_RowUpdating">
+                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac2" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Carac2_RowCancelingEdit" OnRowEditing="GV_Carac2_RowEditing" DataKeyNames="id_car2" OnRowUpdating="GV_Carac2_RowUpdating">
                                         <Columns>
                                             <asp:TemplateField HeaderText="(00 a 99)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
@@ -324,9 +324,9 @@
                                             <asp:TextBox ID="txtCarac3" CssClass="form-control" placeholder="Caracteristica 3: Piedra principal" runat="server"></asp:TextBox>
                                         </div>
                                         <asp:Button ID="btnAddCarac3" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddCarac3_Click" />
-                                       
+
                                     </div>
-                                     <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac3" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Carac3_RowCancelingEdit" OnRowEditing="GV_Carac3_RowEditing" DataKeyNames="id_car3" OnRowUpdating="GV_Carac3_RowUpdating">
+                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac3" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Carac3_RowCancelingEdit" OnRowEditing="GV_Carac3_RowEditing" DataKeyNames="id_car3" OnRowUpdating="GV_Carac3_RowUpdating">
                                         <Columns>
                                             <asp:TemplateField HeaderText="(00 a 99)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
@@ -379,8 +379,9 @@
                                         <div class="form-group">
 
                                             <asp:TextBox ID="txtCuantiSecund" CssClass="form-control" placeholder="Piedra Secundaria" runat="server"></asp:TextBox>
-                                        </div><asp:Button ID="btnAddPiedraSecundaria" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddPiedraSecundaria_Click" />
-                                        
+                                        </div>
+                                        <asp:Button ID="btnAddPiedraSecundaria" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddPiedraSecundaria_Click" />
+
                                     </div>
                                     <asp:GridView CssClass="table table-bordered table-hover" ID="GV_CuantiSecund" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_CuantiSecund_RowCancelingEdit" OnRowEditing="GV_CuantiSecund_RowEditing" DataKeyNames="id_secundaria" OnRowUpdating="GV_CuantiSecund_RowUpdating">
                                         <Columns>
@@ -415,7 +416,7 @@
                                     </asp:GridView>
                                 </div>
 
-                            </div>                          
+                            </div>
                             <div class="col-lg-4">
                                 <div class="table-responsive">
                                     <div class="form-inline">
@@ -464,16 +465,16 @@
                                 <div class="table-responsive">
                                     <div class="form-inline">
 
-                                         <div class="form-group">
+                                        <div class="form-group">
                                             <asp:DropDownList ID="DropdownFamilia2" runat="server"></asp:DropDownList>
                                         </div>
                                         <div class="form-group">
                                             <asp:TextBox ID="txtCombi2" CssClass="form-control" placeholder="Nombre combinacion 2" runat="server"></asp:TextBox>
                                         </div>
                                         <asp:Button ID="btnCombi2" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnCombi2_Click" />
-                                       
+
                                     </div>
-                                     <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi2" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Combi2_RowCancelingEdit" OnRowEditing="GV_Combi2_RowEditing" DataKeyNames="id_comb_2" OnRowUpdating="GV_Combi2_RowUpdating">
+                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi2" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Combi2_RowCancelingEdit" OnRowEditing="GV_Combi2_RowEditing" DataKeyNames="id_comb_2" OnRowUpdating="GV_Combi2_RowUpdating">
                                         <Columns>
                                             <asp:TemplateField HeaderText="(A000 a Z999)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
@@ -513,102 +514,97 @@
             <div class="tab-pane" id="4">
                 <h3>Variables de identificacion</h3>
 
-                 <div class="col-lg-4">
-                                <div class="table-responsive">
-                                    <div class="form-inline">
-                                        <div class="form-group">
-                                            <asp:DropDownList ID="DropdownFamiliaIdenti1" runat="server"></asp:DropDownList>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="txtCombi1Identi" CssClass="form-control" placeholder="ingrese combinacion 1" runat="server"></asp:TextBox>
-                                        </div>
-                                        <asp:Button ID="btncombi1Identi" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btncombi1Identi_Click" />
-
-                                    </div>
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi_identi1" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Combi_identi1_RowCancelingEdit" OnRowEditing="GV_Combi_identi1_RowEditing" DataKeyNames="id_comb_1" OnRowUpdating="GV_Combi_identi1_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(A00 a Z99)" HeaderStyle-CssClass="active text-center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelidcarac2" runat="server" Text='<%# Eval("cod_letra") + String.Format("{0:00}", Eval("id_comb_1")) %>'></asp:Label>
-                                                </ItemTemplate>
-
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Combinacion 1" HeaderStyle-CssClass=" danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("descripcion") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("descripcion") %>'></asp:Label>
-                                                </ItemTemplate>
-
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_comb_1" Visible="False" />
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-
+                <div class="col-lg-4">
+                    <div class="table-responsive">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <asp:DropDownList ID="DropdownFamiliaIdenti1" runat="server"></asp:DropDownList>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="table-responsive">
-                                    <div class="form-inline">
-
-                                         <div class="form-group">
-                                            <asp:DropDownList ID="DropdownFamiliaIdenti2" runat="server"></asp:DropDownList>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:TextBox ID="txtCombi2Identi" CssClass="form-control" placeholder="Nombre combinacion 2" runat="server"></asp:TextBox>
-                                        </div>
-                                        <asp:Button ID="btncombi2Identi" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btncombi2Identi_Click" />
-                                       
-                                    </div>
-                                     <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi_identi2" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Combi_identi2_RowCancelingEdit" OnRowEditing="GV_Combi_identi2_RowEditing" DataKeyNames="id_comb_2" OnRowUpdating="GV_Combi_identi2_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(A00 a Z99)" HeaderStyle-CssClass="active text-center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblcombi2" runat="server" Text='<%# Eval("cod_letra") + String.Format("{0:00}", Eval("id_comb_2")) %>'></asp:Label>
-                                                </ItemTemplate>
-
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="combinacion 2" HeaderStyle-CssClass=" danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("descripcion") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("descripcion") %>'></asp:Label>
-                                                </ItemTemplate>
-
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_comb_2" Visible="False" />
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-
+                            <div class="form-group">
+                                <asp:TextBox ID="txtCombi1Identi" CssClass="form-control" placeholder="ingrese combinacion 1" runat="server"></asp:TextBox>
                             </div>
+                            <asp:Button ID="btncombi1Identi" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btncombi1Identi_Click" />
+
+                        </div>
+                        <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi_identi1" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Combi_identi1_RowCancelingEdit" OnRowEditing="GV_Combi_identi1_RowEditing" DataKeyNames="id_comb_1" OnRowUpdating="GV_Combi_identi1_RowUpdating">
+                            <Columns>
+                                <asp:TemplateField HeaderText="(A00 a Z99)" HeaderStyle-CssClass="active text-center">
+                                    <ItemTemplate>
+                                        <asp:Label ID="labelidcarac2" runat="server" Text='<%# Eval("cod_letra") + String.Format("{0:00}", Eval("id_comb_1")) %>'></asp:Label>
+                                    </ItemTemplate>
+
+                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Combinacion 1" HeaderStyle-CssClass=" danger text-center">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("descripcion") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("descripcion") %>'></asp:Label>
+                                    </ItemTemplate>
+
+                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:CommandField>
+                                <asp:BoundField DataField="id_comb_1" Visible="False" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="table-responsive">
+                        <div class="form-inline">
+
+                            <div class="form-group">
+                                <asp:DropDownList ID="DropdownFamiliaIdenti2" runat="server"></asp:DropDownList>
+                            </div>
+                            <div class="form-group">
+                                <asp:TextBox ID="txtCombi2Identi" CssClass="form-control" placeholder="Nombre combinacion 2" runat="server"></asp:TextBox>
+                            </div>
+                            <asp:Button ID="btncombi2Identi" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btncombi2Identi_Click" />
+
+                        </div>
+                        <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi_identi2" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Combi_identi2_RowCancelingEdit" OnRowEditing="GV_Combi_identi2_RowEditing" DataKeyNames="id_comb_2" OnRowUpdating="GV_Combi_identi2_RowUpdating">
+                            <Columns>
+                                <asp:TemplateField HeaderText="(A00 a Z99)" HeaderStyle-CssClass="active text-center">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblcombi2" runat="server" Text='<%# Eval("cod_letra") + String.Format("{0:00}", Eval("id_comb_2")) %>'></asp:Label>
+                                    </ItemTemplate>
+
+                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="combinacion 2" HeaderStyle-CssClass=" danger text-center">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("descripcion") %>'></asp:TextBox>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("descripcion") %>'></asp:Label>
+                                    </ItemTemplate>
+
+                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:CommandField>
+                                <asp:BoundField DataField="id_comb_2" Visible="False" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-
-
-
-
-
 
 </asp:Content>

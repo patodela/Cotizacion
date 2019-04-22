@@ -77,13 +77,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cotizacion.css" />
     <Content Include="Content\StylePaginacionGridview.css" />
-    <Content Include="Cotizacion.aspx" />
+    <Content Include="Cotizacion\CotNacional.aspx" />
+    <Content Include="Css\style.css" />
     <Content Include="EntidadAlmacen.aspx" />
     <Content Include="EntidadCliente.aspx" />
     <Content Include="EntidadPersonal.aspx" />
     <Content Include="EntidadProveedor.aspx" />
     <Content Include="EntidadUsuario.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Imagenes\error.png" />
     <Content Include="index.aspx" />
     <Content Include="IngresoProducto.aspx" />
     <Content Include="Libro_Ingresos.aspx" />
@@ -126,12 +128,12 @@
     <Compile Include="Catalogo.aspx.designer.cs">
       <DependentUpon>Catalogo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Cotizacion.aspx.cs">
-      <DependentUpon>Cotizacion.aspx</DependentUpon>
+    <Compile Include="Cotizacion\CotNacional.aspx.cs">
+      <DependentUpon>CotNacional.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Cotizacion.aspx.designer.cs">
-      <DependentUpon>Cotizacion.aspx</DependentUpon>
+    <Compile Include="Cotizacion\CotNacional.aspx.designer.cs">
+      <DependentUpon>CotNacional.aspx</DependentUpon>
     </Compile>
     <Compile Include="EntidadAlmacen.aspx.cs">
       <DependentUpon>EntidadAlmacen.aspx</DependentUpon>
@@ -203,7 +205,9 @@
     <Compile Include="Almacen\Almacen.aspx.designer.cs">
       <DependentUpon>Almacen.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Master\PContenidoPostLogin.cs" />
+    <Compile Include="Master\PContenidoPostLogin.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Master\Utility.cs" />
     <Compile Include="NavContenido.Master.cs">
       <DependentUpon>NavContenido.Master</DependentUpon>

@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="SistCotizacion.Usuarios.Usuarios" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="SistCotizacion.Usuarios.Users" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
-    <script type="text/javascript">
+ <script type="text/javascript">
         function OcultarMostrarFiltro() {
             var Objeto = document.getElementById("Filtro");
             if (Objeto.style.display == "none") {
@@ -31,9 +30,7 @@
             <h3>
                 Usuario</h3>
         </div>
-        <div class="panel-body">
-            <%--<img id="btn_ocultar" src="/Imagenes/Usuario.png" alt ="" style="cursor:pointer"
-                       onclick="OcultarMostrarPanel()" />--%>
+        <div class="panel-body">        
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading divMuestraOculta" onclick="OcultarMostrarFiltro()">
@@ -111,10 +108,38 @@
                                     <asp:GridView CssClass="GrillaComun" ID="griUsuario" runat="server" 
                                             Width="100%" AutoGenerateColumns="False" 
                                             
-                                            DataKeyNames="ID_Usuario,fecha_Usuario,ID_Usuario_CLAS,NOMBRE_Usuario_CLAS,ID_Usuario_CLAS_TIPO,NOMBRE_Usuario_CLAS_TIPO,SOLICITANTE,ID_Usuario_ESTADO,NOMBRE_Usuario_ESTADO,ID_PRIORIDAD,ID_CLIENTE,id_cliente_sucursal,id_laboratorio,CORREO_SOLICITANTE,DESCRIPCION" 
+                                            DataKeyNames="id_usuario, id_tipo_usuario, nombre, cod_usuario, pwd_usuario, fecha_ingreso, activo, fecha_actualizacion" 
                                             AutoGenerateSelectButton="True">
                                         <Columns>
                                             <asp:BoundField DataField="id_usuario" HeaderText="ID" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="id_tipo_usuario" HeaderText="tipo_user" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="nombre" HeaderText="nombre" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="cod_usuario" HeaderText="usuario" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="id_tipo_usuario" HeaderText="tipo_user" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="fecha_ingreso" HeaderText="fecha_ingreso" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="activo" HeaderText="estado" >
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="fecha_actualizacion" HeaderText="actualizacion" >
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Center" />
                                             </asp:BoundField>
@@ -142,3 +167,4 @@
         <%--Panel body--%>
     </div>
 </asp:Content>
+
