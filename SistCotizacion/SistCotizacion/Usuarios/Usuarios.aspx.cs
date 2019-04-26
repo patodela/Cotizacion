@@ -4,18 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProyectoDA;
+using SistCotizacion.Master;
 
 namespace SistCotizacion.Usuario
 {
-    public partial class Usuario : System.Web.UI.Page
+    public partial class Usuarios : PContenidoPostLogin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                //CargaPanelSolicitud();
+                Buscar();
                 //llenarFiltros();
-
+                //txtNombreUsuario.text
             }
         }
 
@@ -27,43 +29,41 @@ namespace SistCotizacion.Usuario
             }
             catch (Exception ex)
             {
-                //MostrarError(ex.Message);
+                MostrarError(ex.Message);
             }
         }
 
         private void Buscar()
         {
-            //    try
-            //    {
-            //        int numerosolicitud = -1;
-            //        String vnumSolicitud = string.IsNullOrEmpty(txtNTickets.Text) ? "0" : txtNTickets.Text;
-            //        try // en caso que se a texto controlo el error de conversion y elvio un -1 a bd(no devulve nada)
-            //        {
-            //            numerosolicitud = string.IsNullOrEmpty(vnumSolicitud) ? 0 : int.Parse(vnumSolicitud);
+            try
+            {
+                //int numerosolicitud = -1;
+                //String vnumSolicitud = string.IsNullOrEmpty(txtNTickets.Text) ? "0" : txtNTickets.Text;
 
-            //            numerosolicitud = int.Parse(vnumSolicitud);
+                //numerosolicitud = string.IsNullOrEmpty(vnumSolicitud) ? 0 : int.Parse(vnumSolicitud);
 
-            //        }
-            //        catch (Exception)
-            //        {
+                //numerosolicitud = int.Parse(vnumSolicitud);             
 
-            //            numerosolicitud = -1;
-            //        }
+                //DateTime vtxtFechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
+                //DateTime vtxtfechaFin = Convert.ToDateTime(txtFechaFin.Text);
+                //int vclasificacion = int.Parse(dwlFClasificacion.SelectedValue);
+                //string vNombre = txtNombreUsuario.Text; 
+                //int vEstado = int.Parse(dwlEstado.SelectedValue);
+                //UsuarioDA usr = new UsuarioDA();
+                ////griUsuario.DataSource = MSSQLSUL.ProyectoDaDAL.Solicitud.SolicitudSel((MSSQLSUL.Seguridad.Usuario)Session["Usuario"], numerosolicitud, vtxtFechaInicio, vtxtfechaFin,
+                ////                            vclasificacion, vEstado);
+                //griUsuario.DataSource = usr.ObtenerUsuarios((MSSQLSUL.Seguridad.Usuario)Session["Usuario"], vNombre, vEstado);
+                //griUsuario.DataBind();
 
-            //        DateTime vtxtFechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
-            //        DateTime vtxtfechaFin = Convert.ToDateTime(txtFechaFin.Text);
-            //        int vclasificacion = int.Parse(dwlFClasificacion.SelectedValue);
-            //        int vEstado = int.Parse(dwlEstado.SelectedValue);
-            //        griSolicitudes.DataSource = DAL.Solicitud.SolicitudSel((MSSQLSUL.Seguridad.Usuario)Session["Usuario"], numerosolicitud, vtxtFechaInicio, vtxtfechaFin,
-            //                                    vclasificacion, vEstado);
-            //        griSolicitudes.DataBind();
-            //    }
-            //    catch (Exception ex)
-            //    {
-
-            //        throw new Exception(ex.Message);
-            //    }
 
             }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
         }
+     
+    }    
 }

@@ -1,5 +1,4 @@
 ﻿using MSSQLSUL.Seguridad;
-using ProyectoBL;
 using System;
 using System.Data;
 using System.Web.UI;
