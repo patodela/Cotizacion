@@ -41,18 +41,24 @@ namespace SistCotizacion
 
         public void MostrarError(String vMensaje, String vTitulo = "Error", System.Exception vException = null)
         {
-            MostrarMensaje(vMensaje, vTitulo);
+           
             String vMsj = "";
             String vStack = String.Empty;
             if (vException != null)
             {
                 vStack = vException.StackTrace;
-                while (vException != null)
-                {
-                    vMsj += vException.Message + "<br/>";
-                    vException = vException.InnerException;
-                }
+                //while (vException != null)
+                //{
+                //    vMsj += vException.Message + "<br/>";
+                //    vException = vException.InnerException;
+                //}
+
+                vMsj = vException.Message + "<br/>";
+                vMsj += vStack;
             }
+            vMensaje = vMensaje + "<br/>" + vMsj;
+            MostrarMensaje(vMensaje, vTitulo);
+
         }
 
         public void MostrarMensajeCuidado(String vMensaje, String vTitulo = "Información")

@@ -17,10 +17,10 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-
-     <form id="form1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
+      <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true">
     </asp:ScriptManager>
+  
     <div class="container">
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -138,6 +138,7 @@
 
     </div>
     <!-- /container  --> 
+ 
             <asp:HiddenField ID="hfLanzaMensaje" runat="server" />
     <asp:ModalPopupExtender ID="mpeMensaje" runat="server" BackgroundCssClass="modalBackground"
         DynamicServicePath="" Enabled="True" TargetControlID="hfLanzaMensaje" PopupControlID="pMensaje"

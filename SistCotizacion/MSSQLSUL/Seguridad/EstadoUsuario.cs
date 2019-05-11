@@ -26,7 +26,8 @@ namespace MSSQLSUL.Seguridad
         VAR_CUANTI_COMBINACION_1 = 9,
         VAR_CUANTI_COMBINACION_2 = 10,
         VAR_IDENTI_COMBINACION_1 = 11,
-        VAR_IDENTI_COMBINACION_2 = 12
+        VAR_IDENTI_COMBINACION_2 = 12,
+        VAR_IDENTI_CAR1 = 13
     }
 
   public  enum  LimiteTabla
@@ -40,7 +41,9 @@ namespace MSSQLSUL.Seguridad
         VAR_CUANTI_COMBINACION_1 = 999,
         VAR_CUANTI_COMBINACION_2 = 999,
         VAR_IDENTI_COMBINACION_1 = 99,
-        VAR_IDENTI_COMBINACION_2 = 99
+        VAR_IDENTI_COMBINACION_2 = 99,
+        VAR_IDENTI_CAR1 = 99
+
     }
 }
         

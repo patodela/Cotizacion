@@ -147,6 +147,9 @@ namespace ProyectoBL
                 case "VAR_IDENTI_COMBINACION_2":
                     cant = Convert.ToInt32(LimiteTabla.VAR_IDENTI_COMBINACION_2);
                     break;
+                case "VAR_IDENTI_CAR1":
+                    cant = Convert.ToInt32(LimiteTabla.VAR_IDENTI_CAR1);
+                    break;
                 default:
                     break;
             }

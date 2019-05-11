@@ -175,103 +175,157 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.GridView GV_Carac3;
         
         /// <summary>
-        /// Control txtCuantiSecund.
+        /// Control requiredIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCuantiSecund;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredIcar1;
         
         /// <summary>
-        /// Control btnAddPiedraSecundaria.
+        /// Control TextSearchIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddPiedraSecundaria;
+        protected global::System.Web.UI.WebControls.TextBox TextSearchIcar1;
         
         /// <summary>
-        /// Control GV_CuantiSecund.
+        /// Control btnBuscarIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GV_CuantiSecund;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarIcar1;
         
         /// <summary>
-        /// Control DropdownFamilia1.
+        /// Control txtIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropdownFamilia1;
+        protected global::System.Web.UI.WebControls.TextBox txtIcar1;
         
         /// <summary>
-        /// Control txtComb1.
+        /// Control btnRefreshIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComb1;
+        protected global::System.Web.UI.WebControls.LinkButton btnRefreshIcar1;
         
         /// <summary>
-        /// Control btncombi1.
+        /// Control PanelGridIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btncombi1;
+        protected global::System.Web.UI.WebControls.Panel PanelGridIcar1;
         
         /// <summary>
-        /// Control GV_Combi1.
+        /// Control GridIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GV_Combi1;
+        protected global::System.Web.UI.WebControls.GridView GridIcar1;
         
         /// <summary>
-        /// Control DropdownFamilia2.
+        /// Control SqlDataSourceIcar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropdownFamilia2;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIcar1;
         
         /// <summary>
-        /// Control txtCombi2.
+        /// Control RequiredFieldValidatorIcar2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCombi2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorIcar2;
         
         /// <summary>
-        /// Control btnCombi2.
+        /// Control TextSearchIcar2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCombi2;
+        protected global::System.Web.UI.WebControls.TextBox TextSearchIcar2;
         
         /// <summary>
-        /// Control GV_Combi2.
+        /// Control btnBuscarIcar2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GV_Combi2;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarIcar2;
+        
+        /// <summary>
+        /// Control txtIcar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIcar2;
+        
+        /// <summary>
+        /// Control btnIngresarIcar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnIngresarIcar2;
+        
+        /// <summary>
+        /// Control btnRefreshIcar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnRefreshIcar2;
+        
+        /// <summary>
+        /// Control Panel1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// Control GridIcar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridIcar2;
+        
+        /// <summary>
+        /// Control SqlDataSourceIcar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIcar2;
         
         /// <summary>
         /// Control DropdownFamiliaIdenti1.
@@ -308,41 +362,5 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GV_Combi_identi1;
-        
-        /// <summary>
-        /// Control DropdownFamiliaIdenti2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropdownFamiliaIdenti2;
-        
-        /// <summary>
-        /// Control txtCombi2Identi.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCombi2Identi;
-        
-        /// <summary>
-        /// Control btncombi2Identi.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btncombi2Identi;
-        
-        /// <summary>
-        /// Control GV_Combi_identi2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GV_Combi_identi2;
     }
 }

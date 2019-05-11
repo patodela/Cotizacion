@@ -21,26 +21,26 @@ namespace SistCotizacion
              if (!Page.IsPostBack)
             {
                 DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-                BindGridviewOrganizador(gv_organizador,DataUser);
-                BindGridviewOrganizador(GvFamilia,DataUser);
+                BindGridviewOrganizador(gv_organizador, DataUser);
+                BindGridviewOrganizador(GvFamilia, DataUser);
                 BindGridviewOrganizador(GV_Grupo, DataUser);
                 BindGridviewOrganizador(Gv_Articulo, DataUser);
                 BindGridviewOrganizador(GV_Carac1, DataUser);
                 BindGridviewOrganizador(GV_Carac2, DataUser);
                 BindGridviewOrganizador(GV_Carac3, DataUser);
-                BindGridviewOrganizador(GV_CuantiSecund, DataUser);
-                BindGridviewOrganizador(GV_Combi1, DataUser);
-                BindGridviewOrganizador(GV_Combi2, DataUser);
+                //BindGridviewOrganizador(GV_CuantiSecund, DataUser);
+                //BindGridviewOrganizador(GV_Combi1, DataUser);
+                //BindGridviewOrganizador(GV_Combi2, DataUser);
                 BindGridviewOrganizador(GV_Combi_identi1, DataUser);
-                BindGridviewOrganizador(GV_Combi_identi2, DataUser);
-                FillComboboxFamilia(DropdownFamilia1);
-                FillComboboxFamilia(DropdownFamilia2);
-                FillComboboxFamilia(DropdownFamiliaIdenti1);
-                FillComboboxFamilia(DropdownFamiliaIdenti2);
+                //BindGridviewOrganizador(GV_Combi_identi2, DataUser);
+                //FillComboboxFamilia(DropdownFamilia1);
+                //FillComboboxFamilia(DropdownFamilia2);
+                //FillComboboxFamilia(DropdownFamiliaIdenti1);
+                //FillComboboxFamilia(DropdownFamiliaIdenti2);
 
             }
-            
-                
+
+
         }
 
 
@@ -165,10 +165,10 @@ namespace SistCotizacion
             Organizador.actualiza_organizador(nombreTabla.FAMILIA, id_familia, descrip);
 
             BindGridviewOrganizador(GvFamilia, DataUser);
-            FillComboboxFamilia(DropdownFamilia1);
-            FillComboboxFamilia(DropdownFamilia2);
-            FillComboboxFamilia(DropdownFamiliaIdenti1);
-            FillComboboxFamilia(DropdownFamiliaIdenti2);
+            //FillComboboxFamilia(DropdownFamilia1);
+            //FillComboboxFamilia(DropdownFamilia2);
+            //FillComboboxFamilia(DropdownFamiliaIdenti1);
+            //FillComboboxFamilia(DropdownFamiliaIdenti2);
         }
 
         protected void GV_Grupo_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -381,133 +381,6 @@ namespace SistCotizacion
             BindGridviewOrganizador(GV_Carac3, DataUser);
         }
 
-        protected void btnAddPiedraSecundaria_Click(object sender, EventArgs e)
-        {
-            TabName.Value = "3";
-            string descripcion = txtCuantiSecund.Text;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            OrganizadorBL org = new OrganizadorBL(DataUser);
-            org.add_descripcion_SKU(nombreTabla.VAR_CUANTIFICACION_SECUNDARIA, descripcion);
-            BindGridviewOrganizador(GV_CuantiSecund, DataUser);
-        }
-
-        protected void GV_CuantiSecund_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_CuantiSecund.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_CuantiSecund, DataUser);
-        }
-
-        protected void GV_CuantiSecund_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_CuantiSecund.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_CuantiSecund, DataUser);
-        }
-
-        protected void GV_CuantiSecund_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_CuantiSecund.EditIndex = -1;
-            int id_cuanti_secund;
-            string nombre_secund = string.Empty;
-            nombre_secund = ((TextBox)GV_CuantiSecund.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_cuanti_secund = Convert.ToInt32(GV_CuantiSecund.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.VAR_CUANTIFICACION_SECUNDARIA, id_cuanti_secund, nombre_secund);
-
-            BindGridviewOrganizador(GV_CuantiSecund, DataUser);
-        }
-
-        protected void btncombi1_Click(object sender, EventArgs e)
-        {
-            TabName.Value = "3";
-            string descripcion = txtComb1.Text;
-            string codLetra = DropdownFamilia1.SelectedItem.Text;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            OrganizadorBL org = new OrganizadorBL(DataUser);
-            org.add_descripcion_SKU(nombreTabla.VAR_CUANTI_COMBINACION_1, descripcion);
-            BindGridviewOrganizador(GV_Combi1, DataUser);
-        }
-
-        protected void GV_Combi1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_Combi1.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Combi1, DataUser);
-        }
-
-        protected void GV_Combi1_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_Combi1.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Combi1, DataUser);
-        }
-
-        protected void GV_Combi1_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_Combi1.EditIndex = -1;
-            int id_combi1;
-            string nombre_combi1 = string.Empty;
-            nombre_combi1 = ((TextBox)GV_Combi1.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_combi1 = Convert.ToInt32(GV_Combi1.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.VAR_CUANTI_COMBINACION_1, id_combi1, nombre_combi1);
-
-            BindGridviewOrganizador(GV_Combi1, DataUser);
-        }
-
-        protected void btnCombi2_Click(object sender, EventArgs e)
-        {
-            TabName.Value = "3";
-            string descripcion = txtCombi2.Text;
-            string codLetra = DropdownFamilia2.SelectedItem.Text.Substring(0,1);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            OrganizadorBL org = new OrganizadorBL(DataUser);
-            org.add_descripcion_SKU(nombreTabla.VAR_CUANTI_COMBINACION_2, descripcion, codLetra);
-            BindGridviewOrganizador(GV_Combi2, DataUser);
-        }
-
-        protected void GV_Combi2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_Combi2.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Combi2, DataUser);
-        }
-
-        protected void GV_Combi2_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_Combi2.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Combi2, DataUser);
-        }
-
-        protected void GV_Combi2_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TabName.Value = "3";
-            GV_Combi2.EditIndex = -1;
-            int id_combi2;
-            string nombre_combi2 = string.Empty;
-            nombre_combi2 = ((TextBox)GV_Combi2.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_combi2 = Convert.ToInt32(GV_Combi2.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.VAR_CUANTI_COMBINACION_2, id_combi2, nombre_combi2);
-
-            BindGridviewOrganizador(GV_Combi2, DataUser);
-        }
         public void FillComboboxFamilia(DropDownList combobox)
         {
 
@@ -570,47 +443,198 @@ namespace SistCotizacion
             BindGridviewOrganizador(GV_Combi_identi1, DataUser);
         }
 
-        protected void btncombi2Identi_Click(object sender, EventArgs e)
+
+        #region GRID IDENTIFICADOR CARACTERISTICA 1
+        protected void btnIngresarIcar1_Click(object sender, EventArgs e)
         {
-            TabName.Value = "4";
-            string descripcion = txtCombi2Identi.Text;
-            string codLetra = DropdownFamiliaIdenti2.SelectedItem.Text.Substring(0,1);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            OrganizadorBL org = new OrganizadorBL(DataUser);
-            org.add_descripcion_SKU(nombreTabla.VAR_IDENTI_COMBINACION_2, descripcion, codLetra);
-            BindGridviewOrganizador(GV_Combi_identi2, DataUser);
+            try
+            {
+                TabName.Value = "4";
+                string txtdescrip = txtIcar1.Text;                
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                DataView dtcount = (DataView)SqlDataSourceIcar1.Select(DataSourceSelectArguments.Empty);
+                int cant = dtcount.Count;
+                OrganizadorBL Org = new OrganizadorBL(null);
+                int limite = Org.GetLimite(nombreTabla.VAR_IDENTI_CAR1);
+                if (cant < limite)
+                {
+                    SqlDataSourceIcar1.InsertParameters["descripcion"].DefaultValue = txtdescrip;
+                    SqlDataSourceIcar1.InsertParameters["usuario"].DefaultValue = DataUser.id_usuario.ToString();
+                    SqlDataSourceIcar1.Insert();
+                    GridIcar1.DataBind();
+                    txtIcar1.Text = string.Empty;
+                    (this.Master as NavContenido).MostrarMensaje("Caracteristica ingresada con exito!.");
+                }
+                else
+                {
+                    (this.Master as NavContenido).MostrarMensaje("No puede ingresar valor, el limite es :"+limite.ToString());
+                }
+               
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al ingresar caracteristica", "Error", ex);
+            }
+            
         }
 
-        protected void GV_Combi_identi2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        protected void GridIcar1_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            TabName.Value = "4";
-            GV_Combi_identi2.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Combi_identi2, DataUser);
+                TabName.Value = "4";
+                GridIcar1.EditIndex = e.NewEditIndex;             
+                GridIcar1.DataBind();
+           
         }
 
-        protected void GV_Combi_identi2_RowEditing(object sender, GridViewEditEventArgs e)
+        protected void GridIcar1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             TabName.Value = "4";
-            GV_Combi_identi2.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Combi_identi2, DataUser);
+            GridIcar1.EditIndex = -1;
+            GridIcar1.DataBind();
         }
 
-        protected void GV_Combi_identi2_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        protected void GridIcar1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            try
+            {
+                TabName.Value = "4";
+                GridIcar1.EditIndex = -1;
+                string descripcionIcar1 = ((TextBox)GridIcar1.Rows[e.RowIndex].FindControl("txtDescripICAR1")).Text;
+                int idICar1 = Convert.ToInt32(GridIcar1.DataKeys[e.RowIndex].Value);
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                
+                SqlDataSourceIcar1.UpdateParameters["descrip"].DefaultValue = descripcionIcar1;
+                SqlDataSourceIcar1.UpdateParameters["idicar1"].DefaultValue = idICar1.ToString();
+                SqlDataSourceIcar1.UpdateParameters["usuario"].DefaultValue = DataUser.id_usuario.ToString();
+                SqlDataSourceIcar1.Update();
+                GridIcar1.DataBind();
+            
+
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al actualizar caracteristica", "Error", ex);
+            }
+           
+
+
+        }
+
+     
+
+        protected void GridIcar1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridIcar1.PageIndex = e.NewPageIndex;
+            GridIcar1.DataBind();
+        }
+
+        protected void btnBuscarIcar1_Click(object sender, EventArgs e)
         {
             TabName.Value = "4";
-            GV_Combi_identi2.EditIndex = -1;
-            int id_combi2;
-            string nombre_combi2 = string.Empty;
-            nombre_combi2 = ((TextBox)GV_Combi_identi2.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_combi2 = Convert.ToInt32(GV_Combi_identi2.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.VAR_IDENTI_COMBINACION_2, id_combi2, nombre_combi2);
-
-            BindGridviewOrganizador(GV_Combi_identi2, DataUser);
         }
+
+        protected void btnRefreshIcar1_Click(object sender, EventArgs e)
+        {
+            TabName.Value = "4";
+            TextSearchIcar1.Text = string.Empty;
+            txtIcar1.Text = string.Empty;
+        }
+
+
+        #endregion
+
+        #region GRID IDENTIFICADOR CARACTERISTICA 2
+        protected void btnBuscarIcar2_Click(object sender, EventArgs e)
+        {
+            TabName.Value = "4";
+        }
+
+        protected void btnIngresarIcar2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TabName.Value = "4";
+                string txtdescrip = txtIcar2.Text;
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                DataView dtcount = (DataView)SqlDataSourceIcar2.Select(DataSourceSelectArguments.Empty);
+                int cant = dtcount.Count;
+                OrganizadorBL Org = new OrganizadorBL(null);
+                int limite = Org.GetLimite(nombreTabla.VAR_IDENTI_CAR1);
+                if (cant < limite)
+                {
+                    SqlDataSourceIcar2.InsertParameters["descripcion"].DefaultValue = txtdescrip;
+                    SqlDataSourceIcar2.InsertParameters["usuario"].DefaultValue = DataUser.id_usuario.ToString();
+                    SqlDataSourceIcar2.Insert();
+                    GridIcar2.DataBind();
+                    txtIcar2.Text = string.Empty;
+                    (this.Master as NavContenido).MostrarMensaje("Caracteristica ingresada con exito!.");
+                }
+                else
+                {
+                    (this.Master as NavContenido).MostrarMensaje("No puede ingresar valor, el limite es :" + limite.ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al ingresar caracteristica", "Error", ex);
+            }
+        }
+
+        protected void btnRefreshIcar2_Click(object sender, EventArgs e)
+        {
+            TabName.Value = "4";
+            TextSearchIcar2.Text = string.Empty;
+            txtIcar2.Text = string.Empty;
+        }
+
+        protected void GridIcar2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridIcar2.PageIndex = e.NewPageIndex;
+            GridIcar2.DataBind();
+        }
+
+        protected void GridIcar2_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            try
+            {
+                TabName.Value = "4";
+                GridIcar2.EditIndex = -1;
+                string descripcionIcar2 = ((TextBox)GridIcar2.Rows[e.RowIndex].FindControl("txtDescripICAR2")).Text;
+                int idICar2 = Convert.ToInt32(GridIcar2.DataKeys[e.RowIndex].Value);
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+
+                SqlDataSourceIcar2.UpdateParameters["descrip"].DefaultValue = descripcionIcar2;
+                SqlDataSourceIcar2.UpdateParameters["idicar2"].DefaultValue = idICar2.ToString();
+                SqlDataSourceIcar2.UpdateParameters["usuario"].DefaultValue = DataUser.id_usuario.ToString();
+                SqlDataSourceIcar2.Update();
+                GridIcar2.DataBind();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al actualizar caracteristica", "Error", ex);
+            }
+        }
+
+        protected void GridIcar2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            TabName.Value = "4";
+            GridIcar2.EditIndex = -1;
+            GridIcar2.DataBind();
+        }
+
+        protected void GridIcar2_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            TabName.Value = "4";
+            GridIcar2.EditIndex = -1;
+            GridIcar2.DataBind();
+        }
+        #endregion
     }
 }
