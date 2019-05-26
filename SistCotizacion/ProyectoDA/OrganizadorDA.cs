@@ -218,7 +218,7 @@ namespace ProyectoDA
                 string query = string.Empty;
                 if (_tipoTabla.ToString().Equals(nombreTabla.VAR_IDENTI_COMBINACION_1.ToString()) || _tipoTabla.ToString().Equals(nombreTabla.VAR_CUANTI_COMBINACION_1.ToString()))
                 {
-                    query = "SELECT ISNULL(MAX(right(cod_comb_1,len(cod_comb_1)-1)),0) as cant  FROM[dbo].[" + _tipoTabla.ToString()+"] WHERE cod_letra = '"+ codLetra + "'";
+                    query = "SELECT ISNULL(MAX(CAST(right(cod_comb_1,len(cod_comb_1)-1)AS INT)),0) as cant  FROM[dbo].[" + _tipoTabla.ToString()+"] WHERE cod_letra = '"+ codLetra + "'";
                 }
                 else if(_tipoTabla.ToString().Equals(nombreTabla.VAR_IDENTI_COMBINACION_2) || _tipoTabla.ToString().Equals(nombreTabla.VAR_CUANTI_COMBINACION_2.ToString()))
                 {

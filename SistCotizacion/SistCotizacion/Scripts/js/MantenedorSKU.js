@@ -7,22 +7,82 @@ $(document).ready(function () {
             
     $("#btnAddICar1").click(function () {
         $("#displaySearchIcar1").hide();
-        $("#displayAddIcar1").fadeToggle();      
+        $("#displayAddIcar1").show();
     });
     
     $("#btnSearchIcar1").click(function () {
         $("#displayAddIcar1").hide();
-        $("#displaySearchIcar1").fadeToggle();      
+        $("#displaySearchIcar1").show();
     });
 
     $("#btnAddICar2").click(function () {
         $("#displaySearchIcar2").hide();
-        $("#displayAddIcar2").fadeToggle();
+        $("#displayAddIcar2").show();
     });
 
     $("#btnSearchIcar2").click(function () {
         $("#displayAddIcar2").hide();
-        $("#displaySearchIcar2").fadeToggle();
+        $("#displaySearchIcar2").show();
+    });
+
+    $("#btnAddICar3").click(function () {
+        $("#displaySearchIcar3").hide();
+        $("#displayAddIcar3").show();
+    });
+
+    $("#btnSearchIcar3").click(function () {
+        $("#displayAddIcar3").hide();
+        $("#displaySearchIcar3").show();
+    });
+
+    $("#btnAddICar4").click(function () {
+        $("#displaySearchIcar4").hide();
+        $("#displayAddIcar4").show();
+    });
+
+    $("#btnSearchIcar4").click(function () {
+        $("#displayAddIcar4").hide();
+        $("#displaySearchIcar4").show();
+    });
+
+    $("#btnAddCombi").click(function () {
+        $("#displaySearchCombi").hide();
+        $("#displayAddcombi").show();
+    });
+
+    $("#btnSearchCombi").click(function () {
+        $("#displayAddcombi").hide();
+        $("#displaySearchCombi").show();
+    });
+
+    $("#btnAddMaterial").click(function () {
+        $("#displaySearchMaterial").hide();
+        $("#displayAddMaterial").show();
+    });
+
+    $("#btnSearchMaterial").click(function () {
+        $("#displayAddMaterial").hide();
+        $("#displaySearchMaterial").show();
+    });
+
+    $("#btnAddCarac2").click(function () {
+        $("#displaySearchCarac2").hide();
+        $("#displayAddCarac2").show();
+    });
+
+    $("#btnSearchCarac2").click(function () {
+        $("#displayAddCarac2").hide();
+        $("#displaySearchCarac2").show();
+    });
+
+    $("#btnAddCarac3").click(function () {
+        $("#displaySearchCarac3").hide();
+        $("#displayAddCarac3").show();
+    });
+
+    $("#btnSearchCarac3").click(function () {
+        $("#displayAddCarac3").hide();
+        $("#displaySearchCarac3").show();
     });
 
     //SearchInGrid("GridIcar1", "lblDescripcionICar1", "TextSearchIcar1");
@@ -55,32 +115,75 @@ prm.add_endRequest(function () {
 
     $("#btnAddICar2").click(function () {
         $("#displaySearchIcar2").hide();
-        $("#displayAddIcar2").fadeToggle();
+        $("#displayAddIcar2").show();
     });
 
     $("#btnSearchIcar2").click(function () {
         $("#displayAddIcar2").hide();
-        $("#displaySearchIcar2").fadeToggle();
+        $("#displaySearchIcar2").show();
+    });
+    $("#btnAddICar3").click(function () {
+        $("#displaySearchIcar3").hide();
+        $("#displayAddIcar3").show();
+    });
+
+    $("#btnSearchIcar3").click(function () {
+        $("#displayAddIcar3").hide();
+        $("#displaySearchIcar3").show();
+    });
+
+    $("#btnAddICar4").click(function () {
+        $("#displaySearchIcar4").hide();
+        $("#displayAddIcar4").show();
+    });
+
+    $("#btnSearchIcar4").click(function () {
+        $("#displayAddIcar4").hide();
+        $("#displaySearchIcar4").show();
+    });
+
+    $("#btnAddCombi").click(function () {
+        $("#displaySearchCombi").hide();
+        $("#displayAddcombi").show();
+    });
+
+    $("#btnSearchCombi").click(function () {
+        $("#displayAddcombi").hide();
+        $("#displaySearchCombi").show();
+    });
+
+    $("#btnAddMaterial").click(function () {
+        $("#displaySearchMaterial").hide();
+        $("#displayAddMaterial").show();
+    });
+
+    $("#btnSearchMaterial").click(function () {
+        $("#displayAddMaterial").hide();
+        $("#displaySearchMaterial").show();
+    });
+
+    $("#btnAddCarac2").click(function () {
+        $("#displaySearchCarac2").hide();
+        $("#displayAddCarac2").show();
+    });
+
+    $("#btnSearchCarac2").click(function () {
+        $("#displayAddCarac2").hide();
+        $("#displaySearchCarac2").show();
+    });
+
+    $("#btnAddCarac3").click(function () {
+        $("#displaySearchCarac3").hide();
+        $("#displayAddCarac3").show();
+    });
+
+    $("#btnSearchCarac3").click(function () {
+        $("#displayAddCarac3").hide();
+        $("#displaySearchCarac3").show();
     });
 });
 
-//var xPos, yPos;
-//var prm = Sys.WebForms.PageRequestManager.getInstance();
-//function BeginRequestHandler(sender,args) {
-//    if ($get('<%= PanelGridIcar1.ClientID %>') != null ) {
-//        xPos = $get('<%= PanelGridIcar1.ClientID %>').scrollLeft;
-//        yPos = $get('<%= PanelGridIcar1.ClientID %>').scrollTop;
-//    }
-//}
-//function EndRequestHandler(sender, args) {
-//    if ($get('<%= PanelGridIcar1.ClientID %>') != null) {
-//        $get('<%= PanelGridIcar1.ClientID %>').scrollLeft = xPos;
-//        $get('<%= PanelGridIcar1.ClientID %>').scrollTop = yPos;
-//    }
 
-//}
-//prm.add_beginRequest(BeginRequestHandler);
-//prm.add_endRequest(EndRequestHandler);
 
 function SearchInGrid(Grid,Label,TextSearch) {
     $("#"+TextSearch +"").keyup(function () {

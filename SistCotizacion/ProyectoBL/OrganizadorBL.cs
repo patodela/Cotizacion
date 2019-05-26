@@ -34,6 +34,11 @@ namespace ProyectoBL
         {
             DataTable OrgaData = new DataTable();
             OrgaData = dAcces.GetDescripcionSKU(_nameTabla);
+            if (_nameTabla.Equals(nombreTabla.VAR_IDENTI_COMBINACION_1))
+            {
+                OrgaData.DefaultView.Sort = "cod_comb_1 ASC";
+                OrgaData = OrgaData.DefaultView.ToTable();
+            }
             return OrgaData;
         }
         public DataTable GetGrupo()
