@@ -224,6 +224,10 @@ namespace ProyectoDA
                 {
                     query = "SELECT ISNULL(MAX(right(cod_comb_2,len(cod_comb_2)-1)),0) as cant  FROM[dbo].[" + _tipoTabla.ToString() + "] WHERE cod_letra = '" + codLetra + "'";
                 }
+                else if (_tipoTabla.Equals(nombreTabla.FAMILIA))
+                {
+                    query = "SELECT count(*) FROM FAMILIA where cod_org ='"+ codLetra +"'";
+                }
                 else
                 {
                     query =  "select count(*) from " + _tipoTabla.ToString();

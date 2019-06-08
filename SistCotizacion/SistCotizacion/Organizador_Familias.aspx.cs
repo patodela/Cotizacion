@@ -48,13 +48,6 @@ namespace SistCotizacion
 
 
 
-        protected void gv_organizador_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            TabName.Value = "1";
-            gv_organizador.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(gv_organizador,DataUser);
-        }
 
 
        public void BindGridviewOrganizador(GridView gvDatos,MSSQLSUL.Seguridad.Usuario DataUser)
@@ -71,12 +64,15 @@ namespace SistCotizacion
                         break;
                     case "GvFamilia":
                         data = Organizador.GetDataSKU(nombreTabla.FAMILIA);
+                        Session["DataFamilia"] = data;
                         break;
                     case "GV_Grupo":
                         data = Organizador.GetDataSKU(nombreTabla.VAR_PRINCIPAL_GRUPO);
+                        Session["DataGrupo"] = data;
                         break;
                     case "Gv_Articulo":
                         data = Organizador.GetDataSKU(nombreTabla.VAR_PRINCIPAL_ARTICULO);
+                        Session["DataArticulo"] = data;
                         break;
                     case "GV_Carac1":
                         data = Organizador.GetDataSKU(nombreTabla.VCP_CARACTERISTICA_1);
@@ -123,155 +119,402 @@ namespace SistCotizacion
           
         }
 
-        protected void GvFamilia_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            TabName.Value = "1";
-            GvFamilia.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GvFamilia,DataUser);
-        }
 
-        protected void gv_organizador_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            TabName.Value = "1";
-            gv_organizador.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(gv_organizador,DataUser);
-        }
 
-        protected void GvFamilia_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            TabName.Value = "1";
-            GvFamilia.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GvFamilia,DataUser);
-        }
+        #region VARIABLES ESTRUCTURALES
+            #region ORGANIZADOR
+            protected void gv_organizador_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+            {
+                TabName.Value = "1";
+                gv_organizador.EditIndex = -1;
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                BindGridviewOrganizador(gv_organizador, DataUser);
+            }
+            protected void gv_organizador_RowEditing(object sender, GridViewEditEventArgs e)
+            {
+                TabName.Value = "1";
+                gv_organizador.EditIndex = e.NewEditIndex;
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                BindGridviewOrganizador(gv_organizador, DataUser);
+            }
 
-        protected void gv_organizador_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TabName.Value = "1";
-            gv_organizador.EditIndex = -1;
-           
-            int id_organizacion;
-            string descrip = string.Empty;
-            descrip = ((TextBox)gv_organizador.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_organizacion = Convert.ToInt32(gv_organizador.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
 
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.ORGANIZADOR, id_organizacion, descrip);
 
-            BindGridviewOrganizador(gv_organizador, DataUser);
+            protected void gv_organizador_RowUpdating(object sender, GridViewUpdateEventArgs e)
+            {
+                TabName.Value = "1";
+                gv_organizador.EditIndex = -1;
 
-        }
+                int id_organizacion;
+                string descrip = string.Empty;
+                descrip = ((TextBox)gv_organizador.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
+                id_organizacion = Convert.ToInt32(gv_organizador.DataKeys[e.RowIndex].Value);
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
 
-        protected void GvFamilia_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            TabName.Value = "1";
-            GvFamilia.EditIndex = -1;
+                OrganizadorBL Organizador = new OrganizadorBL(DataUser);
+                Organizador.actualiza_organizador(nombreTabla.ORGANIZADOR, id_organizacion, descrip);
 
-            int id_familia;
-            string descrip = string.Empty;
-            descrip = ((TextBox)GvFamilia.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_familia = Convert.ToInt32(gv_organizador.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                BindGridviewOrganizador(gv_organizador, DataUser);
+                SqlDataSourceOrganizador.DataBind();
+            }
 
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.FAMILIA, id_familia, descrip);
 
-            BindGridviewOrganizador(GvFamilia, DataUser);
-            
-        }
+            #endregion
+            #region FAMILIA
+            protected void GvFamilia_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+                {
+                    TabName.Value = "1";
+                    GvFamilia.EditIndex = -1;
+                    GvFamilia.DataSource = Session["DataFamilia"] as DataTable;
+                    GvFamilia.DataBind();
+                }
+                protected void GvFamilia_RowEditing(object sender, GridViewEditEventArgs e)
+                {
+                    TabName.Value = "1";
+                    GvFamilia.EditIndex = e.NewEditIndex;
+                    GvFamilia.DataSource = Session["DataFamilia"] as DataTable;
+                    GvFamilia.DataBind();
+                }
+                protected void GvFamilia_RowUpdating(object sender, GridViewUpdateEventArgs e)
+                {
 
+                    try
+                    {
+                        TabName.Value = "1";
+                        GvFamilia.EditIndex = -1;
+
+                        int id_familia;
+                        string descrip = string.Empty;
+                        descrip = ((TextBox)GvFamilia.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
+                        id_familia = Convert.ToInt32(GvFamilia.DataKeys[e.RowIndex].Value);
+                        DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+
+                        OrganizadorBL Organizador = new OrganizadorBL(DataUser);
+                        Organizador.actualiza_organizador(nombreTabla.FAMILIA, id_familia, descrip);
+
+                        btnRefreshFamilia_Click(sender, e);
+                        (this.Master as NavContenido).MostrarMensaje("Datos actualizados correctamente.");
+                    }
+                    catch (Exception ex)
+                    {
+                        (this.Master as NavContenido).MostrarError("Ha ocurrido un error al actualizar registro", "Error", ex);
+                    }
+
+
+                }
+                public void FillComboboxFamilia(DropDownList combobox)
+                {
+
+                    OrganizadorBL Organizador = new OrganizadorBL(DataUser);
+                    DataTable data = new DataTable();
+                    data = Organizador.GetDataSKU(nombreTabla.FAMILIA);
+                    var datasource = from p in data.AsEnumerable()
+                                     where p.Field<string>("descripcion") != null
+                                     select new
+                                     {
+                                         id_fam = p.Field<int>("id_fam"),
+                                         descripcion = p.Field<string>("cod_fam") + "-" + p.Field<string>("descripcion")
+                                     };
+                    combobox.DataSource = datasource;
+                    combobox.DataTextField = "descripcion";
+                    combobox.DataValueField = "id_fam";
+                    combobox.DataBind();
+                }
+
+                protected void btnBuscarFamilia_Click(object sender, EventArgs e)
+                {
+                    try
+                    {
+
+                        string textfilter = txtSearchFamilia.Text;
+                        DataTable dt = GetDataByTabla(nombreTabla.FAMILIA);
+                        string filter = "descripcion LIKE '%" + textfilter + "%'";
+                        dt.DefaultView.RowFilter = filter;
+                        GvFamilia.DataSource = dt.DefaultView;
+                        GvFamilia.DataBind();
+                        dt = dt.DefaultView.ToTable();
+                        Session["DataFamilia"] = dt;
+
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                        (this.Master as NavContenido).MostrarError("Ha ocurrido un error al buscar registro", "Error", ex);
+                    }
+                }
+
+                protected void btnAddFamilia_Click(object sender, EventArgs e)
+                {
+                    try
+                    {
+                        TabName.Value = "1";
+                        string descripcion = txtFamilia.Text;
+                        string codLetra = cmbOrganizadorFam.SelectedItem.Text.Substring(0, 1);
+                        DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                        OrganizadorBL org = new OrganizadorBL(DataUser);
+                        org.add_descripcion_SKU(nombreTabla.FAMILIA, descripcion, codLetra);
+                        btnRefreshFamilia_Click(sender, e);
+                        (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+                    }
+                    catch (Exception ex)
+                    {
+
+                        (this.Master as NavContenido).MostrarError("Ha ocurrido un error ", "Error", ex);
+                    }
+                }
+
+                protected void btnRefreshFamilia_Click(object sender, EventArgs e)
+                {
+                    DataTable dt = GetDataByTabla(nombreTabla.FAMILIA);
+                    GvFamilia.DataSource = dt;
+                    GvFamilia.DataBind();
+                    Session["DataFamilia"] = dt;
+                }
+
+                protected void GvFamilia_PageIndexChanging(object sender, GridViewPageEventArgs e)
+                {
+                    try
+                    {
+                        TabName.Value = "4";
+                        GvFamilia.PageIndex = e.NewPageIndex;
+                        GvFamilia.DataSource = Session["DataFamilia"] as DataTable;
+                        GvFamilia.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+
+                        (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+                    }
+                }
+                #endregion
+        #endregion
+
+        #region VARIABLES GENERALES
+        #region GRUPO
         protected void GV_Grupo_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             TabName.Value = "2";
             GV_Grupo.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Grupo, DataUser);
+            GV_Grupo.DataSource = Session["DataGrupo"] as DataTable;
+            GV_Grupo.DataBind();
         }
 
         protected void GV_Grupo_RowEditing(object sender, GridViewEditEventArgs e)
         {
             TabName.Value = "2";
             GV_Grupo.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(GV_Grupo, DataUser);
+            GV_Grupo.DataSource = Session["DataGrupo"] as DataTable;
+            GV_Grupo.DataBind();
         }
 
         protected void GV_Grupo_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            TabName.Value = "2";
-            GV_Grupo.EditIndex = -1;            
-            int id_grupo;
-            string nombre_grupo = string.Empty;
-            nombre_grupo = ((TextBox)GV_Grupo.Rows[e.RowIndex].FindControl("txtEditGrupo")).Text;
-            id_grupo = Convert.ToInt32(GV_Grupo.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
 
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.VAR_PRINCIPAL_GRUPO, id_grupo, nombre_grupo);
+            try
+            {
+                TabName.Value = "2";
+                GV_Grupo.EditIndex = -1;
+                int id_grupo;
+                string nombre_grupo = string.Empty;
+                nombre_grupo = ((TextBox)GV_Grupo.Rows[e.RowIndex].FindControl("txtEditGrupo")).Text;
+                id_grupo = Convert.ToInt32(GV_Grupo.DataKeys[e.RowIndex].Value);
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
 
-            BindGridviewOrganizador(GV_Grupo, DataUser);
+                OrganizadorBL Organizador = new OrganizadorBL(DataUser);
+                Organizador.actualiza_organizador(nombreTabla.VAR_PRINCIPAL_GRUPO, id_grupo, nombre_grupo);
+                btnRefreshGrupo_Click(sender, e);
+                (this.Master as NavContenido).MostrarMensaje("Datos actualizados correctamente.");
+            }
+            catch (Exception ex)
+            {
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al actualizar registro", "Error", ex);
+            }
+
         }
 
         protected void btnAddGrupo_Click(object sender, EventArgs e)
         {
-            TabName.Value = "2";
-            string descripcion = txtNombreGrupo.Text;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            OrganizadorBL org = new OrganizadorBL(DataUser);            
-            org.add_descripcion_SKU(nombreTabla.VAR_PRINCIPAL_GRUPO, descripcion);
-            BindGridviewOrganizador(GV_Grupo, DataUser);
+            try
+            {
+                TabName.Value = "2";
+                string descripcion = txtNombreGrupo.Text;
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                OrganizadorBL org = new OrganizadorBL(DataUser);
+                org.add_descripcion_SKU(nombreTabla.VAR_PRINCIPAL_GRUPO, descripcion);
+                btnRefreshGrupo_Click(sender, e);
+                (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+            }
+            catch (Exception ex)
+            {
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error ingresar datos", "Error", ex);
+            }
+
+        }
+        protected void btnBuscarGrupo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TabName.Value = "2";
+                string textfilter = txtSearchGrupo.Text;
+                DataTable dt = GetDataByTabla(nombreTabla.VAR_PRINCIPAL_GRUPO);
+                string filter = "nombre_grupo LIKE '%" + textfilter + "%'";
+                dt.DefaultView.RowFilter = filter;
+                GV_Grupo.DataSource = dt.DefaultView;
+                GV_Grupo.DataBind();
+                dt = dt.DefaultView.ToTable();
+                Session["DataGrupo"] = dt;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al buscar registro", "Error", ex);
+            }
         }
 
+        protected void btnRefreshGrupo_Click(object sender, EventArgs e)
+        {
+            DataTable dt = GetDataByTabla(nombreTabla.VAR_PRINCIPAL_GRUPO);
+            GV_Grupo.DataSource = dt;
+            GV_Grupo.DataBind();
+            Session["DataGrupo"] = dt;
+        }
+
+        protected void GV_Grupo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                TabName.Value = "2";
+                GV_Grupo.PageIndex = e.NewPageIndex;
+                GV_Grupo.DataSource = Session["DataGrupo"] as DataTable;
+                GV_Grupo.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+            }
+        }
+        #endregion
+
+             #region ARTICULO
         protected void Gv_Articulo_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             TabName.Value = "2";
             Gv_Articulo.EditIndex = -1;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(Gv_Articulo, DataUser);
+            Gv_Articulo.DataSource = Session["DataArticulo"] as DataTable;
+            Gv_Articulo.DataBind();
         }
 
         protected void Gv_Articulo_RowEditing(object sender, GridViewEditEventArgs e)
         {
             TabName.Value = "2";
             Gv_Articulo.EditIndex = e.NewEditIndex;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            BindGridviewOrganizador(Gv_Articulo, DataUser);
+            Gv_Articulo.DataSource = Session["DataArticulo"] as DataTable;
+            Gv_Articulo.DataBind();
         }
 
         protected void Gv_Articulo_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            TabName.Value = "2";
-            Gv_Articulo.EditIndex = -1;
-            int id_grupo;
-            string nombre_grupo = string.Empty;
-            nombre_grupo = ((TextBox)Gv_Articulo.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
-            id_grupo = Convert.ToInt32(Gv_Articulo.DataKeys[e.RowIndex].Value);
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+            try
+            {
+                TabName.Value = "2";
+                Gv_Articulo.EditIndex = -1;
+                int id_grupo;
+                string nombre_grupo = string.Empty;
+                nombre_grupo = ((TextBox)Gv_Articulo.Rows[e.RowIndex].FindControl("txtEditDescrip")).Text;
+                id_grupo = Convert.ToInt32(Gv_Articulo.DataKeys[e.RowIndex].Value);
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
 
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            Organizador.actualiza_organizador(nombreTabla.VAR_PRINCIPAL_ARTICULO, id_grupo, nombre_grupo);
+                OrganizadorBL Organizador = new OrganizadorBL(DataUser);
+                Organizador.actualiza_organizador(nombreTabla.VAR_PRINCIPAL_ARTICULO, id_grupo, nombre_grupo);
+                btnRefreshArticulo_Click(sender, e);
+                (this.Master as NavContenido).MostrarMensaje("Datos actualizados correctamente.");
+            }
+            catch (Exception ex)
+            {
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al actualizar registro", "Error", ex);
+            }
 
-            BindGridviewOrganizador(Gv_Articulo, DataUser);
         }
 
         protected void btnAddArticulo_Click(object sender, EventArgs e)
         {
-            TabName.Value = "2";
-            string descripcion = txtArticulo.Text;
-            DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            OrganizadorBL org = new OrganizadorBL(DataUser);
-            org.add_descripcion_SKU(nombreTabla.VAR_PRINCIPAL_ARTICULO, descripcion);
-            BindGridviewOrganizador(Gv_Articulo, DataUser);
+            try
+            {
+                TabName.Value = "2";
+                string descripcion = txtArticulo.Text;
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                OrganizadorBL org = new OrganizadorBL(DataUser);
+                org.add_descripcion_SKU(nombreTabla.VAR_PRINCIPAL_ARTICULO, descripcion);
+                btnRefreshArticulo_Click(sender, e);
+                (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+            }
+            catch (Exception ex)
+            {
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error ingresar datos", "Error", ex);
+            }
+
+
         }
 
+        protected void btnBuscarArticulo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TabName.Value = "2";
+                string textfilter = txtSearchArticulo.Text;
+                DataTable dt = GetDataByTabla(nombreTabla.VAR_PRINCIPAL_ARTICULO);
+                string filter = "nombre_articulo LIKE '%" + textfilter + "%'";
+                dt.DefaultView.RowFilter = filter;
+                Gv_Articulo.DataSource = dt.DefaultView;
+                Gv_Articulo.DataBind();
+                dt = dt.DefaultView.ToTable();
+                Session["DataArticulo"] = dt;
+
+
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al buscar registro", "Error", ex);
+            }
+        }
+
+        protected void btnRefreshArticulo_Click(object sender, EventArgs e)
+        {
+            DataTable dt = GetDataByTabla(nombreTabla.VAR_PRINCIPAL_ARTICULO);
+            Gv_Articulo.DataSource = dt;
+            Gv_Articulo.DataBind();
+            Session["DataArticulo"] = dt;
+        }
+
+        protected void Gv_Articulo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                TabName.Value = "2";
+                Gv_Articulo.PageIndex = e.NewPageIndex;
+                Gv_Articulo.DataSource = Session["DataArticulo"] as DataTable;
+                Gv_Articulo.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+            }
+        }
+
+        #endregion
+
+        #endregion
 
         #region VARIABLES ESPECIFICAS
 
-            #region CARACTERISTICA 1
-            protected void GV_Carac1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        #region CARACTERISTICA 1
+        protected void GV_Carac1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
             {
                 TabName.Value = "3";
                 GV_Carac1.EditIndex = -1;
@@ -604,7 +847,6 @@ namespace SistCotizacion
         #endregion
 
         #endregion
-
 
         #region VARIABLES IDENTIFICADORES
         #region GRID IDENTIFICADOR CARACTERISTICA 1
@@ -1113,26 +1355,6 @@ namespace SistCotizacion
             data = Organizador.GetDataSKU(_tabla);
             return data;
         }
-        public void FillComboboxFamilia(DropDownList combobox)
-        {
-
-            OrganizadorBL Organizador = new OrganizadorBL(DataUser);
-            DataTable data = new DataTable();
-            data = Organizador.GetDataSKU(nombreTabla.FAMILIA);
-            var datasource = from p in data.AsEnumerable()
-                             where p.Field<string>("descripcion") != null
-                             select new
-                             {
-                                 id_fam = p.Field<int>("id_fam"),
-                                 descripcion = p.Field<string>("cod_fam") + "-" + p.Field<string>("descripcion")
-                             };
-            combobox.DataSource = datasource;
-            combobox.DataTextField = "descripcion";
-            combobox.DataValueField = "id_fam";
-            combobox.DataBind();
-        }
-
-     
-
+       
     }
 }

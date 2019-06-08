@@ -19,7 +19,9 @@
             </li>
             <li><a href="#3" data-toggle="tab">Variables Especificas</a>
             </li>
-            <li><a href="#4" data-toggle="tab">Identificadores</a>
+            <li><a href="#4" data-toggle="tab">Variables de Identificacion</a>
+            </li>
+            <li><a href="#5" data-toggle="tab">Identificador</a>
             </li>
         </ul>
 
@@ -70,12 +72,39 @@
 
                             </div>
                             <div class="col-lg-6">
-                                <div class="table-responsive">
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GvFamilia" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GvFamilia_RowCancelingEdit" OnRowEditing="GvFamilia_RowEditing" DataKeyNames="cod_fam" OnRowUpdating="GvFamilia_RowUpdating">
+                                <asp:UpdatePanel runat="server" ID="udpFamilia">
+                                    <ContentTemplate> 
+                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorFamilia" CssClass="control-label text-danger" ValidationGroup="GrpAddFamilia" ControlToValidate="txtFamilia" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
+                                        <div class="form-inline">
+                                            <a id="btnAddFamilia" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ingresar Familia"><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a id="btnSearchFamilia" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>
+                                            <div id="displaySearchFamilia" style="display: none;" class="input-group input-group-sm">
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtSearchFamilia" placeholder="Buscar por..." />
+                                                <span class="input-group-btn">
+                                                    <asp:LinkButton CssClass="btn btn-sm btn-primary" ID="btnBuscarFamilia" ToolTip="Buscar" OnClick="btnBuscarFamilia_Click" Text="" runat="server">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </div>
+                                            <div id="displayAddFamilia" style="display: none;" class="input-group input-group-sm">
+                                                <asp:DropDownList ID="cmbOrganizadorFam" CssClass="form-control" runat="server" DataSourceID="SqlDataSourceOrganizador" DataTextField="descripcion" DataValueField="id_org"></asp:DropDownList>
+                                                <asp:TextBox ID="txtFamilia" CssClass="form-control" placeholder="Ingrese Familia" runat="server"></asp:TextBox>
+
+                                                <span class="input-group-btn">
+                                                    <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary" ID="btnIngresarFamilia" OnClick="btnAddFamilia_Click" ValidationGroup="GrpAddFamilia" runat="server">
+                                            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </div>
+                                            <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary pull-right" ID="btnRefreshFamilia" ToolTip="Refrescar tabla" runat="server" OnClick="btnRefreshFamilia_Click">
+                                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                                            </asp:LinkButton>
+                                        </div>      
+                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GvFamilia" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GvFamilia_PageIndexChanging" OnRowCancelingEdit="GvFamilia_RowCancelingEdit" OnRowEditing="GvFamilia_RowEditing" DataKeyNames="id_fam" OnRowUpdating="GvFamilia_RowUpdating">
                                         <Columns>
                                             <asp:TemplateField HeaderText="(A a Z)" HeaderStyle-CssClass="active text-center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="labelCodigoOrg" runat="server" Text='<%# Eval("cod_fam") %>'></asp:Label>
+                                                    <asp:Label ID="labelCodigoOrg" runat="server" Text='<%# String.Concat(Eval("cod_org"),Eval("cod_fam")) %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <HeaderStyle CssClass="active text-center"></HeaderStyle>
@@ -102,9 +131,18 @@
                                         <EmptyDataTemplate>
                                             No se encontraron datos.
                                         </EmptyDataTemplate>
+                                        <PagerStyle CssClass="pagination-ys" />
                                     </asp:GridView>
-                                </div>
-
+                                <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="udpFamilia">
+                                            <ProgressTemplate>
+                                                <div class="text-center">
+                                                    <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                    <label class="label-info">Espere por favor...</label>
+                                                </div>
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+                                </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>
@@ -120,102 +158,162 @@
 
                         <div class="col-lg-12">
                             <div class="col-lg-6">
-                                <div class="table-responsive">
-                                    <div class="form-inline">
+                                <asp:UpdatePanel runat="server" ID="udpGrupo">
+                                    <ContentTemplate>
 
-                                        <div class="form-group">
-
-                                            <asp:TextBox ID="txtNombreGrupo" CssClass="form-control" placeholder="Nombre grupo" runat="server"></asp:TextBox>
-                                        </div>
-                                        <asp:Button ID="btnAddGrupo" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddGrupo_Click" />
                                         <asp:HiddenField ID="TabName" runat="server" />
-                                    </div>
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Grupo" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GV_Grupo_RowCancelingEdit" OnRowEditing="GV_Grupo_RowEditing" DataKeyNames="id_grupo" OnRowUpdating="GV_Grupo_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(00-99)" HeaderStyle-CssClass="active text-center" HeaderStyle-Font-Bold="true">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelIdGrupo" runat="server" Text='<%# String.Format("{0:00}", Eval("id_grupo")) %>'></asp:Label>
-                                                </ItemTemplate>
+                                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorGrupo" CssClass="control-label text-danger" ValidationGroup="GrpAddGrupo" ControlToValidate="txtNombreGrupo" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
+                                        <div class="form-inline">
+                                            <a id="btnAddGrupo" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ingresar Grupo"><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a id="btnSearchGrupo" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>
+                                            <div id="displaySearchGrupo" style="display: none;" class="input-group input-group-sm">
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtSearchGrupo" placeholder="Buscar por..." />
+                                                <span class="input-group-btn">
+                                                    <asp:LinkButton CssClass="btn btn-sm btn-primary" ID="btnBuscarGrupo" ToolTip="Buscar" OnClick="btnBuscarGrupo_Click" Text="" runat="server">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </div>
+                                            <div id="displayAddGrupo" style="display: none;" class="input-group input-group-sm">
 
-                                                <HeaderStyle CssClass="active text-center" Font-Bold="True"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Grupo" HeaderStyle-CssClass=" danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditGrupo" CssClass="form-control" runat="server" Text='<%# Eval("nombre_grupo") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelgrupo" runat="server" Text='<%# Eval("nombre_grupo") %>'></asp:Label>
-                                                </ItemTemplate>
+                                                <asp:TextBox ID="txtNombreGrupo" CssClass="form-control" placeholder="Ingrese grupo" runat="server"></asp:TextBox>
 
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_grupo" Visible="False" />
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            No se encontraron datos.
-                                        </EmptyDataTemplate>
-                                    </asp:GridView>
-                                </div>
+                                                <span class="input-group-btn">
+                                                    <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary" ID="AddGrupo" OnClick="btnAddGrupo_Click" ValidationGroup="GrpAddGrupo" runat="server">
+                                            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </div>
+                                            <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary pull-right" ID="btnRefreshGrupo" ToolTip="Refrescar tabla" runat="server" OnClick="btnRefreshGrupo_Click">
+                                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                                            </asp:LinkButton>
+                                        </div>
+                                        <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Grupo" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GV_Grupo_PageIndexChanging" OnRowCancelingEdit="GV_Grupo_RowCancelingEdit" OnRowEditing="GV_Grupo_RowEditing" DataKeyNames="id_grupo" OnRowUpdating="GV_Grupo_RowUpdating">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="(00-99)" HeaderStyle-CssClass="active text-center" HeaderStyle-Font-Bold="true">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labelIdGrupo" runat="server" Text='<%# String.Format("{0:00}", Eval("id_grupo")) %>'></asp:Label>
+                                                    </ItemTemplate>
 
+                                                    <HeaderStyle CssClass="active text-center" Font-Bold="True"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Grupo" HeaderStyle-CssClass=" danger text-center">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtEditGrupo" CssClass="form-control" runat="server" Text='<%# Eval("nombre_grupo") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labelgrupo" runat="server" Text='<%# Eval("nombre_grupo") %>'></asp:Label>
+                                                    </ItemTemplate>
+
+                                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:CommandField>
+                                                <asp:BoundField DataField="id_grupo" Visible="False" />
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                No se encontraron datos.
+                                            </EmptyDataTemplate>
+                                            <PagerStyle CssClass="pagination-ys" />
+                                        </asp:GridView>
+                                        <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="udpGrupo">
+                                            <ProgressTemplate>
+                                                <div class="text-center">
+                                                    <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                     <label class="label-info">Espere por favor...</label>
+                                                </div>
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                             <div class="col-lg-6">
-                                <div class="table-responsive">
-                                    <div class="form-inline">
+                                <asp:UpdatePanel runat="server" ID="udpArticulo">
+                                    <ContentTemplate>
 
-                                        <div class="form-group">
+                                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorArticulo" CssClass="control-label text-danger" ValidationGroup="GrpAddArticulo" ControlToValidate="txtArticulo" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
+                                        <div class="form-inline">
+                                            <a id="btnAddArticulo" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ingresar Articulo"><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a id="btnSearchArticulo" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>
+                                            <div id="displaySearchArticulo" style="display: none;" class="input-group input-group-sm">
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtSearchArticulo" placeholder="Buscar por..." />
+                                                <span class="input-group-btn">
+                                                    <asp:LinkButton CssClass="btn btn-sm btn-primary" ID="btnBuscarArticulo" ToolTip="Buscar" OnClick="btnBuscarArticulo_Click" Text="" runat="server">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </div>
+                                            <div id="displayAddArticulo" style="display: none;" class="input-group input-group-sm">
 
-                                            <asp:TextBox ID="txtArticulo" CssClass="form-control" placeholder="Nombre Articulo" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtArticulo" CssClass="form-control" placeholder="Ingrese Articulo" runat="server"></asp:TextBox>
+
+                                                <span class="input-group-btn">
+                                                    <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary" ID="AddArticulo" OnClick="btnAddArticulo_Click" ValidationGroup="GrpAddArticulo" runat="server">
+                                            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                                                    </asp:LinkButton>
+                                                </span>
+                                            </div>
+                                            <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary pull-right" ID="btnRefreshArticulo" ToolTip="Refrescar tabla" runat="server" OnClick="btnRefreshArticulo_Click">
+                                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                                            </asp:LinkButton>
                                         </div>
-                                        <asp:Button ID="btnAddArticulo" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddArticulo_Click" />
+                                        <asp:GridView CssClass="table table-bordered table-hover" ID="Gv_Articulo" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="Gv_Articulo_PageIndexChanging" OnRowCancelingEdit="Gv_Articulo_RowCancelingEdit" OnRowEditing="Gv_Articulo_RowEditing" DataKeyNames="id_articulo" OnRowUpdating="Gv_Articulo_RowUpdating">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="(00 a 999)" HeaderStyle-CssClass="active text-center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labelCodigoOrg" runat="server" Text='<%# String.Format("{0:000}", Eval("id_articulo")) %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                    </div>
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="Gv_Articulo" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="Gv_Articulo_RowCancelingEdit" OnRowEditing="Gv_Articulo_RowEditing" DataKeyNames="id_articulo" OnRowUpdating="Gv_Articulo_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(00 a 999)" HeaderStyle-CssClass="active text-center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelCodigoOrg" runat="server" Text='<%# String.Format("{0:000}", Eval("id_articulo")) %>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="ARTICULO" HeaderStyle-CssClass="danger text-center">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("nombre_articulo") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("nombre_articulo") %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="ARTICULO" HeaderStyle-CssClass="danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("nombre_articulo") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("nombre_articulo") %>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
 
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_articulo" Visible="False" />
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:CommandField>
+                                                <asp:BoundField DataField="id_articulo" Visible="False" />
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                No se encontraron datos.
+                                            </EmptyDataTemplate>
+                                            <PagerStyle CssClass="pagination-ys" />
+                                        </asp:GridView>
+                                        <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="udpArticulo">
+                                            <ProgressTemplate>
+                                                <div class="text-center">
+                                                    <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                     <label class="label-info">Espere por favor...</label>
+                                                </div>
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
             <!-- Variables Especificas -->
             <div class="tab-pane" id="3">
-    
+
                 <h3>Variables de Cuantificación Principal</h3>
                 <div class="panel panel-default">
                     <div class="panel-heading text-center">
@@ -226,9 +324,9 @@
                         <div class="col-lg-12">
                             <div class="col-lg-4">
                                 <asp:UpdatePanel runat="server" ID="updGVCarac1">
-                                     <ContentTemplate>
-                               
-                                    <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorMaterial" CssClass="control-label text-danger" ValidationGroup="GrpAddMaterial" ControlToValidate="txtCarac1" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
+                                    <ContentTemplate>
+
+                                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorMaterial" CssClass="control-label text-danger" ValidationGroup="GrpAddMaterial" ControlToValidate="txtCarac1" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
                                         <div class="form-inline">
                                             <a id="btnAddMaterial" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ingresar caracteristica"><span class="glyphicon glyphicon-plus"></span></a>
                                             <a id="btnSearchMaterial" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>
@@ -254,55 +352,56 @@
                                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                             </asp:LinkButton>
                                         </div>
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac1" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GV_Carac1_PageIndexChanging"  OnRowCancelingEdit="GV_Carac1_RowCancelingEdit" OnRowEditing="GV_Carac1_RowEditing" DataKeyNames="id_car1" OnRowUpdating="GV_Carac1_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(00-99)" HeaderStyle-CssClass="active text-center" HeaderStyle-Font-Bold="true">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblidcarac1" runat="server" Text='<%# String.Format("{0:00}", Eval("id_car1")) %>'></asp:Label>
-                                                </ItemTemplate>
+                                        <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac1" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GV_Carac1_PageIndexChanging" OnRowCancelingEdit="GV_Carac1_RowCancelingEdit" OnRowEditing="GV_Carac1_RowEditing" DataKeyNames="id_car1" OnRowUpdating="GV_Carac1_RowUpdating">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="(00-99)" HeaderStyle-CssClass="active text-center" HeaderStyle-Font-Bold="true">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblidcarac1" runat="server" Text='<%# String.Format("{0:00}", Eval("id_car1")) %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle CssClass="active text-center" Font-Bold="True"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Caracteristica 1: Material" HeaderStyle-CssClass="danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditcarac1" CssClass="form-control" runat="server" Text='<%# Eval("material") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelcarac1" runat="server" Text='<%# Eval("material") %>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <HeaderStyle CssClass="active text-center" Font-Bold="True"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Caracteristica 1: Material" HeaderStyle-CssClass="danger text-center">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtEditcarac1" CssClass="form-control" runat="server" Text='<%# Eval("material") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labelcarac1" runat="server" Text='<%# Eval("material") %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_car1" Visible="False" />
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            No se encontraron datos.
-                                        </EmptyDataTemplate>
-                                        <PagerStyle CssClass="pagination-ys" />
-                                    </asp:GridView>
-                               <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGVCarac1">
+                                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:CommandField>
+                                                <asp:BoundField DataField="id_car1" Visible="False" />
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                No se encontraron datos.
+                                            </EmptyDataTemplate>
+                                            <PagerStyle CssClass="pagination-ys" />
+                                        </asp:GridView>
+                                        <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGVCarac1">
                                             <ProgressTemplate>
                                                 <div class="text-center">
                                                     <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
-                                                </div>                                               
+                                                     <label class="label-info">Espere por favor...</label>
+                                                </div>
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
 
                             </div>
                             <div class="col-lg-4">
                                 <asp:UpdatePanel runat="server" ID="updGVCarac2">
                                     <ContentTemplate>
-                                      
 
-                                   <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorCarac2" CssClass="control-label text-danger" ValidationGroup="GrpAddCarac2" ControlToValidate="txtCarac2" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
+
+                                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorCarac2" CssClass="control-label text-danger" ValidationGroup="GrpAddCarac2" ControlToValidate="txtCarac2" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
                                         <div class="form-inline">
                                             <a id="btnAddCarac2" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ingresar caracteristica"><span class="glyphicon glyphicon-plus"></span></a>
                                             <a id="btnSearchCarac2" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>
@@ -324,68 +423,60 @@
                                                     </asp:LinkButton>
                                                 </span>
                                             </div>
-                                            
+
                                             <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary pull-right" ID="btnRefreshCarac2" ToolTip="Refrescar tabla" runat="server" OnClick="btnRefreshCarac2_Click">
                                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                             </asp:LinkButton>
-                                        </div>                              
-    
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac2" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GV_Carac2_PageIndexChanging" OnRowCancelingEdit="GV_Carac2_RowCancelingEdit" OnRowEditing="GV_Carac2_RowEditing" DataKeyNames="id_car2" OnRowUpdating="GV_Carac2_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(00 a 99)" HeaderStyle-CssClass="active text-center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelidcarac2" runat="server" Text='<%# String.Format("{0:00}", Eval("id_car2")) %>'></asp:Label>
-                                                </ItemTemplate>
+                                        </div>
 
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Caracteristica 2: Talla" HeaderStyle-CssClass="danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditTalla" CssClass="form-control" runat="server" Text='<%# Eval("Talla") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("Talla") %>'></asp:Label>
-                                                </ItemTemplate>
+                                        <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac2" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GV_Carac2_PageIndexChanging" OnRowCancelingEdit="GV_Carac2_RowCancelingEdit" OnRowEditing="GV_Carac2_RowEditing" DataKeyNames="id_car2" OnRowUpdating="GV_Carac2_RowUpdating">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="(00 a 99)" HeaderStyle-CssClass="active text-center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labelidcarac2" runat="server" Text='<%# String.Format("{0:00}", Eval("id_car2")) %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Caracteristica 2: Talla" HeaderStyle-CssClass="danger text-center">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtEditTalla" CssClass="form-control" runat="server" Text='<%# Eval("Talla") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("Talla") %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_car2" Visible="False" />
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            No se encontraron datos.
-                                        </EmptyDataTemplate>
-                                        <PagerStyle CssClass="pagination-ys" />
-                                    </asp:GridView>
-                                    <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGVCarac2">
+                                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:CommandField>
+                                                <asp:BoundField DataField="id_car2" Visible="False" />
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                No se encontraron datos.
+                                            </EmptyDataTemplate>
+                                            <PagerStyle CssClass="pagination-ys" />
+                                        </asp:GridView>
+                                        <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGVCarac2">
                                             <ProgressTemplate>
                                                 <div class="text-center">
                                                     <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
-                                                </div>                                               
+                                                     <label class="label-info">Espere por favor...</label>
+                                                </div>
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
-                                 </ContentTemplate>
+                                    </ContentTemplate>
                                 </asp:UpdatePanel>
                             </div>
                             <div class="col-lg-4">
                                 <asp:UpdatePanel runat="server" ID="updGVCarac3">
-                                    <ContentTemplate>  
-                                   <%-- <div class="form-inline">
-
-                                        <div class="form-group">
-
-                                            <asp:TextBox ID="txtCarac3" CssClass="form-control" placeholder="Caracteristica 3: Piedra principal" runat="server"></asp:TextBox>
-                                        </div>
-                                        <asp:Button ID="btnAddCarac3" runat="server" CssClass="btn btn-default" Text="Ingresar" OnClick="btnAddCarac3_Click" />
-
-                                    </div>--%>
-                                         <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorCarac3" CssClass="control-label text-danger" ValidationGroup="GrpAddCarac3" ControlToValidate="txtCarac3" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
+                                    <ContentTemplate>
+                                        <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorCarac3" CssClass="control-label text-danger" ValidationGroup="GrpAddCarac3" ControlToValidate="txtCarac3" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
                                         <div class="form-inline">
                                             <a id="btnAddCarac3" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ingresar caracteristica"><span class="glyphicon glyphicon-plus"></span></a>
                                             <a id="btnSearchCarac3" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top" title="Buscar"><span class="glyphicon glyphicon-search"></span></a>
@@ -407,61 +498,62 @@
                                                     </asp:LinkButton>
                                                 </span>
                                             </div>
-                                            
+
                                             <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary pull-right" ID="btnRefreshCarac3" ToolTip="Refrescar tabla" runat="server" OnClick="btnRefreshCarac3_Click">
                                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                                             </asp:LinkButton>
-                                        </div>   
-                                    <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac3" runat="server" AutoGenerateColumns="False"  AllowPaging="true" OnPageIndexChanging="GV_Carac3_PageIndexChanging" OnRowCancelingEdit="GV_Carac3_RowCancelingEdit" OnRowEditing="GV_Carac3_RowEditing" DataKeyNames="id_car3" OnRowUpdating="GV_Carac3_RowUpdating">
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="(00 a 99)" HeaderStyle-CssClass="active text-center">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labelidcarac3" runat="server" Text='<%# String.Format("{0:00}", Eval("id_car3")) %>'></asp:Label>
-                                                </ItemTemplate>
+                                        </div>
+                                        <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Carac3" runat="server" AutoGenerateColumns="False" AllowPaging="true" OnPageIndexChanging="GV_Carac3_PageIndexChanging" OnRowCancelingEdit="GV_Carac3_RowCancelingEdit" OnRowEditing="GV_Carac3_RowEditing" DataKeyNames="id_car3" OnRowUpdating="GV_Carac3_RowUpdating">
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="(00 a 99)" HeaderStyle-CssClass="active text-center">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labelidcarac3" runat="server" Text='<%# String.Format("{0:00}", Eval("id_car3")) %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Caracteristica 3: Piedra principal" HeaderStyle-CssClass="danger text-center">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("Piedra_Principal") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("Piedra_Principal") %>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Caracteristica 3: Piedra principal" HeaderStyle-CssClass="danger text-center">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="txtEditDescrip" CssClass="form-control" runat="server" Text='<%# Eval("Piedra_Principal") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="labeldescrip" runat="server" Text='<%# Eval("Piedra_Principal") %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
-                                                <HeaderStyle CssClass="active text-center"></HeaderStyle>
+                                                    <HeaderStyle CssClass=" danger text-center"></HeaderStyle>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:CommandField HeaderText="Acción" HeaderStyle-CssClass="active text-center" ShowEditButton="True">
+                                                    <HeaderStyle CssClass="active text-center"></HeaderStyle>
 
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:CommandField>
-                                            <asp:BoundField DataField="id_car3" Visible="False" />
-                                        </Columns>
-                                        <EmptyDataTemplate>
-                                            No se encontraron datos.
-                                        </EmptyDataTemplate>
-                                        <PagerStyle CssClass="pagination-ys" />
-                                    </asp:GridView>
-                                 <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGVCarac3">
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:CommandField>
+                                                <asp:BoundField DataField="id_car3" Visible="False" />
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                No se encontraron datos.
+                                            </EmptyDataTemplate>
+                                            <PagerStyle CssClass="pagination-ys" />
+                                        </asp:GridView>
+                                        <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGVCarac3">
                                             <ProgressTemplate>
                                                 <div class="text-center">
                                                     <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
-                                                </div>                                               
+                                                     <label class="label-info">Espere por favor...</label>
+                                                </div>
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
-                                 </ContentTemplate>
+                                    </ContentTemplate>
                                 </asp:UpdatePanel>
                             </div>
 
                         </div>
-                    
+
+                    </div>
                 </div>
             </div>
-    </div>
-            <!-- Identificadores 4 caracteristicas -->
+            <!-- variables de indentificacion  -->
             <div class="tab-pane" id="4">
                 <h3>Variables de identificacion</h3>
                 <div class="panel panel-default">
@@ -471,7 +563,7 @@
                     <div class="panel-body">
                         <div class="col-md-12">
                             <div class="col-md-4">
-                                <asp:UpdatePanel runat="server">
+                                <asp:UpdatePanel runat="server" ID="updGridIcar1">
 
                                     <ContentTemplate>
                                         <asp:RequiredFieldValidator Display="Dynamic" ID="requiredIcar1" CssClass="control-label text-danger" ValidationGroup="GrpAddIcar1" ControlToValidate="txtIcar1" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
@@ -529,6 +621,13 @@
                                                 </EmptyDataTemplate>
                                                 <PagerStyle CssClass="pagination-ys" />
                                             </asp:GridView>
+                                            <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGridIcar1">
+                                                <ProgressTemplate>
+                                                    <div class="text-center">
+                                                        <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                    </div>
+                                                </ProgressTemplate>
+                                            </asp:UpdateProgress>
                                         </asp:Panel>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSourceIcar1" ConnectionString='<%$ ConnectionStrings:impexcom_cotizacionConnectionString %>'
                                             SelectCommand="SELECT  id_icar1, [descripcion] FROM [var_identi_car1] ORDER BY [id_icar1] DESC"
@@ -563,7 +662,7 @@
                                 </asp:UpdatePanel>
                             </div>
                             <div class="col-md-4">
-                                <asp:UpdatePanel runat="server">
+                                <asp:UpdatePanel runat="server" ID="updGridIcar2">
 
                                     <ContentTemplate>
                                         <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorIcar2" CssClass="control-label text-danger" ValidationGroup="GrpAddIcar2" ControlToValidate="txtIcar2" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
@@ -621,6 +720,13 @@
                                                 </EmptyDataTemplate>
                                                 <PagerStyle CssClass="pagination-ys" />
                                             </asp:GridView>
+                                            <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGridIcar2">
+                                                <ProgressTemplate>
+                                                    <div class="text-center">
+                                                        <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                    </div>
+                                                </ProgressTemplate>
+                                            </asp:UpdateProgress>
                                         </asp:Panel>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSourceIcar2" ConnectionString='<%$ ConnectionStrings:impexcom_cotizacionConnectionString %>'
                                             SelectCommand="SELECT  id_icar2, [descripcion] FROM [var_identi_car2] ORDER BY [id_icar2] DESC"
@@ -655,7 +761,7 @@
                                 </asp:UpdatePanel>
                             </div>
                             <div class="col-md-4">
-                                <asp:UpdatePanel runat="server">
+                                <asp:UpdatePanel runat="server" ID="updGridIcar3">
 
                                     <ContentTemplate>
                                         <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" CssClass="control-label text-danger" ValidationGroup="GrpAddIcar3" ControlToValidate="txtIcar3" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
@@ -713,6 +819,13 @@
                                                 </EmptyDataTemplate>
                                                 <PagerStyle CssClass="pagination-ys" />
                                             </asp:GridView>
+                                            <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGridIcar3">
+                                                <ProgressTemplate>
+                                                    <div class="text-center">
+                                                        <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                    </div>
+                                                </ProgressTemplate>
+                                            </asp:UpdateProgress>
                                         </asp:Panel>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSourceIcar3" ConnectionString='<%$ ConnectionStrings:impexcom_cotizacionConnectionString %>'
                                             SelectCommand="SELECT  id_icar3, [descripcion] FROM [var_identi_car3] ORDER BY [id_icar3] DESC"
@@ -750,7 +863,7 @@
                         <div class="col-md-12">
 
                             <div class="col-md-4">
-                                <asp:UpdatePanel runat="server">
+                                <asp:UpdatePanel runat="server" ID="updGridIcar4">
 
                                     <ContentTemplate>
                                         <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator4" CssClass="control-label text-danger" ValidationGroup="GrpAddIcar4" ControlToValidate="txtIcar4" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
@@ -808,6 +921,14 @@
                                                 </EmptyDataTemplate>
                                                 <PagerStyle CssClass="pagination-ys" />
                                             </asp:GridView>
+                                            <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGridIcar4">
+                                                <ProgressTemplate>
+                                                    <div class="text-center">
+                                                        <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                         <label class="label-info">Espere por favor...</label>
+                                                    </div>
+                                                </ProgressTemplate>
+                                            </asp:UpdateProgress>
                                         </asp:Panel>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSourceIcar4" ConnectionString='<%$ ConnectionStrings:impexcom_cotizacionConnectionString %>'
                                             SelectCommand="SELECT  id_icar4, [descripcion] FROM [var_identi_car4] ORDER BY [id_icar4] DESC"
@@ -841,8 +962,22 @@
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Identificador -->
+            <div class="tab-pane" id="5">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h4><strong>Identificador</strong></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12">
                             <div class="col-md-4">
-                                <asp:UpdatePanel runat="server">
+                                <asp:UpdatePanel runat="server" ID="updGridCombiIdenti">
                                     <ContentTemplate>
                                         <div class="table-responsive">
                                             <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidatorCombi" CssClass="control-label text-danger" ValidationGroup="GrpAddCombi" ControlToValidate="txtCombi1Identi" runat="server" ErrorMessage="*Debe ingresar un valor."></asp:RequiredFieldValidator>
@@ -878,7 +1013,7 @@
                                                 </div>
                                                 <asp:LinkButton Text="" CssClass="btn btn-sm btn-primary pull-right" ID="btnRefreshCombi" ToolTip="Refrescar tabla" runat="server" OnClick="btnRefreshCombi_Click">
                                             <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                                                </asp:LinkButton>                                              
+                                                </asp:LinkButton>
                                             </div>
                                         </div>
                                         <asp:GridView CssClass="table table-bordered table-hover" ID="GV_Combi_identi1" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnRowCancelingEdit="GV_Combi_identi1_RowCancelingEdit" OnRowEditing="GV_Combi_identi1_RowEditing" DataKeyNames="id_comb_1" OnRowUpdating="GV_Combi_identi1_RowUpdating" OnPageIndexChanging="GV_Combi_identi1_PageIndexChanging" PagerSettings-PageButtonCount="5">
@@ -914,16 +1049,27 @@
                                             </EmptyDataTemplate>
                                             <PagerStyle CssClass="pagination-ys" />
                                         </asp:GridView>
+                                        <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="updGridCombiIdenti">
+                                            <ProgressTemplate>
+                                                <div class="text-center">
+                                                    <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                     <label class="label-info">Espere por favor...</label>
+                                                </div>
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
                                         </div>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
+
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+
             </div>
         </div>
+    </div>
 
         <script src="Scripts/js/MantenedorSKU.js"></script>
 </asp:Content>

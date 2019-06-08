@@ -39,6 +39,12 @@ namespace ProyectoBL
                 OrgaData.DefaultView.Sort = "cod_comb_1 ASC";
                 OrgaData = OrgaData.DefaultView.ToTable();
             }
+            else if(_nameTabla.Equals(nombreTabla.FAMILIA))
+            {
+                OrgaData.DefaultView.Sort = "cod_org,cod_fam DESC";
+                OrgaData = OrgaData.DefaultView.ToTable();
+            }
+
             return OrgaData;
         }
         public DataTable GetGrupo()
@@ -122,6 +128,9 @@ namespace ProyectoBL
             int cant = int.MinValue;
             switch (_tabla.ToString())
             {
+                case "FAMILIA":
+                    cant = Convert.ToInt32(LimiteTabla.FAMILIA);
+                    break;
                 case "VAR_PRINCIPAL_GRUPO":
                     cant = Convert.ToInt32(LimiteTabla.VAR_PRINCIPAL_GRUPO);
                     break;

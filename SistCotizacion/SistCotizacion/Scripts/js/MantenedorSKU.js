@@ -85,6 +85,35 @@ $(document).ready(function () {
         $("#displaySearchCarac3").show();
     });
 
+    $("#btnAddGrupo").click(function () {
+        $("#displaySearchGrupo").hide();
+        $("#displayAddGrupo").show();
+    });
+
+    $("#btnSearchGrupo").click(function () {
+        $("#displayAddGrupo").hide();
+        $("#displaySearchGrupo").show();
+    });
+
+    $("#btnAddArticulo").click(function () {
+        $("#displaySearchArticulo").hide();
+        $("#displayAddArticulo").show();
+    });
+
+    $("#btnSearchArticulo").click(function () {
+        $("#displayAddArticulo").hide();
+        $("#displaySearchArticulo").show();
+    });
+
+    $("#btnAddFamilia").click(function () {
+        $("#displaySearchFamilia").hide();
+        $("#displayAddFamilia").show();
+    });
+
+    $("#btnSearchFamilia").click(function () {
+        $("#displayAddFamilia").hide();
+        $("#displaySearchFamilia").show();
+    });
     //SearchInGrid("GridIcar1", "lblDescripcionICar1", "TextSearchIcar1");
    
 
@@ -180,6 +209,35 @@ prm.add_endRequest(function () {
     $("#btnSearchCarac3").click(function () {
         $("#displayAddCarac3").hide();
         $("#displaySearchCarac3").show();
+    });
+
+    $("#btnAddGrupo").click(function () {
+        $("#displaySearchGrupo").hide();
+        $("#displayAddGrupo").show();
+    });
+
+    $("#btnSearchGrupo").click(function () {
+        $("#displayAddGrupo").hide();
+        $("#displaySearchGrupo").show();
+    });
+
+    $("#btnAddArticulo").click(function () {
+        $("#displaySearchArticulo").hide();
+        $("#displayAddArticulo").show();
+    });
+
+    $("#btnSearchArticulo").click(function () {
+        $("#displayAddArticulo").hide();
+        $("#displaySearchArticulo").show();
+    });
+    $("#btnAddFamilia").click(function () {
+        $("#displaySearchFamilia").hide();
+        $("#displayAddFamilia").show();
+    });
+
+    $("#btnSearchFamilia").click(function () {
+        $("#displayAddFamilia").hide();
+        $("#displaySearchFamilia").show();
     });
 });
 

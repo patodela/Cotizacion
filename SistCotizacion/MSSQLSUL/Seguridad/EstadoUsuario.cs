@@ -32,6 +32,7 @@ namespace MSSQLSUL.Seguridad
 
   public  enum  LimiteTabla
     {
+        FAMILIA = 26,
         VAR_PRINCIPAL_GRUPO = 99,
         VAR_PRINCIPAL_ARTICULO = 999,
         VCP_CARACTERISTICA_1 = 99,

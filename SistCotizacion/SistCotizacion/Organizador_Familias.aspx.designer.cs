@@ -22,6 +22,78 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.GridView gv_organizador;
         
         /// <summary>
+        /// Control udpFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpFamilia;
+        
+        /// <summary>
+        /// Control RequiredFieldValidatorFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorFamilia;
+        
+        /// <summary>
+        /// Control txtSearchFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchFamilia;
+        
+        /// <summary>
+        /// Control btnBuscarFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarFamilia;
+        
+        /// <summary>
+        /// Control cmbOrganizadorFam.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbOrganizadorFam;
+        
+        /// <summary>
+        /// Control txtFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFamilia;
+        
+        /// <summary>
+        /// Control btnIngresarFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnIngresarFamilia;
+        
+        /// <summary>
+        /// Control btnRefreshFamilia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnRefreshFamilia;
+        
+        /// <summary>
         /// Control GvFamilia.
         /// </summary>
         /// <remarks>
@@ -31,22 +103,13 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.GridView GvFamilia;
         
         /// <summary>
-        /// Control txtNombreGrupo.
+        /// Control udpGrupo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreGrupo;
-        
-        /// <summary>
-        /// Control btnAddGrupo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddGrupo;
+        protected global::System.Web.UI.UpdatePanel udpGrupo;
         
         /// <summary>
         /// Control TabName.
@@ -58,6 +121,60 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.HiddenField TabName;
         
         /// <summary>
+        /// Control RequiredFieldValidatorGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorGrupo;
+        
+        /// <summary>
+        /// Control txtSearchGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchGrupo;
+        
+        /// <summary>
+        /// Control btnBuscarGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarGrupo;
+        
+        /// <summary>
+        /// Control txtNombreGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreGrupo;
+        
+        /// <summary>
+        /// Control AddGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton AddGrupo;
+        
+        /// <summary>
+        /// Control btnRefreshGrupo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnRefreshGrupo;
+        
+        /// <summary>
         /// Control GV_Grupo.
         /// </summary>
         /// <remarks>
@@ -65,6 +182,42 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GV_Grupo;
+        
+        /// <summary>
+        /// Control udpArticulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel udpArticulo;
+        
+        /// <summary>
+        /// Control RequiredFieldValidatorArticulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorArticulo;
+        
+        /// <summary>
+        /// Control txtSearchArticulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearchArticulo;
+        
+        /// <summary>
+        /// Control btnBuscarArticulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnBuscarArticulo;
         
         /// <summary>
         /// Control txtArticulo.
@@ -76,13 +229,22 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtArticulo;
         
         /// <summary>
-        /// Control btnAddArticulo.
+        /// Control AddArticulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddArticulo;
+        protected global::System.Web.UI.WebControls.LinkButton AddArticulo;
+        
+        /// <summary>
+        /// Control btnRefreshArticulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnRefreshArticulo;
         
         /// <summary>
         /// Control Gv_Articulo.
@@ -310,6 +472,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.GridView GV_Carac3;
         
         /// <summary>
+        /// Control updGridIcar1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updGridIcar1;
+        
+        /// <summary>
         /// Control requiredIcar1.
         /// </summary>
         /// <remarks>
@@ -380,6 +551,15 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIcar1;
+        
+        /// <summary>
+        /// Control updGridIcar2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updGridIcar2;
         
         /// <summary>
         /// Control RequiredFieldValidatorIcar2.
@@ -463,6 +643,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIcar2;
         
         /// <summary>
+        /// Control updGridIcar3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updGridIcar3;
+        
+        /// <summary>
         /// Control RequiredFieldValidator2.
         /// </summary>
         /// <remarks>
@@ -544,6 +733,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIcar3;
         
         /// <summary>
+        /// Control updGridIcar4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updGridIcar4;
+        
+        /// <summary>
         /// Control RequiredFieldValidator4.
         /// </summary>
         /// <remarks>
@@ -623,6 +821,15 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceIcar4;
+        
+        /// <summary>
+        /// Control updGridCombiIdenti.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updGridCombiIdenti;
         
         /// <summary>
         /// Control RequiredFieldValidatorCombi.
