@@ -85,7 +85,9 @@
     <Content Include="EntidadProveedor.aspx" />
     <Content Include="EntidadUsuario.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Imagenes\Dual Ring-1s-30px.gif" />
     <Content Include="Imagenes\error.png" />
+    <Content Include="Imagenes\Loading200px.gif" />
     <Content Include="index.aspx" />
     <Content Include="IngresoProducto.aspx" />
     <Content Include="Libro_Ingresos.aspx" />
@@ -117,6 +119,7 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\js\MantenedorSKU.js" />
     <Content Include="Usuarios\Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

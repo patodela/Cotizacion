@@ -34,6 +34,17 @@ namespace ProyectoBL
         {
             DataTable OrgaData = new DataTable();
             OrgaData = dAcces.GetDescripcionSKU(_nameTabla);
+            if (_nameTabla.Equals(nombreTabla.VAR_IDENTI_COMBINACION_1))
+            {
+                OrgaData.DefaultView.Sort = "cod_comb_1 ASC";
+                OrgaData = OrgaData.DefaultView.ToTable();
+            }
+            else if(_nameTabla.Equals(nombreTabla.FAMILIA))
+            {
+                OrgaData.DefaultView.Sort = "cod_org,cod_fam DESC";
+                OrgaData = OrgaData.DefaultView.ToTable();
+            }
+
             return OrgaData;
         }
         public DataTable GetGrupo()
@@ -117,6 +128,9 @@ namespace ProyectoBL
             int cant = int.MinValue;
             switch (_tabla.ToString())
             {
+                case "FAMILIA":
+                    cant = Convert.ToInt32(LimiteTabla.FAMILIA);
+                    break;
                 case "VAR_PRINCIPAL_GRUPO":
                     cant = Convert.ToInt32(LimiteTabla.VAR_PRINCIPAL_GRUPO);
                     break;
@@ -146,6 +160,9 @@ namespace ProyectoBL
                     break;
                 case "VAR_IDENTI_COMBINACION_2":
                     cant = Convert.ToInt32(LimiteTabla.VAR_IDENTI_COMBINACION_2);
+                    break;
+                case "VAR_IDENTI_CAR1":
+                    cant = Convert.ToInt32(LimiteTabla.VAR_IDENTI_CAR1);
                     break;
                 default:
                     break;
