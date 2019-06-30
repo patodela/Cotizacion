@@ -90,8 +90,9 @@
 
     </div>
     <div class="row">
-        <%-- <asp:UpdatePanel ID="upGridProductos" runat="server">
-            <ContentTemplate>--%>
+         <asp:UpdatePanel ID="upGridProductos" runat="server">
+            <ContentTemplate>
+               
 
         <div class="panel panel-default popupgrande">
             <div class="panel-heading">
@@ -99,7 +100,18 @@
                     <div class="col-md-4">
                         <strong>Listado productos ingresados.</strong>
                     </div>
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-4">
+                         <asp:UpdateProgress runat="server" AssociatedUpdatePanelID="upGridProductos">
+                    <ProgressTemplate>
+                         <div class="text-center">
+                                                    <img src="Imagenes/Dual%20Ring-1s-30px.gif" />
+                                                    <label class="label-info">Espere por favor...</label>
+                                                </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+                    </div>
+                    <div class="col-md-4"><%--col-md-offset-4--%>
+                        
                         <div class="input-group input-group-sm">
                             <span class="input-group-btn">
                                 <asp:LinkButton ID="btnLimpiar" runat="server" CssClass="btn btn-success" ToolTip="Refrescar" OnClick="btnLimpiar_Click">
@@ -120,10 +132,10 @@
                 </div>
             </div>
             <div class="panel-body">
-                <div class="row">
+                
                     <asp:GridView CssClass="table table-bordered table-responsive" ID="gridProductos" runat="server" AutoGenerateColumns="False" OnRowDataBound="gridProductos_RowDataBound" AllowPaging="True" OnPageIndexChanging="gridProductos_PageIndexChanging">
                         <Columns>
-                            <asp:BoundField DataField="id_producto" HeaderText="Nº">
+                            <asp:BoundField DataField="id_producto" HeaderText="Id">
                                 <HeaderStyle Width="50px" />
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
@@ -153,14 +165,22 @@
                             <asp:BoundField HeaderText="Usuario" DataField="nombre_usuario">
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:TemplateField HeaderText="Editar" HeaderStyle-Width="50px">
+                            <asp:TemplateField HeaderText="Accion" >
                                 <ItemTemplate>
+                                    <div class="btn-group" role="group">
+
+                                   
                                     <asp:LinkButton ID="btnEditarCell" class="btn btn-default" ToolTip="Editar" runat="server" OnClick="btnEditarCell_Click">
                             <span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
                                     </asp:LinkButton>
+                                     <asp:LinkButton ID="BtnSKU" class="btn btn-default" ToolTip="Genera SKU" runat="server" >
+                            <span aria-hidden="true" class="glyphicon glyphicon-barcode"></span>
+                                    </asp:LinkButton>
+                                         </div>
                                 </ItemTemplate>
 
-                                <HeaderStyle Width="50px"></HeaderStyle>
+
+                                <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
 
                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
@@ -179,9 +199,13 @@
                         </EmptyDataTemplate>
                         <PagerStyle CssClass="pagination-ys" />
                     </asp:GridView>
-                </div>
+              
             </div>
         </div>
+                </ContentTemplate>                
+             </asp:UpdatePanel>
+      </div>
+          
 
         <!--Panel Edit Producto-->
         <asp:Panel ID="PanelEditProducto" runat="server">
@@ -234,9 +258,8 @@
         </asp:Panel>
         <asp:HiddenField ID="HiddenFieldPopupPanelProducto" runat="server" />
         <ajaxToolkit:ModalPopupExtender ID="PopUpPanelEditProducto" TargetControlID="HiddenFieldPopupPanelProducto" OkControlID="btnCancelEditProd" PopupControlID="PanelEditProducto" runat="server"></ajaxToolkit:ModalPopupExtender>
-        <%--     </ContentTemplate>                
-             </asp:UpdatePanel>--%>
-    </div>
+       
+  
 
 
 

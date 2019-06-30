@@ -51,12 +51,13 @@ namespace SistCotizacion
 
                 _producto.Ingresar(_producto);
                 FillGridviewProducto();
+                (this.Master as NavContenido).MostrarMensaje("Producto ingresado con exito.");
                 _producto = null;
             }
             catch (Exception ex)
             {
 
-                throw new Exception(ex.Message);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
 
         }
@@ -90,7 +91,7 @@ namespace SistCotizacion
             catch (Exception ex)
             {
 
-                throw new Exception(ex.Message);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
         }
 
@@ -107,16 +108,26 @@ namespace SistCotizacion
 
         protected void btnEditarCell_Click(object sender, EventArgs e)
         {
-            using (GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer)
+            try
+            {
+                using (GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer)
+                {
+
+                    lblIdProd.Text = row.Cells[0].Text;
+                    ImageEdicion.ImageUrl = (row.FindControl("ImageProducto") as Image).ImageUrl;//1
+                    txtNombreEdit.Text = (row.FindControl("Nombre") as Label).Text;//2
+                    txtSku1Edit.Text = row.Cells[3].Text;
+                    txtSku2Edit.Text = row.Cells[4].Text;
+                }
+                PopUpPanelEditProducto.Show();
+            }
+            catch (Exception ex)
             {
 
-                lblIdProd.Text = row.Cells[0].Text;
-                ImageEdicion.ImageUrl = (row.FindControl("ImageProducto") as Image).ImageUrl;//1
-                txtNombreEdit.Text = (row.FindControl("Nombre") as Label).Text;//2
-                txtSku1Edit.Text = row.Cells[3].Text;
-                txtSku2Edit.Text = row.Cells[4].Text;
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
-            PopUpPanelEditProducto.Show();
+
+           
         }
 
         protected void btnEditProducto_Click(object sender, EventArgs e)
@@ -151,13 +162,14 @@ namespace SistCotizacion
                 _producto.Actualizar(_producto);
                 PopUpPanelEditProducto.Hide();
                 FillGridviewProducto();
+                (this.Master as NavContenido).MostrarMensaje("Datos actualizados con exito.");
                 _producto = null;
 
             }
             catch (Exception ex)
             {
 
-                throw new Exception(ex.Message);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
         }
 
@@ -183,13 +195,14 @@ namespace SistCotizacion
 
                     _producto.Actualizar(_producto);                    
                     FillGridviewProducto();
+                    (this.Master as NavContenido).MostrarMensaje("Datos eliminados con exito.");
                     _producto = null;
                 }
             }
             catch (Exception ex)
             {
 
-                throw new Exception(ex.Message);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
 
         }
@@ -207,7 +220,7 @@ namespace SistCotizacion
             catch (Exception ex)
             {
 
-                throw;
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
         }
 
@@ -229,16 +242,25 @@ namespace SistCotizacion
             catch (Exception ex)
             {
 
-                throw new Exception(ex.Message);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
         }
 
         protected void btnLimpiar_Click(object sender, EventArgs e)
         {
-            List<ProductoDA> listProd = new List<ProductoDA>((List<ProductoDA>)Session["ListProductos"]);
-            txtBuscar.Text = string.Empty;
-            gridProductos.DataSource = listProd;
-            gridProductos.DataBind();
+            try
+            {
+                List<ProductoDA> listProd = new List<ProductoDA>((List<ProductoDA>)Session["ListProductos"]);
+                txtBuscar.Text = string.Empty;
+                gridProductos.DataSource = listProd;
+                gridProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+            }
+            
         }
     }
 }

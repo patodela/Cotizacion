@@ -5,14 +5,14 @@
         $(document).ready(function () {
             $("#Pnatural").click(function () {
                 if ($("#Pnatural").prop("checked", true)) {
-                    $("#TablaRegistroEmpresa").hide();
-                    $("#TablaRegistroCliente").show();
+                    $("#TablaClienteJuridico").hide();
+                    $("#TablaClienteNatural").show();
                 }
             });
             $("#Pjuridica").click(function () {
                 if ($("#Pjuridica").prop("checked", true)) {
-                    $("#TablaRegistroEmpresa").show();
-                    $("#TablaRegistroCliente").hide();
+                    $("#TablaClienteJuridico").show();
+                    $("#TablaClienteNatural").hide();
                 }
             });
             
@@ -21,8 +21,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
 
-        <div class="panel panel-default">
-            <div class="panel-heading text-center"><strong>REGISTRO DE CLIENTE</strong></div>
+      
+     <div class="panel panel-default">
+            <div class="panel-heading text-center"><strong>CLIENTE</strong></div>
             <div class="panel-body">
               <div class="form-inline required">
                     <div class="form-group has-feedback">
@@ -31,7 +32,7 @@
                                 <input id="Pnatural" type="radio" name="persona" value="0" />
                             </span>
                             <div class="form-control form-control-static">
-                                Persona Natural
+                                Natural
                             </div>
                             <span class="glyphicon form-control-feedback "></span>
                         </label>
@@ -42,7 +43,7 @@
                                 <input type="radio" checked="checked" id="Pjuridica" name="persona" value="1" />
                             </span>
                             <div class="form-control form-control-static">
-                                Persona Juridica
+                                Juridico
                             </div>
                             <span class="glyphicon form-control-feedback "></span>
                         </label>
@@ -52,270 +53,375 @@
                     <table id="tablaCabeceraRegistro" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th colspan="9" class="active text-center">Tipo de persona</th>
+                                <th class="active text-center" colspan="2">
+                                    <div style="border-bottom: 1px solid"><h2>FICHA DE REGISTRO</h2></div>
+                                    <div><h4>CLIENTE <label id="Tipo">JURIDICO</label></h4></div>
+                                </th>
+                                <th colspan="4">
+                                    <div class="text-center">
+                                        <asp:Image ID="Image1" ImageUrl="~/Imagenes/logo_impex.jpg" Width="250px" Height="100px" CssClass="img-rounded" alt="Logo Empresa" runat="server" />
+                                    </div>
+                                </th>
+                                
                             </tr>
                         </thead>
                         <tbody class="text-center">
                             <tr>
-                                <td class="active" rowspan="2"><strong>Serie Cliente</strong></td>
-                                <td rowspan="2">COD1234</td>
-                                <td class="active"><strong>Emisor Ficha</strong></td>
-                                <td>COD</td>
-                                <td colspan="2">Ricardo Olivares G.</td>
-
+                                
+                                <td colspan="4" class="active text-center"><strong>Informacion del documento</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="active" ><strong>Documento</strong></td>
+                                <td>
+                                    <asp:Label ID="FolioDoc" runat="server" Text="XX00101"></asp:Label></td>                           
+                                <td class="active"><strong>Actualizaciones</strong></td>
+                                <td>
+                                    <asp:Label ID="CantActualizacion" runat="server" Text="000"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td class="active"><strong>Fecha emision</strong></td>
-                                <td>03/12/2018</td>
-                                <td class="active"><strong>Actualizaciones</strong></td>
-                                <td>0</td>
+                                <td>
+                                    <asp:Label ID="TxtFechaEmision" runat="server" Text="03/04/2019"></asp:Label></td>
+                                <td class="active"><strong>Ultima Actualizacion</strong></td>
+                                <td>
+                                    <asp:Label ID="TxtFechaActualizacion" runat="server" Text="01/01/1900"></asp:Label></td>
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-bordered" id="TablaRegistroEmpresa">
-                        <thead>
-                            <tr>
-                                <th class="input-group-addon danger">1</th>
-                                <th class="active text-center" colspan="2">Información de la empresa</th>
-                            </tr>
-                        </thead>
+                    <table class="table table-bordered" id="TablaClienteJuridico" >
+                     
                         <tbody>
                             <tr>
-                                <td class="active text-nowrap">
-                                    <strong>Inicio de actividades</strong>
-                                </td>
-                                <td colspan="2">
-                                    <asp:RadioButtonList ID="rdbtnIniAct" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1">Si</asp:ListItem>
-                                        <asp:ListItem Value="0">No</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                </td>
+                                <td class="input-group-addon danger">1.0</td>
+                                <td class="active text-center" colspan="6"><strong>Información del Cliente/Representante</strong></td>
                             </tr>
+                           
                             <tr>
-                                <td class="active">
-                                    <strong>Nombre empresa</strong>
-
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox class="form-control" ID="txtNombreEmpresa" runat="server"></asp:TextBox></td>
-                            </tr>
-                            <tr>
-                                <td class="active">
-                                    <strong>Nombre Fantasía</strong>
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox class="form-control" ID="txtNombreFantasia" runat="server"></asp:TextBox>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="active">
-                                    <strong>Razón social</strong>
-                                </td>
+                                <td class="active" colspan="2"> <strong>Nombre / Profesion</strong></td>
                                 <td>
-                                     <div class="form-group">
-                                           <div class="input-group">
-                                                <div class="input-group-addon"> <asp:Label ID="lblRazonSocial" runat="server" Text="SPA"></asp:Label></div>                                               
-                                                <asp:DropDownList class="form-control" ID="cmbRazonSocial" runat="server"></asp:DropDownList>
-                                            </div>
-                                        </div>
+                                    <asp:TextBox ID="TxtRepreNombre" CssClass="form-control" runat="server"></asp:TextBox>
 
-                                   
-                                
-                                   </td>
+                                </td>
+                                <td><asp:TextBox ID="TxtRepreProfesion" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>RUT (ID)</strong></td>
+                                <td colspan="2"><asp:TextBox ID="TxtRepreRutID" CssClass="form-control" runat="server"></asp:TextBox></td>
                             </tr>
                             <tr>
-                                <td class="active">
-                                    <strong>RUT</strong>
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtRut" class="form-control" runat="server"></asp:TextBox>
-                                </td>
+                                <td class="active" colspan="2"><strong>Identidad / Cumpleaños</strong></td>
+                                <td>
+                                    <asp:DropDownList CssClass="form-control" ID="cmboIdentidad" runat="server">
+                                        <asp:ListItem Value="H">Hombre</asp:ListItem>
+                                        <asp:ListItem Value="M">Mujer</asp:ListItem>
+                                    </asp:DropDownList></td>
+                                <td><asp:TextBox ID="TxtRepreCumple" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>Telefono / Email</strong></td>
+                                <td><asp:TextBox ID="TxtRepreTelefono" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="TxtRepreEmail" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
                             </tr>
+                            
                             <tr>
-                                <td class="active">
-                                    <strong>Fecha de Fundación</strong>
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtfechaFund" class="form-control" runat="server" TextMode="Date"></asp:TextBox>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="active">
-                                    <strong>Dirección Comercial</strong>
-                                </td>
-                                <td colspan="2">
+                                <td class="active" colspan="2"><strong>Direccion Personal</strong></td>
+                                 <td colspan="5">
                                     <div class="form-inline">
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">País</div>                                               
-                                               <asp:TextBox ID="txtPais" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1)País:</div>                                               
+                                               <asp:TextBox ID="txtPais" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Región</div>                                               
-                                               <asp:TextBox ID="txtRegion" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.1)Estado/Región:</div>                                               
+                                               <asp:TextBox ID="txtRegion" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Ciudad</div>                                               
-                                               <asp:TextBox ID="txtCiudad" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.2)Ciudad:</div>                                               
+                                               <asp:TextBox ID="txtCiudad" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Dirección</div>                                               
-                                               <asp:TextBox ID="TxtDirección" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.2)Dirección:</div>                                               
+                                               <asp:TextBox ID="TxtDirección" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                           <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">ZIP</div>                                               
-                                               <asp:TextBox ID="txtZIP" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.3)Codigo Postal:</div>                                               
+                                               <asp:TextBox ID="txtCodigoPostal" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(2)Referencias:s</div>                                               
+                                               <asp:TextBox ID="txtReferencias" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-                             <tr>
-                                <td class="active">
-                                    <strong>Giro Comercial</strong>
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtGiroCom" class="form-control" runat="server"></asp:TextBox>
-                                </td>
-                            </tr>
-                             <tr>
-                                <td class="active">
-                                    <strong>Descripción de la Actividad</strong>
-                                </td>
-                                <td colspan="2">
-                                    <asp:TextBox ID="txtDescripcion" class="form-control" runat="server" TextMode="MultiLine" Rows="2"></asp:TextBox>
-                                </td>
-                            </tr>
-
                             <tr>
-                                <td class="danger text-center"><strong>2</strong></td>
-                                <td class="active text-center"><strong>Representantes</strong></td>
+                                <td class="input-group-addon danger">1.1</td>
+                                <td class="active text-center" colspan="6"><strong>Información de la Compañía</strong></td>
                             </tr>
                             <tr>
-                                <td class="active"><strong>Nombre</strong></td>
-                                <td>
-                                    <asp:TextBox ID="txtNombreRepres1" class="form-control" runat="server"></asp:TextBox> </td>
+                                <td class="active" colspan="2"><strong> (ID)RUT</strong></td>
+                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompIDRUT" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>Razón Social</strong></td>
+                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompRazonSocial" runat="server"></asp:TextBox></td>
                             </tr>
                              <tr>
-                                <td class="active"><strong>Cargo en la empresa</strong></td>
-                                <td>
-                                    <asp:TextBox ID="txtCargo1" class="form-control" runat="server"></asp:TextBox> </td>
+                                <td class="active" colspan="2"><strong>Nombre de Fantasia</strong></td>
+                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompNombreFantasia" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>Fecha de Fundacion</strong></td>
+                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompFechaFundacion" TextMode="Date" runat="server"></asp:TextBox></td>
                             </tr>
-                            <tr>
-                                <td class="active"><strong>Telefono/Email</strong></td>
-                                <td>
-                                   
+                             <tr>
+                                <td class="active" colspan="2"><strong>Pagina Web</strong></td>
+                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompPaginaWeb" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>Telefono / Email</strong></td>
+                                <td><asp:TextBox class="form-control" ID="TxtInfCompTelefono" TextMode="Phone" runat="server"></asp:TextBox></td>
+                                 <td><asp:TextBox class="form-control" ID="TxtInfCompEmail" TextMode="Email" runat="server"></asp:TextBox></td>
+                            </tr>
+                           
+                                 <tr>
+                                <td class="active" colspan="2"><strong>Direccion Facturacion</strong></td>
+                                 <td colspan="5">
                                     <div class="form-inline">
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Teléfono</div>                                               
-                                               <asp:TextBox ID="txtTelefono1" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1)País:</div>                                               
+                                               <asp:TextBox ID="TxtFactPais" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Email</div>                                               
-                                               <asp:TextBox ID="txtEmail1" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.1)Estado/Región:</div>                                               
+                                               <asp:TextBox ID="TxtFactEstadoRegion" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.2)Ciudad:</div>                                               
+                                               <asp:TextBox ID="TxtFactCiudad" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
                                         </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.2)Dirección:</div>                                               
+                                               <asp:TextBox ID="TxtFactDir" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.3)Codigo Postal:</div>                                               
+                                               <asp:TextBox ID="TxtFactCodPostal" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(2)Referencia(s):</div>                                               
+                                               <asp:TextBox ID="TxtFactReferencia" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(3)Giro/Actividad:</div>                                               
+                                               <asp:TextBox ID="TxtFactGiroActividad" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                             <tr>
-                                <td class="active"><strong>Nombre</strong></td>
-                                <td>
-                                    <asp:TextBox ID="txtNombre2" class="form-control" runat="server"></asp:TextBox> </td>
-                            </tr>
-                             <tr>
-                                <td class="active"><strong>Cargo en la empresa</strong></td>
-                                <td>
-                                    <asp:TextBox ID="txtCargo2" class="form-control" runat="server"></asp:TextBox> </td>
-                            </tr>
-                            <tr>
-                                <td class="active"><strong>Telefono/Email</strong></td>
-                                <td>
-                                   
+                                 <tr>
+                                <td class="active" colspan="2"><strong>Cuenta Facturacion</strong></td>
+                                 <td colspan="5">
                                     <div class="form-inline">
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Teléfono</div>                                               
-                                               <asp:TextBox ID="txtTelefono2" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1)Nombre:</div>                                               
+                                               <asp:TextBox ID="txtCtaFactNombre" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Email</div>                                               
-                                               <asp:TextBox ID="txtEmail2" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.1)RUT(DNI,Tax ID):</div>                                               
+                                               <asp:TextBox ID="txtCtaFactRUTID" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.2)Banco:</div>                                               
+                                               <asp:TextBox ID="txtCtaFactBanco" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
                                         </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.3)Tipo de Cuenta:</div>                                               
+                                               <asp:TextBox ID="txtCtaFactTipoCuenta" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.4)Numero de Cuenta:</div>                                               
+                                               <asp:TextBox ID="txtCtaFactNumCta" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(2)Correo de Confirmacion:</div>                                               
+                                               <asp:TextBox ID="txtCtaFactEmail" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
+                            </tr>
+                            
+                     <tr>
+                         <td class="active text-center" colspan="7"><strong>Emision</strong></td>
+                        
+                     </tr>
+                            <tr>
+                                 <td colspan="7" class="text-center"> <strong>Confeccione este documento</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    <asp:Label ID="Label1" runat="server" Text="Datos Emisor"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="active"></td>
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-bordered" style="display:none;" id="TablaRegistroCliente">
-                        <thead>
-                             <tr>
-                                <th class="input-group-addon danger">1</th>
-                                <th class="active text-center" colspan="2">Información del cliente</th>
-                            </tr>
-                        </thead>
+                    <table id="TablaClienteNatural" class="table table-bordered" style="display:none;">
                         <tbody>
                             <tr>
-                                <td class="active"><strong>Nombre con apellido</strong> </td>
+                                <td class="input-group-addon danger">1.0</td>
+                                <td class="active text-center" colspan="6"><strong>Información del cliente</strong></td>
+                            </tr>
+                             <tr>
+                                <td class="active" colspan="2"> <strong>Nombre / Profesion</strong></td>
                                 <td>
-                                    <asp:TextBox ID="txtnombreCliente" class="form-control" runat="server"></asp:TextBox></td>
+                                    <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
+
+                                </td>
+                                <td><asp:TextBox ID="TextBox2" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>RUT (ID)</strong></td>
+                                <td colspan="2"><asp:TextBox ID="TextBox3" CssClass="form-control" runat="server"></asp:TextBox></td>
                             </tr>
                             <tr>
-                               <td class="active"><strong>RUT</strong> </td>
-                                      <td>
-                                    <asp:TextBox ID="txtRutCliente" class="form-control" runat="server"></asp:TextBox></td>
+                                <td class="active" colspan="2"><strong>Identidad / Cumpleaños</strong></td>
+                                <td>
+                                    <asp:DropDownList CssClass="form-control" ID="DropDownList1" runat="server">
+                                        <asp:ListItem Value="H">Hombre</asp:ListItem>
+                                        <asp:ListItem Value="M">Mujer</asp:ListItem>
+                                    </asp:DropDownList></td>
+                                <td><asp:TextBox ID="TextBox4" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td class="active"><strong>Telefono / Email</strong></td>
+                                <td><asp:TextBox ID="TextBox5" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="TextBox6" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
                             </tr>
                               <tr>
-                                <td class="active"><strong>Telefono/Email</strong></td>
-                                <td>
-                                   
+                                <td class="active" colspan="2"><strong>Direccion Facturacion</strong></td>
+                                 <td colspan="5">
                                     <div class="form-inline">
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Teléfono</div>                                               
-                                               <asp:TextBox ID="txtTelefonoCliente" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1)País:</div>                                               
+                                               <asp:TextBox ID="TextBox7" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">Email</div>                                               
-                                               <asp:TextBox ID="txtEmailcliente" class="form-control" runat="server"></asp:TextBox>
+                                                <div class="input-group-addon">(1.1)Estado/Región:</div>                                               
+                                               <asp:TextBox ID="TextBox8" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.2)Ciudad:</div>                                               
+                                               <asp:TextBox ID="TextBox9" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
                                         </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.2)Dirección:</div>                                               
+                                               <asp:TextBox ID="TextBox10" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.3)Codigo Postal:</div>                                               
+                                               <asp:TextBox ID="TextBox11" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(2)Referencia(s):</div>                                               
+                                               <asp:TextBox ID="TextBox12" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(3)Giro/Actividad:</div>                                               
+                                               <asp:TextBox ID="TextBox13" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                              <tr>
-                               <td class="active"><strong>Sexo biologico</strong> </td>
-                                      <td>
-                                    <asp:TextBox ID="txtSexo" class="form-control" runat="server"></asp:TextBox></td>
-                            </tr>
-                              <tr>
-                               <td class="active"><strong>Edad Aproximada</strong> </td>
-                                      <td>
-                                    <asp:TextBox ID="txtEdad" class="form-control" runat="server"></asp:TextBox></td>
+                                 <tr>
+                                <td class="active" colspan="2"><strong>Cuenta Facturacion</strong></td>
+                                 <td colspan="5">
+                                    <div class="form-inline">
+                                        <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1)Nombre:</div>                                               
+                                               <asp:TextBox ID="TextBox14" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.1)RUT(DNI,Tax ID):</div>                                               
+                                               <asp:TextBox ID="TextBox15" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.2)Banco:</div>                                               
+                                               <asp:TextBox ID="TextBox16" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.3)Tipo de Cuenta:</div>                                               
+                                               <asp:TextBox ID="TextBox17" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                          <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(1.4)Numero de Cuenta:</div>                                               
+                                               <asp:TextBox ID="TextBox18" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-addon">(2)Correo de Confirmacion:</div>                                               
+                                               <asp:TextBox ID="TextBox19" class="form-control input-sm" runat="server"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="panel-footer text-right">
-                <asp:Button ID="btnRegistroEntidadCliente" class="btn btn-info" runat="server" Text="Ingresar" />
+                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" runat="server" Text="Ingresar" />
             </div>
         </div>
 
