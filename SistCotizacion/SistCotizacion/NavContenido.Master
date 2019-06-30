@@ -59,7 +59,7 @@
                             </li>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenedores</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="\Almacen\Almacen.aspx">Almacen</a></li>
+                                    <li><a href="EntidadAlmacen.aspx">Almacen</a></li>
                                     <li><a href="\EntidadCliente.aspx">Cliente</a></li>
                                     <li><a href="\EntidadPersonal.aspx">Peronal</a></li>
                                     <li><a href="\EntidadProveedor.aspx">Proveedor</a></li>
