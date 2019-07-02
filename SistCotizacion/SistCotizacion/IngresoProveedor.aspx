@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="EntidadProveedor.aspx.cs" Inherits="SistCotizacion.EntidadProveedor" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="IngresoProveedor.aspx.cs" Inherits="SistCotizacion.EntidadProveedor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
       <script type="text/javascript">
