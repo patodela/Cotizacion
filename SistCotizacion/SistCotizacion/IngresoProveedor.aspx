@@ -1,18 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="EntidadCliente.aspx.cs" Inherits="SistCotizacion.EntidadCliente" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="IngresoProveedor.aspx.cs" Inherits="SistCotizacion.EntidadProveedor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
+
+      <script type="text/javascript">
         $(document).ready(function () {
             $("#Pnatural").click(function () {
+                
                 if ($("#Pnatural").prop("checked", true)) {
-                    $("#TablaClienteJuridico").hide();
-                    $("#TablaClienteNatural").show();
+                    $("#TablaProveedorNatural").show();
+                    $("#TablaProveedorJuridico").hide();
+                
                 }
             });
             $("#Pjuridica").click(function () {
                 if ($("#Pjuridica").prop("checked", true)) {
-                    $("#TablaClienteJuridico").show();
-                    $("#TablaClienteNatural").hide();
+                    $("#TablaProveedorNatural").hide();
+                    $("#TablaProveedorJuridico").show();
+                    
                 }
             });
             
@@ -20,10 +23,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
-
-      
-     <div class="panel panel-default">
-            <div class="panel-heading text-center"><strong>CLIENTE</strong></div>
+ 
+        <div class="panel panel-default">
+            <div class="panel-heading text-center"><strong>PROVEEDOR</strong></div>
             <div class="panel-body">
               <div class="form-inline required">
                     <div class="form-group has-feedback">
@@ -55,7 +57,7 @@
                             <tr>
                                 <th class="active text-center" colspan="2">
                                     <div style="border-bottom: 1px solid"><h2>FICHA DE REGISTRO</h2></div>
-                                    <div><h4>CLIENTE <label id="Tipo">JURIDICO</label></h4></div>
+                                    <div><h4>PROVEEDOR <label id="Tipo">JURIDICO</label></h4></div>
                                 </th>
                                 <th colspan="4">
                                     <div class="text-center">
@@ -88,12 +90,12 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-bordered" id="TablaClienteJuridico" >
+                    <table class="table table-bordered" id="TablaProveedorJuridico" >
                      
                         <tbody>
                             <tr>
                                 <td class="input-group-addon danger">1.0</td>
-                                <td class="active text-center" colspan="6"><strong>Información del Cliente/Representante</strong></td>
+                                <td class="active text-center" colspan="6"><strong>Información del representante</strong></td>
                             </tr>
                            
                             <tr>
@@ -296,11 +298,11 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table id="TablaClienteNatural" class="table table-bordered" style="display:none;">
+                    <table id="TablaProveedorNatural" class="table table-bordered" style="display:none;">
                         <tbody>
                             <tr>
                                 <td class="input-group-addon danger">1.0</td>
-                                <td class="active text-center" colspan="6"><strong>Información del cliente</strong></td>
+                                <td class="active text-center" colspan="6"><strong>Información del proveedor</strong></td>
                             </tr>
                              <tr>
                                 <td class="active" colspan="2"> <strong>Nombre / Profesion</strong></td>
@@ -424,5 +426,5 @@
                 <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" runat="server" Text="Ingresar" />
             </div>
         </div>
-
+    
 </asp:Content>

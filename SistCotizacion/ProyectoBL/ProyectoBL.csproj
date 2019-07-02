@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FichaRegistros\TipoCliente.cs" />
+    <Compile Include="GeneraFolioBL.cs" />
     <Compile Include="OrganizadorBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
