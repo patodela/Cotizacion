@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoBL.FichaRegistros
 {
-    public enum TipoFicha
+    public enum TipoCliente
     {
         Natural = 1,
         Juridico = 2,

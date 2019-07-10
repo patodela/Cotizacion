@@ -8,6 +8,7 @@
                 if ($("#Pnatural").prop("checked", true)) {
                     $("#TablaProveedorNatural").show();
                     $("#TablaProveedorJuridico").hide();
+                    $('#<% =hdTipoProveedor.ClientID %>').attr('value', this.val());
                 
                 }
             });
@@ -15,7 +16,7 @@
                 if ($("#Pjuridica").prop("checked", true)) {
                     $("#TablaProveedorNatural").hide();
                     $("#TablaProveedorJuridico").show();
-                    
+                    $('#<% =hdTipoProveedor.ClientID %>').attr('value', this.val());
                 }
             });
             
@@ -31,7 +32,8 @@
                     <div class="form-group has-feedback">
                         <label class="input-group">
                             <span class="input-group-addon">
-                                <input id="Pnatural" type="radio" name="persona" value="0" />
+                                <input id="Pnatural" type="radio" name="TipoProveedor" value="1" />
+                                
                             </span>
                             <div class="form-control form-control-static">
                                 Natural
@@ -42,7 +44,8 @@
                     <div class="form-group has-feedback ">
                         <label class="input-group">
                             <span class="input-group-addon">
-                                <input type="radio" checked="checked" id="Pjuridica" name="persona" value="1" />
+                                <input type="radio" checked="checked" id="Pjuridica" name="persona" value="2" />
+                               
                             </span>
                             <div class="form-control form-control-static">
                                 Juridico
@@ -50,6 +53,7 @@
                             <span class="glyphicon form-control-feedback "></span>
                         </label>
                     </div>
+                  <asp:HiddenField ID="hdTipoProveedor" Value="" runat="server" />
                 </div>
                 <div class="table-responsive">
                     <table id="tablaCabeceraRegistro" class="table table-bordered">
@@ -333,31 +337,31 @@
                                         <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1)País:</div>                                               
-                                               <asp:TextBox ID="TextBox7" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtNatPais" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.1)Estado/Región:</div>                                               
-                                               <asp:TextBox ID="TextBox8" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtNatRegion" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.2)Ciudad:</div>                                               
-                                               <asp:TextBox ID="TextBox9" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtNatCiudad" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.2)Dirección:</div>                                               
-                                               <asp:TextBox ID="TextBox10" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtNatDireccion" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                           <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.3)Codigo Postal:</div>                                               
-                                               <asp:TextBox ID="TextBox11" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtNatZip" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
@@ -423,7 +427,8 @@
                 </div>
             </div>
             <div class="panel-footer text-right">
-                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" runat="server" Text="Ingresar" />
+                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click" style="width:150px;" runat="server" Text="Ingresar" />
+                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;"   Text="Cancelar" OnClick="btnCancel_Click" />
             </div>
         </div>
     
