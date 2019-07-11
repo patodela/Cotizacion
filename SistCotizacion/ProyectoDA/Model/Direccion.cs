@@ -15,5 +15,6 @@ namespace ProyectoDA.Model
         public string direccion { get; set; }
         public string zip { get; set; }
 
+        public string giro_actividad { get; set; }
     }
 }

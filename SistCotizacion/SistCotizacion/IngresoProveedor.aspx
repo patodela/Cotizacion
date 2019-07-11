@@ -82,7 +82,7 @@
                                     <asp:Label ID="FolioDoc" runat="server" Text="XX00101"></asp:Label></td>                           
                                 <td class="active"><strong>Actualizaciones</strong></td>
                                 <td>
-                                    <asp:Label ID="CantActualizacion" runat="server" Text="000"></asp:Label></td>
+                                    <asp:Label ID="CantActualizacion" runat="server" Text="0"></asp:Label></td>
                             </tr>
                             <tr>
                                 <td class="active"><strong>Fecha emision</strong></td>
@@ -311,24 +311,24 @@
                              <tr>
                                 <td class="active" colspan="2"> <strong>Nombre / Profesion</strong></td>
                                 <td>
-                                    <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtNatNombre" CssClass="form-control" runat="server"></asp:TextBox>
 
                                 </td>
-                                <td><asp:TextBox ID="TextBox2" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtNatProfesion" CssClass="form-control" runat="server"></asp:TextBox></td>
                                 <td class="active"><strong>RUT (ID)</strong></td>
-                                <td colspan="2"><asp:TextBox ID="TextBox3" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td colspan="2"><asp:TextBox ID="txtNatRut" CssClass="form-control" runat="server"></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td class="active" colspan="2"><strong>Identidad / Cumpleaños</strong></td>
                                 <td>
-                                    <asp:DropDownList CssClass="form-control" ID="DropDownList1" runat="server">
+                                    <asp:DropDownList CssClass="form-control" ID="cmboNatIdentidad" runat="server">
                                         <asp:ListItem Value="H">Hombre</asp:ListItem>
                                         <asp:ListItem Value="M">Mujer</asp:ListItem>
                                     </asp:DropDownList></td>
-                                <td><asp:TextBox ID="TextBox4" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtNatFechaNac" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
                                 <td class="active"><strong>Telefono / Email</strong></td>
-                                <td><asp:TextBox ID="TextBox5" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
-                                <td><asp:TextBox ID="TextBox6" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtNatFono" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtNatEmail" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
                             </tr>
                               <tr>
                                 <td class="active" colspan="2"><strong>Direccion Facturacion</strong></td>
