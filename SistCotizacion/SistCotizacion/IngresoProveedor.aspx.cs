@@ -49,7 +49,7 @@ namespace SistCotizacion
                 Informacion_Empresa _infoEmpresa = new Informacion_Empresa();
                 Direccion _dirEmpresa = new Direccion();
                 Informacion_Facturacion _infoFact = new Informacion_Facturacion();
-                if (tipoCliente.Equals(TipoCliente.Natural))
+                if (tipoCliente.Equals(Convert.ToInt32(TipoCliente.Natural)))
                 {
                     _dir = new Direccion
                     {
@@ -72,6 +72,10 @@ namespace SistCotizacion
                         contacto1 = txtNatFono.Text,
                         contacto2 = txtNatEmail.Text
                     };
+                    _dir = Cliente.AddDireccion(_dir);
+                    _cli.id_direcion = _dir.id_direccion;
+                    _cli = Cliente.AddCliente(_cli);
+
                 }
                 else
                 {
@@ -147,15 +151,6 @@ namespace SistCotizacion
 
                 }         
                 
-
-
-
-                
-
-
-
-
-
             }
             catch (Exception ex)
             {

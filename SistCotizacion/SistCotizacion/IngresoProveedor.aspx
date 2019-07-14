@@ -1,27 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="IngresoProveedor.aspx.cs" Inherits="SistCotizacion.EntidadProveedor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-      <script type="text/javascript">
-        $(document).ready(function () {
-            $("#Pnatural").click(function () {
-                
-                if ($("#Pnatural").prop("checked", true)) {
-                    $("#TablaProveedorNatural").show();
-                    $("#TablaProveedorJuridico").hide();
-                    $('#<% =hdTipoProveedor.ClientID %>').attr('value', this.val());
-                
-                }
-            });
-            $("#Pjuridica").click(function () {
-                if ($("#Pjuridica").prop("checked", true)) {
-                    $("#TablaProveedorNatural").hide();
-                    $("#TablaProveedorJuridico").show();
-                    $('#<% =hdTipoProveedor.ClientID %>').attr('value', this.val());
-                }
-            });
-            
-        });
-    </script>
+    <script src="Scripts/js/FichaProveedor.js"></script>
+     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
  
@@ -44,7 +25,7 @@
                     <div class="form-group has-feedback ">
                         <label class="input-group">
                             <span class="input-group-addon">
-                                <input type="radio" checked="checked" id="Pjuridica" name="persona" value="2" />
+                                <input type="radio" checked="checked" id="Pjuridica" name="TipoProveedor" value="2" />
                                
                             </span>
                             <div class="form-control form-control-static">
@@ -121,7 +102,7 @@
                                     </asp:DropDownList></td>
                                 <td><asp:TextBox ID="TxtRepreCumple" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
                                 <td class="active"><strong>Telefono / Email</strong></td>
-                                <td><asp:TextBox ID="TxtRepreTelefono" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="TxtRepreTelefono" CssClass="form-control" TextMode="Phone" runat="server" ></asp:TextBox></td>
                                 <td><asp:TextBox ID="TxtRepreEmail" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
                             </tr>
                             
@@ -427,7 +408,7 @@
                 </div>
             </div>
             <div class="panel-footer text-right">
-                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click" style="width:150px;" runat="server" Text="Ingresar" />
+                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:150px;" runat="server" Text="Ingresar" />
                 <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;"   Text="Cancelar" OnClick="btnCancel_Click" />
             </div>
         </div>

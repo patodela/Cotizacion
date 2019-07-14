@@ -82,10 +82,12 @@ namespace ProyectoDA
                 vParam.Add("@ie_fecha_fundacion", _infoEmpresa.fecha_fundacion);
                 vParam.Add("@ie_pagina_web", _infoEmpresa.pagina_web);
                 vParam.Add("@ie_contacto_corp1", _infoEmpresa.contacto_corp1);
-                vParam.Add("@ie_contacto_corp2", _infoEmpresa.contacto_corp2);
-                vParam.Add("@ie_direccion", _infoEmpresa.id_direccion);  
+                vParam.Add("@ie_contacto_corp2", _infoEmpresa.contacto_corp2); 
+                vParam.Add("@ie_direccion", _infoEmpresa.);
 
-               string vError = "";
+
+
+                string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Mantenedor_Info_empresa]", ref vError, vParaMetros: vParam);
                 vCon.Confirmar();
                 return vResp;
@@ -115,7 +117,7 @@ namespace ProyectoDA
             try
             {
                 Dictionary<string, object> vParam = new Dictionary<string, object>();
-                vParam.Add("@if_giro_actividad", _infoFacturacion.giro_actividad);
+                //vParam.Add("@if_giro_actividad", _infoFacturacion.giro_actividad);
                 vParam.Add("@if_nombre_cuenta", _infoFacturacion.nombre_cuenta);
                 vParam.Add("@if_rut", _infoFacturacion.rut);
                 vParam.Add("@if_banco", _infoFacturacion.banco);
