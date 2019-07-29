@@ -162,7 +162,8 @@
                 </asp:UpdatePanel>
             </div>
             <div class="panel-footer" style="text-align: right">
-                <asp:LinkButton ID="btnAceptarMensaje" class="btn btn-primary" runat="server">Aceptar</asp:LinkButton>
+                <asp:LinkButton ID="btnAceptarMensaje" class="btn btn-primary"  runat="server">Aceptar</asp:LinkButton>
+                <%--<asp:LinkButton Text="Aceptar" ID="btnAceptarRedirect"  CssClass="btn btn-primary" Visible="false" runat="server" />--%>
             </div>
         </div>
     </asp:Panel>

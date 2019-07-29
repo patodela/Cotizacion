@@ -77,5 +77,16 @@ namespace SistCotizacion
             mpeMensaje.Show();
             //mpeEspera.Hide();
         }
+
+        public void MostrarMensajeRedirect(String vMensaje, string Url, String vTitulo = "Información")
+        {
+            litMensajeTitulo.Text = vTitulo;
+            litMensajeTexto.Text = vMensaje;
+            //btnAceptarRedirect.PostBackUrl = Url;
+            //btnAceptarRedirect.Attributes.Add("formnovalidate", "formnovalidate");
+            //btnAceptarRedirect.Visible = true;
+            //btnAceptarMensaje.Visible = false;
+            mpeMensaje.Show();
+        }
     }
 }

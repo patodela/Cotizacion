@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoBL
+namespace ProyectoDA.Enum
 {
-    public enum Accion
+    public enum Estados
     {
-        Insertar = 1,
-        Actualizar = 2,
-        Eliminar = 3
+        Activo = 1,
+        Inactivo = 0
     }
 }

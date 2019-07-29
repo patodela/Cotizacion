@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
-    ControlByType("#Pjuridica");
+
+    var value = $('input[id$=hdTipoProveedor]').val();
+    value = parseInt(value);
+    if (value === 1) {
+        ControlByType("#Pnatural");
+        $("#Pnatural").prop("checked", true);
+        $("#Pjuridica").prop("checked", false);
+    }else{
+        ControlByType("#Pjuridica");
+        $("#Pnatural").prop("checked", false);
+        $("#Pjuridica").prop("checked", true);
+    }
+    
+    
 
     $("#Pnatural").click(function () {
 
@@ -13,6 +26,15 @@
         }
     });
 
+    
+    $("a[id$=btnAceptarMensaje]").click(function () {
+         window.location.replace("Proveedor.aspx");
+    });
+
+    var CodeProv = getUrlParameter('CodPro');
+    if (CodeProv != undefined) {
+        console.log("Goool");
+    }
 });
 
 
@@ -24,6 +46,7 @@
 function ControlByType(controll) {
     var type = parseInt($(controll).val());
     if (type === 1) { //Natural
+        $("#Tipo").text("NATURAL");
         $("#TablaProveedorNatural").show();
         $("#TablaProveedorJuridico").hide();
         $('input[id$=hdTipoProveedor]').attr('value', $(controll).val());
@@ -50,6 +73,8 @@ function ControlByType(controll) {
 
 
     } else {//Juridica
+        $("#Tipo").text("JURIDICO");
+
         $("#TablaProveedorNatural").hide();
         $("#TablaProveedorJuridico").show();
         $('input[id$=hdTipoProveedor]').attr('value', $(controll).val());       
@@ -76,3 +101,19 @@ function ControlByType(controll) {
     }
 
 }
+
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};

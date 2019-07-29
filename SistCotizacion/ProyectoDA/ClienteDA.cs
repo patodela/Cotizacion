@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ProyectoDA.Model;
 using MSSQLSUL;
+using ProyectoDA.Enum;
+
 
 namespace ProyectoDA
 {
@@ -43,7 +45,11 @@ namespace ProyectoDA
                 vParam.Add("@region", _direccion.region);
                 vParam.Add("@ciudad", _direccion.ciudad);
                 vParam.Add("@direccion", _direccion.direccion);
-                vParam.Add("@zip", _direccion.zip);             
+                vParam.Add("@zip", _direccion.zip);
+                if (_direccion.giro_actividad != null)
+                {
+                    vParam.Add("@giro_actividad", _direccion.giro_actividad);
+                }            
 
 
                string vError = "";
@@ -83,9 +89,7 @@ namespace ProyectoDA
                 vParam.Add("@ie_pagina_web", _infoEmpresa.pagina_web);
                 vParam.Add("@ie_contacto_corp1", _infoEmpresa.contacto_corp1);
                 vParam.Add("@ie_contacto_corp2", _infoEmpresa.contacto_corp2); 
-                vParam.Add("@ie_direccion", _infoEmpresa.);
-
-
+               
 
                 string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Mantenedor_Info_empresa]", ref vError, vParaMetros: vParam);
@@ -116,16 +120,16 @@ namespace ProyectoDA
 
             try
             {
-                Dictionary<string, object> vParam = new Dictionary<string, object>();
-                //vParam.Add("@if_giro_actividad", _infoFacturacion.giro_actividad);
+                Dictionary<string, object> vParam = new Dictionary<string, object>();           
                 vParam.Add("@if_nombre_cuenta", _infoFacturacion.nombre_cuenta);
                 vParam.Add("@if_rut", _infoFacturacion.rut);
                 vParam.Add("@if_banco", _infoFacturacion.banco);
                 vParam.Add("@if_tipo_cuenta", _infoFacturacion.tipo_cuenta);
                 vParam.Add("@if_numero_cuenta", _infoFacturacion.numero_cuenta);
-                vParam.Add("@if_correo_confirmacion", _infoFacturacion.correo_confirmacion);           
+                vParam.Add("@if_correo_confirmacion", _infoFacturacion.correo_confirmacion); 
+                vParam.Add("@if_direccion", _infoFacturacion.id_direccion);
 
-               string vError = "";
+                string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Mantenedor_info_facturacion]", ref vError, vParaMetros: vParam);
                 vCon.Confirmar();
                 return vResp;
@@ -165,10 +169,14 @@ namespace ProyectoDA
                 vParam.Add("@contacto1", _Cliente.contacto1);
                 vParam.Add("@contacto2", _Cliente.contacto2);
                 vParam.Add("@id_dir", _Cliente.id_direcion);
-                vParam.Add("@id_dir_empresa", _Cliente.id_dir_empresa);
+                vParam.Add("@id_usuario", UsrConn.id_usuario);
+                vParam.Add("@estado", (int)Estados.Activo);
+                vParam.Add("@tipo", (int)Accion.Insertar);
                 vParam.Add("@id_info_factura", _Cliente.id_info_factura);
                 vParam.Add("@id_info_empresa", _Cliente.id_info_empresa);
- 
+                vParam.Add("@NombreEntidad", _Cliente.NombreEntidad);
+
+
 
                 string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Mantenedor_cliente]", ref vError, vParaMetros: vParam);
@@ -178,10 +186,49 @@ namespace ProyectoDA
             catch (Exception ex)
             {
 
-                throw new Exception("Ocurrio un error al ingresar Informacion Facturacion .<br/>" + ex.Message, ex);
+                throw new Exception("Ocurrio un error al ingresar Informacion del Cliente .<br/>" + ex.Message, ex);
             }
         }
 
+        public DataTable GetAllProveedor(string Entidad,int tipoCliente)
+        {
+            // Ahora veremos si podemos ingresar.
+            Conexion vCon = new Conexion(UsrConn);
+            try
+            {
 
+                vCon.IniciarTransaccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo conectar a la base de datos.<br/>" + ex.Message);
+
+            }
+
+            try
+            {
+                string query = string.Empty;
+
+                query = "select id_cliente,f.fd_folio,c.nombre,rut,fecha_emision,u.nombre as nombre_usuario, t.descripcion as tipo_cliente ,estado from cliente c "
+                        + " join usuario u "
+                        + " on u.id_usuario = c.id_usuario "
+                        + " join Folio_documento f "
+                        + " on f.fd_id = c.id_codigo_folio"
+                        + " join tipo_cliente t "
+                        + " on t.id_tipo_cliente = c.id_tipo_cliente "
+                        + " where nombre_entidad = '" + Entidad + "' "
+                        + " and c.id_tipo_cliente = " + tipoCliente.ToString();
+
+                string vError = "";
+                DataTable vResp = vCon.Ejecutar(query, ref vError, vParaMetros: null, vTimeoutConexion: 90, vEsProcedimiento: false);
+                vCon.Confirmar();
+                return vResp;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocurrio un error al obtener registro proveedores .<br/>" + ex.Message, ex);
+            }
+        }
     }
 }

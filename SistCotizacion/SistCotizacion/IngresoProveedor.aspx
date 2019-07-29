@@ -11,9 +11,9 @@
             <div class="panel-body">
               <div class="form-inline required">
                     <div class="form-group has-feedback">
-                        <label class="input-group">
+                        <label class="input-group" id="LabelNatural">
                             <span class="input-group-addon">
-                                <input id="Pnatural" type="radio" name="TipoProveedor" value="1" />
+                                <input id="Pnatural" checked="checked" type="radio" name="TipoProveedor" value="1" />
                                 
                             </span>
                             <div class="form-control form-control-static">
@@ -23,9 +23,9 @@
                         </label>
                     </div>
                     <div class="form-group has-feedback ">
-                        <label class="input-group">
+                        <label class="input-group" id="LabelJuridico">
                             <span class="input-group-addon">
-                                <input type="radio" checked="checked" id="Pjuridica" name="TipoProveedor" value="2" />
+                                <input type="radio"  id="Pjuridica" name="TipoProveedor" value="2" />
                                
                             </span>
                             <div class="form-control form-control-static">
@@ -140,12 +140,12 @@
                                                <asp:TextBox ID="txtCodigoPostal" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                         <%--<div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(2)Referencias:s</div>                                               
                                                <asp:TextBox ID="txtReferencias" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                     </div>
                                 </td>
                             </tr>
@@ -275,7 +275,8 @@
                             </tr>
                             <tr>
                                 <td colspan="7" class="text-center">
-                                    <asp:Label ID="Label1" runat="server" Text="Datos Emisor"></asp:Label>
+                                     <asp:Label ID="DatosEmisorJuridico" runat="server" Text="Datos Emisor"></asp:Label>
+                                    <asp:Image ID="ImgSelloJuridico" ImageUrl="~/Imagenes/selloAprobado2.png" runat="server" />
                                 </td>
                             </tr>
                             <tr>
@@ -345,16 +346,16 @@
                                                <asp:TextBox ID="txtNatZip" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                       <%--  <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(2)Referencia(s):</div>                                               
                                                <asp:TextBox ID="TextBox12" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(3)Giro/Actividad:</div>                                               
-                                               <asp:TextBox ID="TextBox13" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="TxtNatGiroActividad" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -367,41 +368,57 @@
                                         <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1)Nombre:</div>                                               
-                                               <asp:TextBox ID="TextBox14" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtCtaFactNatNombre" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.1)RUT(DNI,Tax ID):</div>                                               
-                                               <asp:TextBox ID="TextBox15" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtCtaFactNatRUT" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.2)Banco:</div>                                               
-                                               <asp:TextBox ID="TextBox16" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtCtaFactNatBanco" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.3)Tipo de Cuenta:</div>                                               
-                                               <asp:TextBox ID="TextBox17" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtCtaFactNatTipoCta" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                           <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1.4)Numero de Cuenta:</div>                                               
-                                               <asp:TextBox ID="TextBox18" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtCtaFactNatNumCta" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(2)Correo de Confirmacion:</div>                                               
-                                               <asp:TextBox ID="TextBox19" class="form-control input-sm" runat="server"></asp:TextBox>
+                                               <asp:TextBox ID="txtCtaFactNatEmailConfirm" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
+                                 </tr>
+                            <tr>
+                                <td class="active text-center" colspan="7"><strong>Emision</strong></td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-center"><strong>Confeccione este documento</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-center">
+                                    <asp:Label ID="DatosEmisorNat" runat="server" Text="Datos Emisor"></asp:Label>
+                                    <asp:Image ID="ImageSelloIngresadoNat" ImageUrl="~/Imagenes/selloAprobado2.png" runat="server" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="active"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -409,7 +426,7 @@
             </div>
             <div class="panel-footer text-right">
                 <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:150px;" runat="server" Text="Ingresar" />
-                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;"   Text="Cancelar" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
             </div>
         </div>
     

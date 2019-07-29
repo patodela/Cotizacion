@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ProyectoBL;
 using ProyectoDA.Model;
-using ProyectoBL.FichaRegistros;
+using ProyectoBL.Enum;
 
 namespace SistCotizacion
 {
@@ -20,7 +20,8 @@ namespace SistCotizacion
             {
                 DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
                 var folio = new GeneraFolioBL(DataUser);
-                string numeroFolio = folio.GetFolioFichaProveedor(8, true);
+                var numeroFolio = folio.GetFolioFichaProveedor(8, true);
+                FolioDoc.Text = numeroFolio.cod_folio;
                 TxtFechaEmision.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
 
@@ -41,17 +42,17 @@ namespace SistCotizacion
                 int tipoCliente = Convert.ToInt32(hdTipoProveedor.Value);
 
                 var folio = new GeneraFolioBL(DataUser);
-                string numeroFolio = folio.GetFolioFichaProveedor(8, false);
+                var numeroFolio = folio.GetFolioFichaProveedor(8, false);
 
    
                 Direccion _dir = new Direccion();
                 Cliente _cli = new Cliente();
                 Informacion_Empresa _infoEmpresa = new Informacion_Empresa();
-                Direccion _dirEmpresa = new Direccion();
+                Direccion _dirFacturacion = new Direccion();
                 Informacion_Facturacion _infoFact = new Informacion_Facturacion();
                 if (tipoCliente.Equals(Convert.ToInt32(TipoCliente.Natural)))
                 {
-                    _dir = new Direccion
+                    _dirFacturacion = new Direccion
                     {
                         pais = txtNatPais.Text,
                         region = txtNatRegion.Text,
@@ -63,18 +64,38 @@ namespace SistCotizacion
                     _cli = new Cliente
                     {
                         tipo_cliente = tipoCliente,
-                        codigo_folio = numeroFolio,
+                        codigo_folio = numeroFolio.idFolio,
                         nombre = txtNatNombre.Text,
                         rut = txtNatRut.Text,
                         area_profesion = txtNatProfesion.Text,
                         identidad = cmboNatIdentidad.Text,
                         fecha_nacimiento = Convert.ToDateTime(txtNatFechaNac.Text),
                         contacto1 = txtNatFono.Text,
-                        contacto2 = txtNatEmail.Text
+                        contacto2 = txtNatEmail.Text,
+                        NombreEntidad =NombreEntidad.Proveedor.ToString()
                     };
-                    _dir = Cliente.AddDireccion(_dir);
-                    _cli.id_direcion = _dir.id_direccion;
+
+                 
+
+                    _infoFact = new Informacion_Facturacion
+                    {
+                        nombre_cuenta = txtCtaFactNatNombre.Text,
+                        rut = txtCtaFactNatRUT.Text,
+                        banco = txtCtaFactNatBanco.Text,
+                        tipo_cuenta = txtCtaFactNatTipoCta.Text,
+                        numero_cuenta = txtCtaFactNatNumCta.Text,
+                        correo_confirmacion = txtCtaFactNatEmailConfirm.Text
+                    };
+
+                  
+                    _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
+                    _cli.id_direcion = _dirFacturacion.id_direccion;
+                    _infoFact = Cliente.AddInfoFacturacion(_infoFact);
+                    _cli.id_info_factura = _infoFact.id;
                     _cli = Cliente.AddCliente(_cli);
+                    //(this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
+                    (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+                    
 
                 }
                 else
@@ -91,14 +112,15 @@ namespace SistCotizacion
                     _cli = new Cliente
                     {
                         tipo_cliente = tipoCliente,
-                        codigo_folio = numeroFolio,
+                        codigo_folio = numeroFolio.idFolio,
                         nombre = TxtRepreNombre.Text,
                         rut = TxtRepreRutID.Text,
                         area_profesion = TxtRepreProfesion.Text,
                         identidad = cmboIdentidad.Text,
                         fecha_nacimiento = Convert.ToDateTime(TxtRepreCumple.Text),
                         contacto1 = TxtRepreTelefono.Text,
-                        contacto2 = TxtRepreEmail.Text
+                        contacto2 = TxtRepreEmail.Text,
+                        NombreEntidad = NombreEntidad.Proveedor.ToString()
                     };
 
                     _infoEmpresa = new Informacion_Empresa
@@ -112,7 +134,7 @@ namespace SistCotizacion
                         contacto_corp2 = TxtInfCompEmail.Text
                     };
 
-                    _dirEmpresa = new Direccion
+                    _dirFacturacion = new Direccion
                     {
                         pais = TxtFactPais.Text,
                         region = TxtFactEstadoRegion.Text,
@@ -135,8 +157,8 @@ namespace SistCotizacion
                      _dir = Cliente.AddDireccion(_dir);
                     _cli.id_direcion = _dir.id_direccion;
 
-                    _dirEmpresa = Cliente.AddDireccion(_dirEmpresa);
-                    _infoFact.id_direccion = _dirEmpresa.id_direccion;
+                    _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
+                    _infoFact.id_direccion = _dirFacturacion.id_direccion;
 
                     _infoEmpresa = Cliente.AddInfoEmpresa(_infoEmpresa);
                     _cli.id_info_empresa = _infoEmpresa.id;
@@ -146,11 +168,10 @@ namespace SistCotizacion
 
                     _cli = Cliente.AddCliente(_cli);
 
-                    (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+                    (this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
 
+                }
 
-                }         
-                
             }
             catch (Exception ex)
             {

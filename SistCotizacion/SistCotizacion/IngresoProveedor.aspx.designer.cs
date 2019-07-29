@@ -175,15 +175,6 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCodigoPostal;
         
         /// <summary>
-        /// Control txtReferencias.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReferencias;
-        
-        /// <summary>
         /// Control TxtInfCompIDRUT.
         /// </summary>
         /// <remarks>
@@ -364,13 +355,22 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCtaFactEmail;
         
         /// <summary>
-        /// Control Label1.
+        /// Control DatosEmisorJuridico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label DatosEmisorJuridico;
+        
+        /// <summary>
+        /// Control ImgSelloJuridico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgSelloJuridico;
         
         /// <summary>
         /// Control txtNatNombre.
@@ -481,76 +481,85 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtNatZip;
         
         /// <summary>
-        /// Control TextBox12.
+        /// Control TxtNatGiroActividad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox TxtNatGiroActividad;
         
         /// <summary>
-        /// Control TextBox13.
+        /// Control txtCtaFactNatNombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatNombre;
         
         /// <summary>
-        /// Control TextBox14.
+        /// Control txtCtaFactNatRUT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatRUT;
         
         /// <summary>
-        /// Control TextBox15.
+        /// Control txtCtaFactNatBanco.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox15;
+        protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatBanco;
         
         /// <summary>
-        /// Control TextBox16.
+        /// Control txtCtaFactNatTipoCta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox16;
+        protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatTipoCta;
         
         /// <summary>
-        /// Control TextBox17.
+        /// Control txtCtaFactNatNumCta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox17;
+        protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatNumCta;
         
         /// <summary>
-        /// Control TextBox18.
+        /// Control txtCtaFactNatEmailConfirm.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox18;
+        protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatEmailConfirm;
         
         /// <summary>
-        /// Control TextBox19.
+        /// Control DatosEmisorNat.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox19;
+        protected global::System.Web.UI.WebControls.Label DatosEmisorNat;
+        
+        /// <summary>
+        /// Control ImageSelloIngresadoNat.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageSelloIngresadoNat;
         
         /// <summary>
         /// Control btnRegistroEntidadProveedor.

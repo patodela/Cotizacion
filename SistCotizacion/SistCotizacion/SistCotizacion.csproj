@@ -82,6 +82,7 @@
     <Content Include="EntidadAlmacen.aspx" />
     <Content Include="EntidadCliente.aspx" />
     <Content Include="EntidadPersonal.aspx" />
+    <Content Include="Imagenes\selloAprobado2.png" />
     <Content Include="IngresoProveedor.aspx" />
     <Content Include="EntidadUsuario.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
