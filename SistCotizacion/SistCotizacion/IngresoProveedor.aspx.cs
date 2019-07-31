@@ -23,9 +23,14 @@ namespace SistCotizacion
                 var numeroFolio = folio.GetFolioFichaProveedor(8, true);
                 FolioDoc.Text = numeroFolio.cod_folio;
                 TxtFechaEmision.Text = DateTime.Now.ToString("dd/MM/yyyy");
-
-
             }
+
+            var CodProd = Request.QueryString["CodPro"];
+            if (!string.IsNullOrEmpty(CodProd))
+            {
+                FolioDoc.Text = "Traer datos para Edit";
+            }
+           
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

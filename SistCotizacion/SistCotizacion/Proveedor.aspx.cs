@@ -18,6 +18,8 @@ namespace SistCotizacion
         {
             try
             {
+              
+
                 if (!Page.IsPostBack)
                 {
                    // GetAllProveedor(TipoCliente.Natural);
