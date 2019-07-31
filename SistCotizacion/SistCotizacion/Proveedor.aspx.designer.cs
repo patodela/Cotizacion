@@ -22,13 +22,13 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.HiddenField HFTipoProveedor;
         
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtFolio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtFolio;
         
         /// <summary>
         /// Control BtnBuscar.

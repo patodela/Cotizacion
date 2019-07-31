@@ -190,7 +190,7 @@ namespace ProyectoDA
             }
         }
 
-        public DataTable GetAllProveedor(string Entidad,int tipoCliente)
+        public DataTable GetAllProveedor(string Entidad,int tipoCliente,string folio = null)
         {
             // Ahora veremos si podemos ingresar.
             Conexion vCon = new Conexion(UsrConn);
@@ -216,9 +216,16 @@ namespace ProyectoDA
                         + " on f.fd_id = c.id_codigo_folio"
                         + " join tipo_cliente t "
                         + " on t.id_tipo_cliente = c.id_tipo_cliente "
-                        + " where nombre_entidad = '" + Entidad + "' "
-                        + " and c.id_tipo_cliente = " + tipoCliente.ToString();
-
+                        + " where nombre_entidad = '" + Entidad + "' ";
+                        
+                if (!string.IsNullOrEmpty(folio))
+                {
+                    query += " and f.fd_folio = '" + folio.Trim() + "'";
+                }
+                else
+                {
+                    query += " and c.id_tipo_cliente = " + tipoCliente.ToString();
+                }
                 string vError = "";
                 DataTable vResp = vCon.Ejecutar(query, ref vError, vParaMetros: null, vTimeoutConexion: 90, vEsProcedimiento: false);
                 vCon.Confirmar();
@@ -228,6 +235,44 @@ namespace ProyectoDA
             {
 
                 throw new Exception("Ocurrio un error al obtener registro proveedores .<br/>" + ex.Message, ex);
+            }
+        }
+
+
+        public DataTable UpdEstado(int idCliente,string Entidad,Estados _estado)
+        {
+
+            // Ahora veremos si podemos ingresar.
+            Conexion vCon = new Conexion(UsrConn);
+            try
+            {
+
+                vCon.IniciarTransaccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo conectar a la base de datos.<br/>" + ex.Message);
+
+            }
+
+            try
+            {
+                Dictionary<string, object> vParam = new Dictionary<string, object>();
+                vParam.Add("@id_cliente", idCliente);
+                vParam.Add("@estado", (int)_estado);
+                vParam.Add("@nombreEntidad", Entidad);
+                
+
+
+                string vError = "";
+                DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Actulizacion_estado_Cliente]", ref vError, vParaMetros: vParam);
+                vCon.Confirmar();
+                return vResp;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocurrio un error al actualizar estado .<br/>" + ex.Message, ex);
             }
         }
     }

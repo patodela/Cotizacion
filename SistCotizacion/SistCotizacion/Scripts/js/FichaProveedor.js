@@ -33,8 +33,22 @@
 
     var CodeProv = getUrlParameter('CodPro');
     if (CodeProv != undefined) {
-        console.log("Goool");
+        $("#Pjuridica").attr("disabled", "disabled");
+        $("#Pnatural").attr("disabled", "disabled");
+        $("#divNatural").attr("disabled", "disabled");
+        $("#divJuridico").attr("disabled", "disabled");
     }
+    var tipo = getUrlParameter('Tipo');
+    if (tipo != undefined) {
+        if (tipo == "Natural") {
+            $("#Pnatural").prop("checked", true);
+            $("#Pjuridica").prop("checked", false);
+        } else {
+            $("#Pnatural").prop("checked", false);
+            $("#Pjuridica").prop("checked", true);
+        }
+    }
+
 });
 
 

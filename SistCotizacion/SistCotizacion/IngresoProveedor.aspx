@@ -16,7 +16,7 @@
                                 <input id="Pnatural" checked="checked" type="radio" name="TipoProveedor" value="1" />
                                 
                             </span>
-                            <div class="form-control form-control-static">
+                            <div class="form-control form-control-static" id="divNatural">
                                 Natural
                             </div>
                             <span class="glyphicon form-control-feedback "></span>
@@ -28,7 +28,7 @@
                                 <input type="radio"  id="Pjuridica" name="TipoProveedor" value="2" />
                                
                             </span>
-                            <div class="form-control form-control-static">
+                            <div class="form-control form-control-static" id="divJuridico">
                                 Juridico
                             </div>
                             <span class="glyphicon form-control-feedback "></span>
