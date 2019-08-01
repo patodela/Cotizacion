@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProyectoDA;
 using System.Data;
+using ProyectoDA.Model;
 
 namespace ProyectoBL
 {
@@ -20,13 +21,18 @@ namespace ProyectoBL
             dAcces = new FolioDocumentosDA(DataUser);
         }
 
-        public string GetFolioFichaProveedor(int idioma,bool temporal) {
-            var response = string.Empty;
+        public Folio GetFolioFichaProveedor(int idioma,bool temporal) {
+            var response = new Folio();
             try
             {
                 DataTable FolioData = new DataTable();
                 FolioData = dAcces.GetFolio(3, idioma, temporal);
-                response = FolioData.Rows[0][0].ToString();
+                response = new Folio
+                {
+                    idFolio = Convert.ToInt32(FolioData.Rows[0][1]),
+                    cod_folio = FolioData.Rows[0][0].ToString()
+                };
+                return response;            
                 
             }
             catch (Exception ex)

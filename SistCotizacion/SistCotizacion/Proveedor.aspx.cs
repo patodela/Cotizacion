@@ -5,30 +5,92 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ProyectoBL;
+using ProyectoBL.Enum;
+using ProyectoDA.Enum;
 
 namespace SistCotizacion
 {
     public partial class Proveedor : System.Web.UI.Page
     {
+        MSSQLSUL.Seguridad.Usuario DataUser;
         protected void Page_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("1");
-            dt.Columns.Add("2");
-            dt.Columns.Add("3");
-            dt.Columns.Add("4");
-            dt.Columns.Add("5");
+            try
+            {
+                if (!Page.IsPostBack)
+                {
+                    DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                    var proveedor = new ClienteBL(DataUser);
+                    DataTable dtProveedor = new DataTable();
 
+                    dtProveedor = proveedor.GetAllProveedor(NombreEntidad.Proveedor,TipoCliente.Natural);
+                    Session["DataListProveedor"] = dtProveedor;
+                    GridListProveedor.DataSource = dtProveedor;
+                    GridListProveedor.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
 
-            DataRow dr = dt.NewRow();
-            dr[0] = 1;
-            dr[1] = "XXX22211X";          
-            dr[2] = "Fantasilandia";
-            dr[3] = "1112222";
-            dr[4] = "La diversion Total";
-            dt.Rows.Add();
-            GridListProveedor.DataSource = dt;
-            GridListProveedor.DataBind();
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+            }
+          
+           
+        }
+
+        protected void btnEditarCell_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer)
+                {
+                    string idCliente = GridListProveedor.DataKeys[row.RowIndex].Value.ToString();
+                    Response.Redirect("/IngresoProveedor.aspx?CodPro=" + idCliente);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+            }
+        }
+
+        protected void GridListProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                
+                GridListProveedor.PageIndex = e.NewPageIndex;
+                GridListProveedor.DataSource = Session["DataListProveedor"] as DataTable;
+                GridListProveedor.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
+            }
+        }
+
+        protected void GridListProveedor_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblEstado = (Label)e.Row.FindControl("lblEstado");
+                LinkButton btnDesactivar = (LinkButton)e.Row.FindControl("BntDesactivar");
+                LinkButton BtnActivar = (LinkButton)e.Row.FindControl("BtnActivar");
+                if (lblEstado.Text.Equals(Estados.Activo.ToString()))
+                {
+                    BtnActivar.Visible = false;
+                    btnDesactivar.Visible = true;
+                }
+                else
+                {
+                    BtnActivar.Visible = true;
+                    btnDesactivar.Visible = false;
+                }
+            }
         }
     }
 }

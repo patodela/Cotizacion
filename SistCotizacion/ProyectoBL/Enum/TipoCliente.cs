@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoBL.FichaRegistros
+namespace ProyectoBL.Enum
 {
-    public enum TipoFicha
+    public enum TipoCliente
     {
         Natural = 1,
-        Juridico = 2,
-        Proveedor = 3,
-        Cliente = 4
+        Juridico = 2       
     }
 }

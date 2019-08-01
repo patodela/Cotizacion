@@ -43,7 +43,14 @@
     <Compile Include="AlmacenDA.cs" />
     <Compile Include="ClienteDA.cs" />
     <Compile Include="ConexionSQL.cs" />
+    <Compile Include="Enum\Accion.cs" />
+    <Compile Include="Enum\Estados.cs" />
     <Compile Include="FolioDocumentosDA.cs" />
+    <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\Direccion.cs" />
+    <Compile Include="Model\Folio.cs" />
+    <Compile Include="Model\Informacion_Empresa.cs" />
+    <Compile Include="Model\Informacion_Facturacion.cs" />
     <Compile Include="OrganizadorDA.cs" />
     <Compile Include="PersonalDA.cs" />
     <Compile Include="ProductoCombinacionSKUDA.cs" />
