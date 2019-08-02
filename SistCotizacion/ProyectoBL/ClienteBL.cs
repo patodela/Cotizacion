@@ -7,6 +7,7 @@ using ProyectoDA;
 using System.Data;
 using ProyectoDA.Model;
 using ProyectoBL.Enum;
+using ProyectoDA.Enum;
 
 
 namespace ProyectoBL
@@ -27,7 +28,7 @@ namespace ProyectoBL
             try
             {
                 DataTable DireccionData = new DataTable();
-                DireccionData = dAcces.AddDirecion(_dir);
+                DireccionData = dAcces.Direcion(_dir,Accion.Insertar);
                 _dir.id_direccion = Convert.ToInt32(DireccionData.Rows[0][0]);
                 return _dir;
             }
@@ -37,13 +38,74 @@ namespace ProyectoBL
             }            
         }
 
+        public Direccion GetDireccionById(int IdDireccion)
+        {
+
+            try
+            {
+                Direccion _dir = new Direccion
+                {
+                    id_direccion = IdDireccion
+                };
+                DataTable DireccionData = new DataTable();
+                DireccionData = dAcces.Direcion(_dir, Accion.Seleccionar);
+                if (DireccionData.Rows.Count > 0)
+                {
+                    _dir = new Direccion
+                    {
+                        id_direccion = Convert.ToInt32(DireccionData.Rows[0]["id_direccion"]),
+                        pais = DireccionData.Rows[0]["pais"].ToString(),
+                        region = DireccionData.Rows[0]["region"].ToString(),
+                        ciudad = DireccionData.Rows[0]["ciudad"].ToString(),
+                        direccion = DireccionData.Rows[0]["direccion"].ToString(),
+                        zip = DireccionData.Rows[0]["zip"].ToString(),
+                        giro_actividad = (DireccionData.Rows[0]["zip"].ToString())
+                    };
+
+                }
+                else
+                {
+                    _dir = new Direccion();
+                }
+                return _dir;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        public bool UpdateDireccion(Direccion _dir)
+        {
+            
+            try
+            {
+                DataTable DireccionData = new DataTable();
+                DireccionData = dAcces.Direcion(_dir, Accion.Actualizar);
+                if (DireccionData.Rows.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+            
+        }
+
         public Informacion_Empresa AddInfoEmpresa(Informacion_Empresa _infoEmpresa)
         {
 
             try
             {
                 DataTable DireccionData = new DataTable();
-                DireccionData = dAcces.AddInformacionEmpresa(_infoEmpresa);
+                DireccionData = dAcces.InformacionEmpresa(_infoEmpresa,Accion.Insertar);
                 _infoEmpresa.id = Convert.ToInt32(DireccionData.Rows[0][0]);
                 return _infoEmpresa;
             }
@@ -52,14 +114,50 @@ namespace ProyectoBL
                 throw new Exception(ex.Message, ex);
             }
         }
+        public Informacion_Empresa GetInfoEmpresaById(int idInfoEmpresa)
+        {
 
+            try
+            {
+                Informacion_Empresa _infoEmpresa = new Informacion_Empresa
+                {
+                    id = idInfoEmpresa
+                };
+                DataTable DireccionData = new DataTable();
+                DireccionData = dAcces.InformacionEmpresa(_infoEmpresa, Accion.Seleccionar);
+                if (DireccionData.Rows.Count > 0)
+                {
+                    _infoEmpresa = new Informacion_Empresa
+                    {
+                        id = Convert.ToInt32(DireccionData.Rows[0]["ie_id"]),
+                        rut = DireccionData.Rows[0]["ie_rut"].ToString(),
+                        razon_social = DireccionData.Rows[0]["ie_razon_social"].ToString(),
+                        nombre_fantasia = DireccionData.Rows[0]["ie_nombre_fantasia"].ToString(),
+                        fecha_fundacion = Convert.ToDateTime(DireccionData.Rows[0]["ie_fecha_fundacion"]),
+                        pagina_web = DireccionData.Rows[0]["ie_pagina_web"].ToString(),
+                        contacto_corp1 = (DireccionData.Rows[0]["ie_contacto_corp1"].ToString()),
+                        contacto_corp2 = (DireccionData.Rows[0]["ie_contacto_corp2"].ToString())
+                    };
+
+                }
+                else
+                {
+                    _infoEmpresa = new Informacion_Empresa();
+                }
+                return _infoEmpresa;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
         public Informacion_Facturacion AddInfoFacturacion(Informacion_Facturacion _infoFacturacion)
         {
 
             try
             {
                 DataTable DireccionData = new DataTable();
-                DireccionData = dAcces.AddInformacionFacturacion(_infoFacturacion);
+                DireccionData = dAcces.InformacionFacturacion(_infoFacturacion,Accion.Insertar);
                 _infoFacturacion.id = Convert.ToInt32(DireccionData.Rows[0][0]);
                 return _infoFacturacion;
             }
@@ -75,7 +173,7 @@ namespace ProyectoBL
             try
             {
                 DataTable DireccionData = new DataTable();
-                DireccionData = dAcces.AddCliente(_Cliente);
+                DireccionData = dAcces.Cliente(_Cliente,Accion.Insertar);
                 _Cliente.id = Convert.ToInt32(DireccionData.Rows[0][0]);
                 return _Cliente;
             }

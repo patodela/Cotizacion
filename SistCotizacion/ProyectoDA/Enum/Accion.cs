@@ -10,6 +10,6 @@ namespace ProyectoDA.Enum
     {
         Insertar = 1,
         Actualizar = 2,
-        Eliminar = 3
+        Seleccionar = 3
     }
 }

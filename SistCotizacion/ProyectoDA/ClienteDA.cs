@@ -21,7 +21,7 @@ namespace ProyectoDA
             UsrConn = _usrConn;
         }
 
-        public DataTable AddDirecion(Direccion _direccion)
+        public DataTable Direcion(Direccion _direccion,Accion _accion)
         {
 
 
@@ -46,6 +46,8 @@ namespace ProyectoDA
                 vParam.Add("@ciudad", _direccion.ciudad);
                 vParam.Add("@direccion", _direccion.direccion);
                 vParam.Add("@zip", _direccion.zip);
+                vParam.Add("@Tipo", (int)_accion); 
+                vParam.Add("@id_dir", _direccion.id_direccion);
                 if (_direccion.giro_actividad != null)
                 {
                     vParam.Add("@giro_actividad", _direccion.giro_actividad);
@@ -64,7 +66,7 @@ namespace ProyectoDA
             }
         }
 
-        public DataTable AddInformacionEmpresa(Informacion_Empresa _infoEmpresa)
+        public DataTable InformacionEmpresa(Informacion_Empresa _infoEmpresa, Accion _accion)
         {
             // Ahora veremos si podemos ingresar.
             Conexion vCon = new Conexion(UsrConn);
@@ -88,8 +90,10 @@ namespace ProyectoDA
                 vParam.Add("@ie_fecha_fundacion", _infoEmpresa.fecha_fundacion);
                 vParam.Add("@ie_pagina_web", _infoEmpresa.pagina_web);
                 vParam.Add("@ie_contacto_corp1", _infoEmpresa.contacto_corp1);
-                vParam.Add("@ie_contacto_corp2", _infoEmpresa.contacto_corp2); 
-               
+                vParam.Add("@ie_contacto_corp2", _infoEmpresa.contacto_corp2);
+                vParam.Add("@ie_id", _infoEmpresa.id);
+                vParam.Add("@Tipo", (int)_accion);
+
 
                 string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Mantenedor_Info_empresa]", ref vError, vParaMetros: vParam);
@@ -103,7 +107,7 @@ namespace ProyectoDA
             }
         }
 
-        public DataTable AddInformacionFacturacion(Informacion_Facturacion _infoFacturacion)
+        public DataTable InformacionFacturacion(Informacion_Facturacion _infoFacturacion,Accion _accion)
         {
             // Ahora veremos si podemos ingresar.
             Conexion vCon = new Conexion(UsrConn);
@@ -128,6 +132,9 @@ namespace ProyectoDA
                 vParam.Add("@if_numero_cuenta", _infoFacturacion.numero_cuenta);
                 vParam.Add("@if_correo_confirmacion", _infoFacturacion.correo_confirmacion); 
                 vParam.Add("@if_direccion", _infoFacturacion.id_direccion);
+                vParam.Add("@if_id", _infoFacturacion.id);
+                vParam.Add("@Tipo", (int)_accion);
+
 
                 string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Mantenedor_info_facturacion]", ref vError, vParaMetros: vParam);
@@ -141,7 +148,7 @@ namespace ProyectoDA
             }
         }
 
-        public DataTable AddCliente(Cliente _Cliente)
+        public DataTable Cliente(Cliente _Cliente, Accion _accion)
         {
             // Ahora veremos si podemos ingresar.
             Conexion vCon = new Conexion(UsrConn);
@@ -171,7 +178,7 @@ namespace ProyectoDA
                 vParam.Add("@id_dir", _Cliente.id_direcion);
                 vParam.Add("@id_usuario", UsrConn.id_usuario);
                 vParam.Add("@estado", (int)Estados.Activo);
-                vParam.Add("@tipo", (int)Accion.Insertar);
+                vParam.Add("@Tipo", (int)_accion);
                 vParam.Add("@id_info_factura", _Cliente.id_info_factura);
                 vParam.Add("@id_info_empresa", _Cliente.id_info_empresa);
                 vParam.Add("@NombreEntidad", _Cliente.NombreEntidad);
