@@ -31,25 +31,29 @@
          window.location.replace("Proveedor.aspx");
     });
 
-    var CodeProv = getUrlParameter('CodPro');
+    var CodeProv = $('input[id$=hdCodProv]').val();
+        
     if (CodeProv != undefined) {
         $("#Pjuridica").attr("disabled", "disabled");
         $("#Pnatural").attr("disabled", "disabled");
         $("#divNatural").attr("disabled", "disabled");
         $("#divJuridico").attr("disabled", "disabled");
     }
-    var tipo = getUrlParameter('Tipo');
-    if (tipo != undefined) {
-        if (tipo == "Natural") {
-            $("#Pnatural").prop("checked", true);
-            $("#Pjuridica").prop("checked", false);
-        } else {
-            $("#Pnatural").prop("checked", false);
-            $("#Pjuridica").prop("checked", true);
-        }
-    }
+
+    //var tipo = $('input[id$=hdTipoProveedor]').val();
+    //if (tipo != undefined) {
+    //    if (tipo == "Natural") {
+    //        $("#Pnatural").prop("checked", true);
+    //        $("#Pjuridica").prop("checked", false);
+    //    } else {
+    //        $("#Pnatural").prop("checked", false);
+    //        $("#Pjuridica").prop("checked", true);
+    //    }
+    //}
 
 });
+
+
 
 
 /*

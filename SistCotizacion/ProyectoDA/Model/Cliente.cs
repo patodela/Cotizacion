@@ -14,18 +14,18 @@ namespace ProyectoDA.Model
         public DateTime fecha_emision { get; set; }
         public int actualizaciones { get; set; }
         public DateTime fecha_actualizacion { get; set; }
-        public string nombre { get; set; }
-        public string rut { get; set; }
-        public string area_profesion { get; set; }
-        public string identidad { get; set; }
-        public DateTime? fecha_nacimiento { get; set; }
-        public string contacto1 { get; set; }
-        public string contacto2 { get; set; }
+        public string nombre { get; set; } = string.Empty;
+        public string rut { get; set; } = string.Empty;
+        public string area_profesion { get; set; } = string.Empty;
+        public string identidad { get; set; } = string.Empty;
+        public DateTime? fecha_nacimiento { get; set; } = new DateTime(1900,1,1);
+        public string contacto1 { get; set; } = string.Empty;
+        public string contacto2 { get; set; } = string.Empty;
 
         public int id_direcion { get; set; }
 
         public int id_dir_empresa { get; set; }
-        public string logo_empresa { get; set; }
+        public string logo_empresa { get; set; } = string.Empty;
 
         public int estado { get; set; }
 
@@ -35,7 +35,7 @@ namespace ProyectoDA.Model
 
         public int? id_info_factura { get; set; }
 
-        public string NombreEntidad { get; set; }
+        public string NombreEntidad { get; set; } = string.Empty;
 
 
 

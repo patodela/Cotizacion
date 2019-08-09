@@ -13,23 +13,31 @@ namespace SistCotizacion
     public partial class EntidadProveedor : System.Web.UI.Page
     {
         MSSQLSUL.Seguridad.Usuario DataUser;
+
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
                 var folio = new GeneraFolioBL(DataUser);
                 var numeroFolio = folio.GetFolioFichaProveedor(8, true);
                 FolioDoc.Text = numeroFolio.cod_folio;
                 TxtFechaEmision.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
+                var CodProd = Request.QueryString["CodPro"];
+                var Tipo = Request.QueryString["Tipo"];
+                if (!string.IsNullOrEmpty(CodProd))
+                {
+                    hdCodProv.Value = CodProd;
+                    hdTipoProveedor.Value = Tipo;
+                    FillCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
+                }
             }
 
-            var CodProd = Request.QueryString["CodPro"];
-            if (!string.IsNullOrEmpty(CodProd))
-            {
-                FolioDoc.Text = "Traer datos para Edit";
-            }
+            
            
         }
 
@@ -182,6 +190,36 @@ namespace SistCotizacion
             {
                 (this.Master as NavContenido).MostrarError("Ha ocurrido un error al ingresar registro", "Error", ex);
 
+            }
+        }
+
+        public void FillCliente(int _tipo,int idRegistro)
+        {
+            try
+            {
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                var Cliente = new ClienteBL(DataUser);
+                Cliente _ClienteData = new Cliente();
+                _ClienteData = Cliente.GetClienteById(idRegistro);
+                if (_tipo == (int)TipoCliente.Natural)
+                {
+                    txtNatNombre.Text = _ClienteData.nombre;
+                    txtNatProfesion.Text = _ClienteData.area_profesion;
+                    txtNatRut.Text = _ClienteData.rut;
+                    cmboNatIdentidad.Text = _ClienteData.identidad;
+                    txtNatFechaNac.Text = _ClienteData.fecha_nacimiento.ToString();
+                    txtNatFono.Text = _ClienteData.contacto1;
+                    txtNatEmail.Text = _ClienteData.contacto2;
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al obtener registro", "Error", ex);
             }
         }
     }

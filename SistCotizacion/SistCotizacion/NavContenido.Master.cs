@@ -19,15 +19,20 @@ namespace SistCotizacion
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (UsuarioConectado != null && UsuarioConectado.EstadoUsuario == EstadoUsuario.Logeado)
+
+            if (!Page.IsPostBack)
             {
-                lblUsuario.Text = UsuarioConectado.NombreUsuario;
+                if (UsuarioConectado != null && UsuarioConectado.EstadoUsuario == EstadoUsuario.Logeado)
+                {
+                    lblUsuario.Text = UsuarioConectado.NombreUsuario;
+                }
+                else
+                {
+                    Session.Clear();
+                    Response.Redirect("~/Login.aspx");
+                }
             }
-            else
-            {
-                Session.Clear();
-                Response.Redirect("~/Login.aspx");
-            }
+
 
         }
 

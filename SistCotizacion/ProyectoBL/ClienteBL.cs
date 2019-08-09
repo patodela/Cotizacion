@@ -48,7 +48,7 @@ namespace ProyectoBL
                     id_direccion = IdDireccion
                 };
                 DataTable DireccionData = new DataTable();
-                DireccionData = dAcces.Direcion(_dir, Accion.Seleccionar);
+                DireccionData = dAcces.Direcion(_dir, Accion.SelectById);
                 if (DireccionData.Rows.Count > 0)
                 {
                     _dir = new Direccion
@@ -59,7 +59,7 @@ namespace ProyectoBL
                         ciudad = DireccionData.Rows[0]["ciudad"].ToString(),
                         direccion = DireccionData.Rows[0]["direccion"].ToString(),
                         zip = DireccionData.Rows[0]["zip"].ToString(),
-                        giro_actividad = (DireccionData.Rows[0]["zip"].ToString())
+                        giro_actividad = (DireccionData.Rows[0]["giro_actividad"].ToString())
                     };
 
                 }
@@ -124,7 +124,7 @@ namespace ProyectoBL
                     id = idInfoEmpresa
                 };
                 DataTable DireccionData = new DataTable();
-                DireccionData = dAcces.InformacionEmpresa(_infoEmpresa, Accion.Seleccionar);
+                DireccionData = dAcces.InformacionEmpresa(_infoEmpresa, Accion.SelectById);
                 if (DireccionData.Rows.Count > 0)
                 {
                     _infoEmpresa = new Informacion_Empresa
@@ -166,6 +166,43 @@ namespace ProyectoBL
                 throw new Exception(ex.Message, ex);
             }
         }
+        public Informacion_Facturacion GetInfoFacturacionById(int idInfoFacturacion)
+        {
+
+            try
+            {
+                Informacion_Facturacion _infoFacturacion = new Informacion_Facturacion
+                {
+                    id = idInfoFacturacion
+                };
+                DataTable infoFacturaData = new DataTable();
+                infoFacturaData = dAcces.InformacionFacturacion(_infoFacturacion, Accion.SelectById);
+                if (infoFacturaData.Rows.Count > 0)
+                {
+                    _infoFacturacion = new Informacion_Facturacion
+                    {
+                        id = Convert.ToInt32(infoFacturaData.Rows[0]["if_id"]),
+                        rut = infoFacturaData.Rows[0]["if_rut"].ToString(),
+                        nombre_cuenta = infoFacturaData.Rows[0]["if_nombre_cuenta"].ToString(),
+                        banco = infoFacturaData.Rows[0]["if_banco"].ToString(),
+                        tipo_cuenta = infoFacturaData.Rows[0]["if_tipo_cuenta"].ToString(),
+                        numero_cuenta = infoFacturaData.Rows[0]["if_numero_cuenta"].ToString(),
+                        correo_confirmacion = infoFacturaData.Rows[0]["if_correo_confirmacion"].ToString(),
+                        id_direccion = !string.IsNullOrEmpty(infoFacturaData.Rows[0]["if_id_direccion"].ToString()) ? Convert.ToInt32(infoFacturaData.Rows[0]["if_id_direccion"]) : 0 
+                    };
+
+                }
+                else
+                {
+                    _infoFacturacion = new Informacion_Facturacion();
+                }
+                return _infoFacturacion;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
 
         public Cliente AddCliente(Cliente _Cliente)
         {
@@ -176,6 +213,58 @@ namespace ProyectoBL
                 DireccionData = dAcces.Cliente(_Cliente,Accion.Insertar);
                 _Cliente.id = Convert.ToInt32(DireccionData.Rows[0][0]);
                 return _Cliente;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        public Cliente GetClienteById(int idCliente)
+        {
+
+            try
+            {
+                Cliente _infoCliente = new Cliente
+                {
+                    id = idCliente
+                };
+                DataTable infoClienteData = new DataTable();
+                infoClienteData = dAcces.Cliente(_infoCliente, Accion.SelectById);
+                if (infoClienteData.Rows.Count > 0)
+                {
+                    _infoCliente = new Cliente
+                    {
+                        id = Convert.ToInt32(infoClienteData.Rows[0]["id_cliente"]),
+                        tipo_cliente = Convert.ToInt32(infoClienteData.Rows[0]["id_tipo_cliente"]),
+                        codigo_folio = Convert.ToInt32(infoClienteData.Rows[0]["id_codigo_folio"]),
+                        fecha_emision = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_emision"]),
+                        actualizaciones = Convert.ToInt32(infoClienteData.Rows[0]["actualizaciones"]),
+                        fecha_actualizacion = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_actualizacion"]),
+                        nombre = infoClienteData.Rows[0]["nombre"].ToString(),
+                        rut = infoClienteData.Rows[0]["rut"].ToString(),
+                        area_profesion = infoClienteData.Rows[0]["area_profesion"].ToString(),
+                        identidad = infoClienteData.Rows[0]["identidad"].ToString(),
+                        fecha_nacimiento = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_nacimiento"]),
+                        contacto1 = infoClienteData.Rows[0]["contacto1"].ToString(),
+                        contacto2 = infoClienteData.Rows[0]["contacto2"].ToString(),
+                        id_direcion = Convert.ToInt32(infoClienteData.Rows[0]["id_direccion"]),
+                        logo_empresa = infoClienteData.Rows[0]["logo_empresa"].ToString(),
+                        estado = Convert.ToInt32(infoClienteData.Rows[0]["estado"].ToString()),
+                        id_info_empresa = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_info_empresa"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_info_empresa"]) : 0,
+                        id_info_factura = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_info_factura"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_info_factura"]) : 0,
+                        id_usuario = Convert.ToInt32(infoClienteData.Rows[0]["id_usuario"]),
+                        NombreEntidad = infoClienteData.Rows[0]["id_usuario"].ToString()
+
+
+                    };
+                 
+                }
+                else
+                {
+                    _infoCliente = new Cliente();
+                }
+                return _infoCliente;
             }
             catch (Exception ex)
             {

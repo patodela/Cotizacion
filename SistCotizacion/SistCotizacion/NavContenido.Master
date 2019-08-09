@@ -7,11 +7,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>-IMPEX-</title>
-    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    
+    <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/submenu.css" rel="stylesheet" />
-    <script type="text/javascript" src="../Scripts/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript"  src="../Scripts/submenu.js"></script>
+    <%--<script type="text/javascript" src="Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    --%>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script type="text/javascript"  src="Scripts/submenu.js"></script>
     <link href="Css/style.css" rel="stylesheet" type="text/css"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -25,22 +29,22 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="\index.aspx">IMPEX SPA.</a>
+                    <a class="navbar-brand" href="index.aspx">IMPEX SPA.</a>
                 </div>
                 <ul class="nav navbar-nav">                
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tu Asesor Impex<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="\Cotizacion\CotNacional.aspx">Crear Cotizacion</a></li>
+                            <li><a href="Cotizacion\CotNacional.aspx">Crear Cotizacion</a></li>
                             <li><a href="#">Consulta a tu Asesor</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Operaciones<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" >Operaciones<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Especiales</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="\Cotizacion\CotNacional.aspx">Crear Cotizacion</a></li>
+                                    <li><a href="Cotizacion\CotNacional.aspx">Crear Cotizacion</a></li>
                                     <li><a href="#">Solicitud de Ajustes</a></li>
                                 </ul>
                             </li>
@@ -60,10 +64,10 @@
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mantenedores</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="EntidadAlmacen.aspx">Almacen</a></li>
-                                    <li><a href="\EntidadCliente.aspx">Cliente</a></li>
-                                    <li><a href="\EntidadPersonal.aspx">Peronal</a></li>
+                                    <li><a href="EntidadCliente.aspx">Cliente</a></li>
+                                    <li><a href="EntidadPersonal.aspx">Peronal</a></li>
                                     <li><a href="Proveedor.aspx">Proveedor</a></li>
-                                    <li><a href="\Usuarios\Users.aspx">Usuario</a></li>
+                                    <li><a href="Usuarios\Users.aspx">Usuario</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -93,7 +97,7 @@
                                     <li><a href="#">Egreso</a></li>
                                     <li><a href="#">Ingreso</a></li>
                                     <li><a href="#">Existencias</a></li>
-                                    <li><a href="\IngresoProducto.aspx">Ingreso de Producto</a></li>
+                                    <li><a href="IngresoProducto.aspx">Ingreso de Producto</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Operaciones</a>
@@ -115,7 +119,7 @@
                             </li>
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sku</a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="\Organizador_Familias.aspx">Mantenedor SKU</a></li>
+                                    <li><a href="Organizador_Familias.aspx">Mantenedor SKU</a></li>
                                     <li><a href="#">Usuarios de Impex</a></li>
                                 </ul>
                             </li>                          

@@ -100,7 +100,7 @@
                         <asp:BoundField HeaderText="Usuario" DataField="nombre_usuario"></asp:BoundField>
                         <asp:TemplateField HeaderText="Tipo">                            
                             <ItemTemplate>
-                                <asp:Label ID="lblTipo" runat="server" Text='<%# Bind("tipo_cliente") %>'></asp:Label>
+                                <asp:Label ID="lblTipo" runat="server"  Text='<%# Bind("tipo_cliente") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Estado">
@@ -112,7 +112,7 @@
                         <asp:TemplateField HeaderText="Accion">
                             <ItemTemplate>
                                 <div class="btn-group" role="group">
-                                    <asp:LinkButton ID="btnEditarCell" runat="server" class="btn btn-primary" OnClick="btnEditarCell_Click"  ToolTip="Editar">
+                                    <asp:LinkButton ID="btnEditarCell" runat="server" class="btn btn-primary"  OnClick="btnEditarCell_Click"  ToolTip="Editar">
                             <span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
                                     </asp:LinkButton>                                   
                                     <asp:LinkButton ID="BntDesactivar" runat="server" OnClientClick="if (!ConfirmDesactivar()) return false;" OnClick="BntDesactivar_Click" class="btn btn-danger" ToolTip="Desactivar">

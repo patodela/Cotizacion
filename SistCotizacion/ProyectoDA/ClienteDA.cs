@@ -179,10 +179,12 @@ namespace ProyectoDA
                 vParam.Add("@id_usuario", UsrConn.id_usuario);
                 vParam.Add("@estado", (int)Estados.Activo);
                 vParam.Add("@Tipo", (int)_accion);
+                vParam.Add("@NombreEntidad", _Cliente.NombreEntidad);
+                vParam.Add("@id_cliente", _Cliente.id);
                 vParam.Add("@id_info_factura", _Cliente.id_info_factura);
                 vParam.Add("@id_info_empresa", _Cliente.id_info_empresa);
-                vParam.Add("@NombreEntidad", _Cliente.NombreEntidad);
-
+                
+               
 
 
                 string vError = "";

@@ -35,6 +35,8 @@
                         </label>
                     </div>
                   <asp:HiddenField ID="hdTipoProveedor" Value="" runat="server" />
+                  <asp:HiddenField ID="hdCodProv" Value="" runat="server" />
+
                 </div>
                 <div class="table-responsive">
                     <table id="tablaCabeceraRegistro" class="table table-bordered">

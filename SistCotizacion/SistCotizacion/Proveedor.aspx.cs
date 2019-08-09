@@ -42,7 +42,8 @@ namespace SistCotizacion
                 {
                     string idCliente = GridListProveedor.DataKeys[row.RowIndex].Value.ToString();
                     string Tipo = (row.FindControl("lblTipo") as Label).Text;
-                    Response.Redirect("/IngresoProveedor.aspx?CodPro=" + idCliente +"&Tipo="+ Tipo);
+                    Tipo = Tipo.Equals("Natural") ? "1" : "2";
+                    Response.Redirect("/IngresoProveedor.aspx?CodPro=" + idCliente +"&Tipo="+ Tipo,true);
                 }
             }
             catch (Exception ex)
