@@ -22,7 +22,7 @@ namespace ProyectoDA.Model
         public string contacto1 { get; set; } = string.Empty;
         public string contacto2 { get; set; } = string.Empty;
 
-        public int id_direcion { get; set; }
+        public int? id_direcion { get; set; }
 
         public int id_dir_empresa { get; set; }
         public string logo_empresa { get; set; } = string.Empty;
@@ -33,7 +33,7 @@ namespace ProyectoDA.Model
 
         public int? id_info_empresa { get; set; }
 
-        public int? id_info_factura { get; set; }
+        public int id_info_factura { get; set; }
 
         public string NombreEntidad { get; set; } = string.Empty;
 

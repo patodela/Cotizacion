@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using ProyectoBL;
 using ProyectoDA.Model;
 using ProyectoBL.Enum;
+using ProyectoBL.Utilidades;
 
 namespace SistCotizacion
 {
@@ -25,7 +26,7 @@ namespace SistCotizacion
                 var folio = new GeneraFolioBL(DataUser);
                 var numeroFolio = folio.GetFolioFichaProveedor(8, true);
                 FolioDoc.Text = numeroFolio.cod_folio;
-                TxtFechaEmision.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
                 var CodProd = Request.QueryString["CodPro"];
                 var Tipo = Request.QueryString["Tipo"];
@@ -33,7 +34,7 @@ namespace SistCotizacion
                 {
                     hdCodProv.Value = CodProd;
                     hdTipoProveedor.Value = Tipo;
-                    FillCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
+                    FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
                 }
             }
 
@@ -53,7 +54,8 @@ namespace SistCotizacion
                 DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
                 var Cliente = new ClienteBL(DataUser);
                 int tipoCliente = Convert.ToInt32(hdTipoProveedor.Value);
-
+                var CodProd = Request.QueryString["CodPro"];
+                var HandleEdit = string.IsNullOrEmpty(CodProd) ? false : true;
                 var folio = new GeneraFolioBL(DataUser);
                 var numeroFolio = folio.GetFolioFichaProveedor(8, false);
 
@@ -71,7 +73,9 @@ namespace SistCotizacion
                         region = txtNatRegion.Text,
                         ciudad = txtNatCiudad.Text,
                         direccion = txtNatDireccion.Text,
-                        zip = txtNatZip.Text
+                        zip = txtNatZip.Text,
+                        giro_actividad = TxtNatGiroActividad.Text
+                        
                     };
 
                     _cli = new Cliente
@@ -100,14 +104,27 @@ namespace SistCotizacion
                         correo_confirmacion = txtCtaFactNatEmailConfirm.Text
                     };
 
-                  
-                    _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
-                    _cli.id_direcion = _dirFacturacion.id_direccion;
-                    _infoFact = Cliente.AddInfoFacturacion(_infoFact);
-                    _cli.id_info_factura = _infoFact.id;
-                    _cli = Cliente.AddCliente(_cli);
-                    //(this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
-                    (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+                    if (HandleEdit)
+                    {
+                        var OldEdit = (Direccion)Session["DireccionEdit"];
+                        _dirFacturacion.id_direccion = Convert.ToInt32(hdIdDireccionFacturacion.Value);
+                        if (Extentions.CompareObject(OldEdit,_dirFacturacion))
+                        {
+                            Cliente.UpdateDireccion(_dirFacturacion);
+                        }
+
+                    }else
+                    {
+                        _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
+                        //_cli.id_direcion = _dirFacturacion.id_direccion;
+                        _infoFact.id_direccion = _dirFacturacion.id_direccion;
+                        _infoFact = Cliente.AddInfoFacturacion(_infoFact);
+                        _cli.id_info_factura = _infoFact.id;
+                        _cli = Cliente.AddCliente(_cli);
+                        //(this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
+                        (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+                    }
+                    
                     
 
                 }
@@ -153,7 +170,8 @@ namespace SistCotizacion
                         region = TxtFactEstadoRegion.Text,
                         ciudad = TxtFactCiudad.Text,
                         direccion = TxtFactDir.Text,
-                        zip = TxtFactCodPostal.Text
+                        zip = TxtFactCodPostal.Text,
+                        giro_actividad = TxtFactGiroActividad.Text
                     };
 
                     _infoFact = new Informacion_Facturacion
@@ -193,7 +211,7 @@ namespace SistCotizacion
             }
         }
 
-        public void FillCliente(int _tipo,int idRegistro)
+        public void FillEditCliente(int _tipo,int idRegistro)
         {
             try
             {
@@ -201,25 +219,77 @@ namespace SistCotizacion
                 var Cliente = new ClienteBL(DataUser);
                 Cliente _ClienteData = new Cliente();
                 _ClienteData = Cliente.GetClienteById(idRegistro);
+                var _Folio = new GeneraFolioBL(DataUser);
+                var folioData = _Folio.GetFolioFichaById(_ClienteData.codigo_folio);
+                var InfoFacturacion = Cliente.GetInfoFacturacionById(_ClienteData.id_info_factura);
+                var DirFacturacion = Cliente.GetDireccionById(InfoFacturacion.id_direccion.Value);
+                Session["DireccionEdit"] = DirFacturacion;
+
+                #region Informacion del documento
+                FolioDoc.Text = folioData.cod_folio;
+                TxtFechaEmision.Text = _ClienteData.fecha_emision.ToString("yyyy-MM-dd");
+                CantActualizacion.Text = _ClienteData.actualizaciones.ToString();
+                TxtFechaActualizacion.Text = _ClienteData.fecha_actualizacion.ToString("yyyy-MM-dd");
+                #endregion
+
+
                 if (_tipo == (int)TipoCliente.Natural)
                 {
+
+                    #region Informacion del Proveedor  
+                    hdIdCliente.Value = _ClienteData.id.ToString();
                     txtNatNombre.Text = _ClienteData.nombre;
                     txtNatProfesion.Text = _ClienteData.area_profesion;
                     txtNatRut.Text = _ClienteData.rut;
                     cmboNatIdentidad.Text = _ClienteData.identidad;
-                    txtNatFechaNac.Text = _ClienteData.fecha_nacimiento.ToString();
+                    txtNatFechaNac.Text = _ClienteData.fecha_nacimiento.Value.ToString("yyyy-MM-dd");
                     txtNatFono.Text = _ClienteData.contacto1;
                     txtNatEmail.Text = _ClienteData.contacto2;
+                    #endregion
+
+                    #region Direccion Facturacion
+                    hdIdDireccionFacturacion.Value = DirFacturacion.id_direccion.ToString();
+                    txtNatPais.Text = DirFacturacion.pais;
+                    txtNatRegion.Text = DirFacturacion.region;
+                    txtNatCiudad.Text = DirFacturacion.ciudad;
+                    txtNatDireccion.Text = DirFacturacion.direccion;
+                    txtNatZip.Text = DirFacturacion.zip;
+                    TxtNatGiroActividad.Text = DirFacturacion.giro_actividad;
+                    #endregion
+
+                    #region Cuenta Facturacion
+                    txtCtaFactNatNombre.Text = InfoFacturacion.nombre_cuenta;
+                    txtCtaFactNatRUT.Text = InfoFacturacion.rut;
+                    txtCtaFactNatBanco.Text = InfoFacturacion.banco;
+                    txtCtaFactNatTipoCta.Text = InfoFacturacion.tipo_cuenta;
+                    txtCtaFactNatNumCta.Text = InfoFacturacion.numero_cuenta;
+                    txtCtaFactNatEmailConfirm.Text = InfoFacturacion.correo_confirmacion;
+
+                    #endregion
+
+                    #region Datos Emisor
+                    DatosEmisor.Text = "Folio " + folioData.cod_folio
+                                     + "; " + DataUser.cod_usuario
+                                     + "; " + DataUser.NombreUsuario
+                                     //+ "; " + Cargo
+                                     + "; " + _ClienteData.fecha_emision.ToString("yyyy-MM-dd hh:mm:ss");
+
+                    #endregion
+
+                 
+
                 }
                 else
                 {
 
                 }
+
+
             }
             catch (Exception ex)
             {
 
-                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al obtener registro", "Error", ex);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al obtener registros de la Ficha", "Error", ex);
             }
         }
     }

@@ -188,7 +188,7 @@ namespace ProyectoBL
                         tipo_cuenta = infoFacturaData.Rows[0]["if_tipo_cuenta"].ToString(),
                         numero_cuenta = infoFacturaData.Rows[0]["if_numero_cuenta"].ToString(),
                         correo_confirmacion = infoFacturaData.Rows[0]["if_correo_confirmacion"].ToString(),
-                        id_direccion = !string.IsNullOrEmpty(infoFacturaData.Rows[0]["if_id_direccion"].ToString()) ? Convert.ToInt32(infoFacturaData.Rows[0]["if_id_direccion"]) : 0 
+                        id_direccion = !string.IsNullOrEmpty(infoFacturaData.Rows[0]["if_direccion"].ToString()) ? Convert.ToInt32(infoFacturaData.Rows[0]["if_direccion"]) : 0 
                     };
 
                 }
@@ -248,7 +248,7 @@ namespace ProyectoBL
                         fecha_nacimiento = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_nacimiento"]),
                         contacto1 = infoClienteData.Rows[0]["contacto1"].ToString(),
                         contacto2 = infoClienteData.Rows[0]["contacto2"].ToString(),
-                        id_direcion = Convert.ToInt32(infoClienteData.Rows[0]["id_direccion"]),
+                        id_direcion = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_direccion"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_direccion"]) : 0,
                         logo_empresa = infoClienteData.Rows[0]["logo_empresa"].ToString(),
                         estado = Convert.ToInt32(infoClienteData.Rows[0]["estado"].ToString()),
                         id_info_empresa = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_info_empresa"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_info_empresa"]) : 0,

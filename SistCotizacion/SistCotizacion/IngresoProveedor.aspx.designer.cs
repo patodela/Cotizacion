@@ -184,6 +184,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCodigoPostal;
         
         /// <summary>
+        /// Control hdIdCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdCliente;
+        
+        /// <summary>
         /// Control TxtInfCompIDRUT.
         /// </summary>
         /// <remarks>
@@ -247,6 +256,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox TxtInfCompEmail;
         
         /// <summary>
+        /// Control hdIdDireccionFacturacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdDireccionFacturacion;
+        
+        /// <summary>
         /// Control TxtFactPais.
         /// </summary>
         /// <remarks>
@@ -290,15 +308,6 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtFactCodPostal;
-        
-        /// <summary>
-        /// Control TxtFactReferencia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFactReferencia;
         
         /// <summary>
         /// Control TxtFactGiroActividad.
@@ -364,24 +373,6 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCtaFactEmail;
         
         /// <summary>
-        /// Control DatosEmisorJuridico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DatosEmisorJuridico;
-        
-        /// <summary>
-        /// Control ImgSelloJuridico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgSelloJuridico;
-        
-        /// <summary>
         /// Control txtNatNombre.
         /// </summary>
         /// <remarks>
@@ -425,6 +416,15 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNatFechaNac;
+        
+        /// <summary>
+        /// Control txtNatFechaNac_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtNatFechaNac_CalendarExtender;
         
         /// <summary>
         /// Control txtNatFono.
@@ -553,22 +553,22 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatEmailConfirm;
         
         /// <summary>
-        /// Control DatosEmisorNat.
+        /// Control DatosEmisor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DatosEmisorNat;
+        protected global::System.Web.UI.WebControls.Label DatosEmisor;
         
         /// <summary>
-        /// Control ImageSelloIngresadoNat.
+        /// Control ImageSelloIngresado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageSelloIngresadoNat;
+        protected global::System.Web.UI.WebControls.Image ImageSelloIngresado;
         
         /// <summary>
         /// Control btnRegistroEntidadProveedor.

@@ -8,14 +8,14 @@ namespace ProyectoDA.Model
 {
     public class Informacion_Facturacion
     {
-        public int id { get; set; }
-       
-        public string nombre_cuenta { get; set; }
-        public string rut { get; set; }
-        public string banco { get; set; }
-        public string tipo_cuenta { get; set; }
-        public string numero_cuenta { get; set; }
-        public string correo_confirmacion { get; set; }
+        public int id { get; set; } = 0;
+
+        public string nombre_cuenta { get; set; } = string.Empty;
+        public string rut { get; set; } = string.Empty;
+        public string banco { get; set; } = string.Empty;
+        public string tipo_cuenta { get; set; } = string.Empty;
+        public string numero_cuenta { get; set; } = string.Empty;
+        public string correo_confirmacion { get; set; } = string.Empty;
         public int? id_direccion { get; set; }
 
     }

@@ -27,7 +27,7 @@
             });
         });
 
-        function ConfirmDesactivar() {
+        function ConfirmAccion() {
             return confirm("¿Estas seguro de realizar esta accion sobre el registro?");
         }
     </script>
@@ -115,10 +115,10 @@
                                     <asp:LinkButton ID="btnEditarCell" runat="server" class="btn btn-primary"  OnClick="btnEditarCell_Click"  ToolTip="Editar">
                             <span aria-hidden="true" class="glyphicon glyphicon-edit"></span>
                                     </asp:LinkButton>                                   
-                                    <asp:LinkButton ID="BntDesactivar" runat="server" OnClientClick="if (!ConfirmDesactivar()) return false;" OnClick="BntDesactivar_Click" class="btn btn-danger" ToolTip="Desactivar">
+                                    <asp:LinkButton ID="BntDesactivar" runat="server" OnClientClick="if (!ConfirmAccion()) return false;" OnClick="BntDesactivar_Click" class="btn btn-danger" ToolTip="Desactivar">
                                                             <span aria-hidden="true" class="glyphicon glyphicon-remove"></span>
                                     </asp:LinkButton>
-                                    <asp:LinkButton ID="BtnActivar" runat="server" class="btn btn-success" ToolTip="Activar" OnClick="BtnActivar_Click">
+                                    <asp:LinkButton ID="BtnActivar" runat="server" class="btn btn-success" OnClientClick="if (!ConfirmAccion()) return false;" ToolTip="Activar" OnClick="BtnActivar_Click">
                             <span aria-hidden="true" class="glyphicon glyphicon-ok"></span>
                                     </asp:LinkButton>
                                    </div>

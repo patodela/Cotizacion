@@ -33,7 +33,7 @@
 
     var CodeProv = $('input[id$=hdCodProv]').val();
         
-    if (CodeProv != undefined) {
+    if (CodeProv != undefined && CodeProv != "") {
         $("#Pjuridica").attr("disabled", "disabled");
         $("#Pnatural").attr("disabled", "disabled");
         $("#divNatural").attr("disabled", "disabled");

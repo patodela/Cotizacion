@@ -77,15 +77,18 @@ namespace SistCotizacion
                 Label lblEstado = (Label)e.Row.FindControl("lblEstado");
                 LinkButton btnDesactivar = (LinkButton)e.Row.FindControl("BntDesactivar");
                 LinkButton BtnActivar = (LinkButton)e.Row.FindControl("BtnActivar");
+                LinkButton BtnEdit = (LinkButton)e.Row.FindControl("btnEditarCell");
                 if (lblEstado.Text.Equals(Estados.Activo.ToString()))
                 {
                     BtnActivar.Visible = false;
                     btnDesactivar.Visible = true;
+                    BtnEdit.Visible = true;
                 }
                 else
                 {
                     BtnActivar.Visible = true;
                     btnDesactivar.Visible = false;
+                    BtnEdit.Visible = false;
                 }
             }
         }

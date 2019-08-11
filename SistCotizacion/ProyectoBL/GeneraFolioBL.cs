@@ -27,11 +27,14 @@ namespace ProyectoBL
             {
                 DataTable FolioData = new DataTable();
                 FolioData = dAcces.GetFolio(3, idioma, temporal);
-                response = new Folio
+                if (FolioData.Rows.Count > 0)
                 {
-                    idFolio = Convert.ToInt32(FolioData.Rows[0][1]),
-                    cod_folio = FolioData.Rows[0][0].ToString()
-                };
+                    response = new Folio
+                    {
+                        idFolio = Convert.ToInt32(FolioData.Rows[0][1]),
+                        cod_folio = FolioData.Rows[0][0].ToString()
+                    };
+                }
                 return response;            
                 
             }
@@ -39,7 +42,35 @@ namespace ProyectoBL
             {
                 throw new Exception(ex.Message,ex);
             }
-            return response;
+            
         }
+
+        public Folio GetFolioFichaById(int idFolio)
+        {
+            var response = new Folio();
+            try
+            {
+                DataTable FolioData = new DataTable();
+                FolioData = dAcces.GetFolioById(idFolio);
+                if (FolioData.Rows.Count > 0)
+                {
+                    response = new Folio
+                    {
+                        idFolio = Convert.ToInt32(FolioData.Rows[0][0]),
+                        cod_folio = FolioData.Rows[0][4].ToString()
+                    };
+                }               
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+
+        }
+
+
+
     }
 }
