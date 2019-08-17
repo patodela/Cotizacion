@@ -19,27 +19,27 @@ namespace SistCotizacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (!IsPostBack)
-            {
-                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-                var folio = new GeneraFolioBL(DataUser);
-                var numeroFolio = folio.GetFolioFichaProveedor(8, true);
-                FolioDoc.Text = numeroFolio.cod_folio;
-                TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-                var CodProd = Request.QueryString["CodPro"];
-                var Tipo = Request.QueryString["Tipo"];
-                if (!string.IsNullOrEmpty(CodProd))
-                {
-                    hdCodProv.Value = CodProd;
-                    hdTipoProveedor.Value = Tipo;
-                    FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
-                }
-            }
+            //if (!IsPostBack)
+            //{
+            //    DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+            //    var folio = new GeneraFolioBL(DataUser);
+            //    var numeroFolio = folio.GetFolioFichaProveedor(8, true);
+            //    FolioDoc.Text = numeroFolio.cod_folio;
+            //    TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-            
-           
+            //    var CodProd = Request.QueryString["CodPro"];
+            //    var Tipo = Request.QueryString["Tipo"];
+            //    if (!string.IsNullOrEmpty(CodProd))
+            //    {
+            //        hdCodProv.Value = CodProd;
+            //        hdTipoProveedor.Value = Tipo;
+            //        FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
+            //    }
+            //}
+
+
+
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace SistCotizacion
                 var Cliente = new ClienteBL(DataUser);
                 int tipoCliente = Convert.ToInt32(hdTipoProveedor.Value);
                 var CodProd = Request.QueryString["CodPro"];
-                var HandleEdit = string.IsNullOrEmpty(CodProd) ? false : true;
+                var EditProveedor = string.IsNullOrEmpty(CodProd) ? false : true;
                 var folio = new GeneraFolioBL(DataUser);
                 var numeroFolio = folio.GetFolioFichaProveedor(8, false);
 
@@ -104,16 +104,41 @@ namespace SistCotizacion
                         correo_confirmacion = txtCtaFactNatEmailConfirm.Text
                     };
 
-                    if (HandleEdit)
+                    if (EditProveedor)
                     {
-                        var OldEdit = (Direccion)Session["DireccionEdit"];
+                        var OldDireccionEdit = (Direccion)Session["DireccionEdit"];
                         _dirFacturacion.id_direccion = Convert.ToInt32(hdIdDireccionFacturacion.Value);
-                        if (Extentions.CompareObject(OldEdit,_dirFacturacion))
+                        if (Extentions.CompareObject(OldDireccionEdit, _dirFacturacion))
                         {
-                            Cliente.UpdateDireccion(_dirFacturacion);
+                            if (!Cliente.UpdateDireccion(_dirFacturacion))
+                            {
+                                throw new Exception("No se pudo actualizar registro Direccion Id: " + _dirFacturacion.id_direccion.ToString());
+                            }                           
+                        }
+                        var OldClienteEdit = (Cliente)Session["ClienteEdit"];
+                        _cli.id = Convert.ToInt32(hdIdCliente.Value);
+                        if (Extentions.CompareObject(OldClienteEdit, _cli))
+                        {
+                            if (!Cliente.UpdateCliente(_cli))
+                            {
+                                throw new Exception("No se pudo actualizar registro Cliente Id: " + _cli.id.ToString());
+                            }
+                        }
+                        var OldInfoFacturacionEdit = (Informacion_Facturacion)Session["InfoFacturacionEdit"];
+                        _infoFact.id = Convert.ToInt32(hdIdInfoFactura.Value);
+                        if (Extentions.CompareObject(OldInfoFacturacionEdit, _infoFact))
+                        {
+                            if (!Cliente.UpdateInfoFacturacion(_infoFact))
+                            {
+                                throw new Exception("No se pudo actualizar registro Informacion de Facturacion Id: " + _cli.id.ToString());
+                            }
                         }
 
-                    }else
+                        (this.Master as NavContenido).MostrarMensaje("Datos Actualizados correctamente.");
+
+
+                    }
+                    else
                     {
                         _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
                         //_cli.id_direcion = _dirFacturacion.id_direccion;
@@ -185,28 +210,83 @@ namespace SistCotizacion
                     };
 
 
-                     _dir = Cliente.AddDireccion(_dir);
-                    _cli.id_direcion = _dir.id_direccion;
+                    if (EditProveedor)
+                    {
+                        var OldDireccionEdit = (Direccion)Session["DireccionEdit"];
+                        _dir.id_direccion = Convert.ToInt32(hdIdDireccion.Value);
+                        if (Extentions.CompareObject(OldDireccionEdit, _dir))
+                        {
+                            if (!Cliente.UpdateDireccion(_dir))
+                            {
+                                throw new Exception("No se pudo actualizar registro Direccion Id: " + _dir.id_direccion.ToString());
+                            }
+                        }
+                        var OldDireccionFactEdit = (Direccion)Session["DireccionFactEdit"];
+                        _dirFacturacion.id_direccion = Convert.ToInt32(hdIdDireccionFacturacion.Value);
+                        if (Extentions.CompareObject(OldDireccionFactEdit, _dirFacturacion))
+                        {
+                            if (!Cliente.UpdateDireccion(_dirFacturacion))
+                            {
+                                throw new Exception("No se pudo actualizar registro Direccion Id: " + _dirFacturacion.id_direccion.ToString());
+                            }
+                        }
 
-                    _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
-                    _infoFact.id_direccion = _dirFacturacion.id_direccion;
+                        var OldInfoEmpresa = (Informacion_Empresa)Session["InfoEmpresaEdit"];
+                        _infoEmpresa.id = Convert.ToInt32(hdIdInfoEmpresa.Value);
+                        if (Extentions.CompareObject(OldInfoEmpresa, _infoEmpresa))
+                        {
+                            if (!Cliente.UpdateInfoEmpresa(_infoEmpresa))
+                            {
+                                throw new Exception("No se pudo actualizar registro Informacion empresa Id: " + _infoEmpresa.id.ToString());
+                            }
+                        }
+                        var OldInfoFacturacionEdit = (Informacion_Facturacion)Session["InfoFacturacionEdit"];
+                        _infoFact.id = Convert.ToInt32(hdIdInfoFactura.Value);
+                        if (Extentions.CompareObject(OldInfoFacturacionEdit, _infoFact))
+                        {
+                            if (!Cliente.UpdateInfoFacturacion(_infoFact))
+                            {
+                                throw new Exception("No se pudo actualizar registro Informacion de Facturacion Id: " + _cli.id.ToString());
+                            }
+                        }
+                        var OldClienteEdit = (Cliente)Session["ClienteEdit"];
+                        _cli.id = Convert.ToInt32(hdIdCliente.Value);
+                        if (Extentions.CompareObject(OldClienteEdit, _cli))
+                        {
+                            if (!Cliente.UpdateCliente(_cli))
+                            {
+                                throw new Exception("No se pudo actualizar registro Cliente Id: " + _cli.id.ToString());
+                            }
+                        }
 
-                    _infoEmpresa = Cliente.AddInfoEmpresa(_infoEmpresa);
-                    _cli.id_info_empresa = _infoEmpresa.id;
+                    }
+                    else
+                    {
+                        _dir = Cliente.AddDireccion(_dir);
+                        _cli.id_direcion = _dir.id_direccion;
 
-                    _infoFact = Cliente.AddInfoFacturacion(_infoFact);
-                    _cli.id_info_factura = _infoFact.id;
+                        _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
+                        _infoFact.id_direccion = _dirFacturacion.id_direccion;
 
-                    _cli = Cliente.AddCliente(_cli);
+                        _infoEmpresa = Cliente.AddInfoEmpresa(_infoEmpresa);
+                        _cli.id_info_empresa = _infoEmpresa.id;
 
-                    (this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
+                        _infoFact = Cliente.AddInfoFacturacion(_infoFact);
+                        _cli.id_info_factura = _infoFact.id;
+
+                        _cli = Cliente.AddCliente(_cli);
+
+                        (this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
+                    }
+
+                    
 
                 }
 
             }
             catch (Exception ex)
             {
-                (this.Master as NavContenido).MostrarError("Ha ocurrido un error al ingresar registro", "Error", ex);
+                (this.Master as NavContenido).MostrarError("Ha ocurrido un error ", "Error", ex);
 
             }
         }
@@ -223,7 +303,12 @@ namespace SistCotizacion
                 var folioData = _Folio.GetFolioFichaById(_ClienteData.codigo_folio);
                 var InfoFacturacion = Cliente.GetInfoFacturacionById(_ClienteData.id_info_factura);
                 var DirFacturacion = Cliente.GetDireccionById(InfoFacturacion.id_direccion.Value);
-                Session["DireccionEdit"] = DirFacturacion;
+                var InfoEmpresa = Cliente.GetInfoEmpresaById(_ClienteData.id_info_empresa.Value);
+                var DirCliente = Cliente.GetDireccionById(_ClienteData.id_direcion.Value);
+                Session["DireccionFacturacionEdit"] = DirFacturacion;
+                Session["ClienteEdit"] = _ClienteData;
+                Session["InfoFacturacionEdit"] = InfoFacturacion;
+                Session["InfoEmpresaEdit"] = InfoEmpresa;
 
                 #region Informacion del documento
                 FolioDoc.Text = folioData.cod_folio;
@@ -281,7 +366,26 @@ namespace SistCotizacion
                 }
                 else
                 {
+                    #region Informacion del Representante
+                    hdIdCliente.Value = _ClienteData.id.ToString();
+                    TxtRepreNombre.Text = _ClienteData.nombre;
+                    TxtRepreProfesion.Text = _ClienteData.area_profesion;
+                    TxtRepreRutID.Text = _ClienteData.rut;
+                    cmboIdentidad.Text = _ClienteData.identidad;
+                    TxtRepreCumple.Text = _ClienteData.fecha_nacimiento.Value.ToString("yyyy-MM-dd");
+                    TxtRepreTelefono.Text = _ClienteData.contacto1;
+                    TxtRepreEmail.Text = _ClienteData.contacto2;
+                    #endregion
 
+                    #region Direccion
+                    hdIdDireccion.Value = Direccion.id_direccion.ToString();
+                    txtNatPais.Text = DirFacturacion.pais;
+                    txtNatRegion.Text = DirFacturacion.region;
+                    txtNatCiudad.Text = DirFacturacion.ciudad;
+                    txtNatDireccion.Text = DirFacturacion.direccion;
+                    txtNatZip.Text = DirFacturacion.zip;
+                    TxtNatGiroActividad.Text = DirFacturacion.giro_actividad;
+                    #endregion
                 }
 
 
@@ -291,6 +395,29 @@ namespace SistCotizacion
 
                 (this.Master as NavContenido).MostrarError("Ha ocurrido un error al obtener registros de la Ficha", "Error", ex);
             }
+        }
+
+       
+        protected void Page_Preload(object sender, EventArgs e)
+        {
+            if (!IsCallback)
+            {
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                var folio = new GeneraFolioBL(DataUser);
+                var numeroFolio = folio.GetFolioFichaProveedor(8, true);
+                FolioDoc.Text = numeroFolio.cod_folio;
+                TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+                var CodProd = Request.QueryString["CodPro"];
+                var Tipo = Request.QueryString["Tipo"];
+                if (!string.IsNullOrEmpty(CodProd))
+                {
+                    hdCodProv.Value = CodProd;
+                    hdTipoProveedor.Value = Tipo;
+                    FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
+                }
+            }
+
         }
     }
 }

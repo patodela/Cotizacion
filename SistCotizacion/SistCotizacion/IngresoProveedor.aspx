@@ -36,7 +36,11 @@
                     </div>
                   <asp:HiddenField ID="hdTipoProveedor" Value="1" runat="server" />
                   <asp:HiddenField ID="hdCodProv" Value="" runat="server" />
-
+                  <asp:HiddenField ID="hdIdDireccion" runat="server" /> 
+                  <asp:HiddenField ID="hdIdDireccionFacturacion" runat="server" />
+                  <asp:HiddenField ID="hdIdInfoEmpresa" runat="server" /> 
+                  <asp:HiddenField ID="hdIdInfoFactura" runat="server" />
+                   <asp:HiddenField ID="hdIdCliente" runat="server" />
                 </div>
                 <div class="table-responsive">
                     <table id="tablaCabeceraRegistro" class="table table-bordered">
@@ -157,7 +161,7 @@
                             </tr>
                             <tr>
                                 <td class="active" colspan="2">
-                                    <asp:HiddenField ID="hdIdCliente" runat="server" />
+                                   
                                     <strong> (ID)RUT</strong>
                                 </td>
                                 <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompIDRUT" runat="server"></asp:TextBox></td>
@@ -185,7 +189,7 @@
                                         <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(1)País:</div> 
-                                               <asp:HiddenField ID="hdIdDireccionFacturacion" runat="server" />                                              
+                                                                                            
                                                <asp:TextBox ID="TxtFactPais" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>

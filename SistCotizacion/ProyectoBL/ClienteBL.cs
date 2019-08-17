@@ -82,7 +82,7 @@ namespace ProyectoBL
             {
                 DataTable DireccionData = new DataTable();
                 DireccionData = dAcces.Direcion(_dir, Accion.Actualizar);
-                if (DireccionData.Rows.Count > 0)
+                if (DireccionData.Rows.Count > 0 && !string.IsNullOrEmpty(DireccionData.Rows[0][0].ToString()))
                 {
                     return true;
                 }
@@ -151,6 +151,27 @@ namespace ProyectoBL
                 throw new Exception(ex.Message, ex);
             }
         }
+        public bool UpdateInfoEmpresa(Informacion_Empresa _infoEmpresa)
+        {
+            try
+            {
+                DataTable InfoEmpresaData = new DataTable();
+                InfoEmpresaData = dAcces.InformacionEmpresa(_infoEmpresa, Accion.Actualizar);
+                if (InfoEmpresaData.Rows.Count > 0 && !string.IsNullOrEmpty(InfoEmpresaData.Rows[0][0].ToString()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
         public Informacion_Facturacion AddInfoFacturacion(Informacion_Facturacion _infoFacturacion)
         {
 
@@ -197,6 +218,27 @@ namespace ProyectoBL
                     _infoFacturacion = new Informacion_Facturacion();
                 }
                 return _infoFacturacion;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+        public bool UpdateInfoFacturacion(Informacion_Facturacion _infoFacturacion)
+        {
+            try
+            {
+                DataTable InfoFacturaData = new DataTable();
+                InfoFacturaData = dAcces.InformacionFacturacion(_infoFacturacion, Accion.Actualizar);
+                if (InfoFacturaData.Rows.Count > 0 && !string.IsNullOrEmpty(InfoFacturaData.Rows[0][0].ToString()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -265,6 +307,28 @@ namespace ProyectoBL
                     _infoCliente = new Cliente();
                 }
                 return _infoCliente;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message, ex);
+            }
+        }
+
+        public bool UpdateCliente(Cliente _Cliente)
+        {
+            try
+            {
+                DataTable ClienteData = new DataTable();
+                ClienteData = dAcces.Cliente(_Cliente, Accion.Actualizar);
+                if (ClienteData.Rows.Count > 0 && !string.IsNullOrEmpty(ClienteData.Rows[0][0].ToString()))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             catch (Exception ex)
             {
