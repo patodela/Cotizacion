@@ -9,8 +9,8 @@ namespace ProyectoDA.Model
     public class Cliente
     {
         public int id { get; set; }
-        public int tipo_cliente { get; set; }
-        public int codigo_folio { get; set; }
+        public int id_tipo_cliente { get; set; }
+        public int id_codigo_folio { get; set; }
         public DateTime fecha_emision { get; set; }
         public int actualizaciones { get; set; }
         public DateTime fecha_actualizacion { get; set; }
@@ -22,9 +22,8 @@ namespace ProyectoDA.Model
         public string contacto1 { get; set; } = string.Empty;
         public string contacto2 { get; set; } = string.Empty;
 
-        public int? id_direcion { get; set; }
-
-        public int id_dir_empresa { get; set; }
+        public int? id_direccion { get; set; }
+        
         public string logo_empresa { get; set; } = string.Empty;
 
         public int estado { get; set; }

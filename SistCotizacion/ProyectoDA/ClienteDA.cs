@@ -166,8 +166,8 @@ namespace ProyectoDA
             try
             {
                 Dictionary<string, object> vParam = new Dictionary<string, object>();
-                vParam.Add("@tipo_cliente", _Cliente.tipo_cliente);
-                vParam.Add("@id_codigo_folio", _Cliente.codigo_folio);
+                vParam.Add("@tipo_cliente", _Cliente.id_tipo_cliente);
+                vParam.Add("@id_codigo_folio", _Cliente.id_codigo_folio);
                 vParam.Add("@nombre", _Cliente.nombre);
                 vParam.Add("@rut", _Cliente.rut);
                 vParam.Add("@area_profesion", _Cliente.area_profesion);
@@ -175,7 +175,7 @@ namespace ProyectoDA
                 vParam.Add("@fecha_nacimiento", _Cliente.fecha_nacimiento);
                 vParam.Add("@contacto1", _Cliente.contacto1);
                 vParam.Add("@contacto2", _Cliente.contacto2);
-                vParam.Add("@id_dir", _Cliente.id_direcion);
+                vParam.Add("@id_dir", _Cliente.id_direccion);
                 vParam.Add("@id_usuario", UsrConn.id_usuario);
                 vParam.Add("@estado", (int)Estados.Activo);
                 vParam.Add("@Tipo", (int)_accion);
@@ -282,6 +282,38 @@ namespace ProyectoDA
             {
 
                 throw new Exception("Ocurrio un error al actualizar estado .<br/>" + ex.Message, ex);
+            }
+        }
+        public DataTable UpdContadorActualizaciones(int idCliente)
+        {
+
+            // Ahora veremos si podemos ingresar.
+            Conexion vCon = new Conexion(UsrConn);
+            try
+            {
+
+                vCon.IniciarTransaccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("No se pudo conectar a la base de datos.<br/>" + ex.Message);
+
+            }
+
+            try
+            {
+                Dictionary<string, object> vParam = new Dictionary<string, object>();
+                vParam.Add("@id_cliente", idCliente);
+              
+                string vError = "";
+                DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_Contador_update_Cliente]", ref vError, vParaMetros: vParam);
+                vCon.Confirmar();
+                return vResp;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocurrio un error al actualizar contador de actualizaciones .<br/>" + ex.Message, ex);
             }
         }
     }

@@ -43,6 +43,7 @@ namespace SistCotizacion
                     string idCliente = GridListProveedor.DataKeys[row.RowIndex].Value.ToString();
                     string Tipo = (row.FindControl("lblTipo") as Label).Text;
                     Tipo = Tipo.Equals("Natural") ? "1" : "2";
+                    Session.Remove("PasoLoad");
                     Response.Redirect("/IngresoProveedor.aspx?CodPro=" + idCliente +"&Tipo="+ Tipo,true);
                 }
             }

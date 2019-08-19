@@ -19,24 +19,27 @@ namespace SistCotizacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            TxtInfCompFechaFundacion.Attributes.Add("readonly", "readonly");
+            txtNatFechaNac.Attributes.Add("readonly", "readonly");
+            var pasoLoad = Convert.ToInt16(Session["PasoLoad"]);
+            if (!IsCallback && pasoLoad == 0)
+            {
+                Session["PasoLoad"] = 1;
+                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
+                var folio = new GeneraFolioBL(DataUser);
+                var numeroFolio = folio.GetFolioFichaProveedor(8, true);
+                FolioDoc.Text = numeroFolio.cod_folio;
+                TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-            //if (!IsPostBack)
-            //{
-            //    DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-            //    var folio = new GeneraFolioBL(DataUser);
-            //    var numeroFolio = folio.GetFolioFichaProveedor(8, true);
-            //    FolioDoc.Text = numeroFolio.cod_folio;
-            //    TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
-
-            //    var CodProd = Request.QueryString["CodPro"];
-            //    var Tipo = Request.QueryString["Tipo"];
-            //    if (!string.IsNullOrEmpty(CodProd))
-            //    {
-            //        hdCodProv.Value = CodProd;
-            //        hdTipoProveedor.Value = Tipo;
-            //        FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
-            //    }
-            //}
+                var CodProd = Request.QueryString["CodPro"];
+                var Tipo = Request.QueryString["Tipo"];
+                if (!string.IsNullOrEmpty(CodProd))
+                {
+                    hdCodProv.Value = CodProd;
+                    hdTipoProveedor.Value = Tipo;
+                    FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
+                }
+            }
 
 
 
@@ -57,7 +60,13 @@ namespace SistCotizacion
                 var CodProd = Request.QueryString["CodPro"];
                 var EditProveedor = string.IsNullOrEmpty(CodProd) ? false : true;
                 var folio = new GeneraFolioBL(DataUser);
-                var numeroFolio = folio.GetFolioFichaProveedor(8, false);
+                var numeroFolio = new Folio();
+                bool GeneroActualizacion = false;
+                if (!EditProveedor)
+                {
+                    numeroFolio = folio.GetFolioFichaProveedor(8, false);
+                }
+                
 
    
                 Direccion _dir = new Direccion();
@@ -80,8 +89,8 @@ namespace SistCotizacion
 
                     _cli = new Cliente
                     {
-                        tipo_cliente = tipoCliente,
-                        codigo_folio = numeroFolio.idFolio,
+                        id_tipo_cliente = tipoCliente,
+                        id_codigo_folio = numeroFolio.idFolio,
                         nombre = txtNatNombre.Text,
                         rut = txtNatRut.Text,
                         area_profesion = txtNatProfesion.Text,
@@ -91,8 +100,6 @@ namespace SistCotizacion
                         contacto2 = txtNatEmail.Text,
                         NombreEntidad =NombreEntidad.Proveedor.ToString()
                     };
-
-                 
 
                     _infoFact = new Informacion_Facturacion
                     {
@@ -106,13 +113,17 @@ namespace SistCotizacion
 
                     if (EditProveedor)
                     {
-                        var OldDireccionEdit = (Direccion)Session["DireccionEdit"];
+                        var OldDireccionEdit = (Direccion)Session["DireccionFacturacionEdit"];
                         _dirFacturacion.id_direccion = Convert.ToInt32(hdIdDireccionFacturacion.Value);
                         if (Extentions.CompareObject(OldDireccionEdit, _dirFacturacion))
                         {
                             if (!Cliente.UpdateDireccion(_dirFacturacion))
                             {
                                 throw new Exception("No se pudo actualizar registro Direccion Id: " + _dirFacturacion.id_direccion.ToString());
+                            }
+                            else
+                            {
+                                GeneroActualizacion = true;
                             }                           
                         }
                         var OldClienteEdit = (Cliente)Session["ClienteEdit"];
@@ -132,10 +143,19 @@ namespace SistCotizacion
                             {
                                 throw new Exception("No se pudo actualizar registro Informacion de Facturacion Id: " + _cli.id.ToString());
                             }
+                            else
+                            {
+                                GeneroActualizacion = true;
+                            }
+                        }
+
+                        if (GeneroActualizacion)
+                        {
+                            Cliente.UpdateContadorActualizacion(_cli.id);
                         }
 
                         (this.Master as NavContenido).MostrarMensaje("Datos Actualizados correctamente.");
-
+                       // Session.Remove("PasoLoad");
 
                     }
                     else
@@ -148,6 +168,7 @@ namespace SistCotizacion
                         _cli = Cliente.AddCliente(_cli);
                         //(this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
                         (this.Master as NavContenido).MostrarMensaje("Datos ingresados correctamente.");
+                       // Session.Remove("PasoLoad");
                     }
                     
                     
@@ -166,8 +187,8 @@ namespace SistCotizacion
 
                     _cli = new Cliente
                     {
-                        tipo_cliente = tipoCliente,
-                        codigo_folio = numeroFolio.idFolio,
+                        id_tipo_cliente = tipoCliente,
+                        id_codigo_folio = numeroFolio.idFolio,
                         nombre = TxtRepreNombre.Text,
                         rut = TxtRepreRutID.Text,
                         area_profesion = TxtRepreProfesion.Text,
@@ -212,7 +233,7 @@ namespace SistCotizacion
 
                     if (EditProveedor)
                     {
-                        var OldDireccionEdit = (Direccion)Session["DireccionEdit"];
+                        var OldDireccionEdit = (Direccion)Session["DirClienteEdit"];
                         _dir.id_direccion = Convert.ToInt32(hdIdDireccion.Value);
                         if (Extentions.CompareObject(OldDireccionEdit, _dir))
                         {
@@ -220,8 +241,12 @@ namespace SistCotizacion
                             {
                                 throw new Exception("No se pudo actualizar registro Direccion Id: " + _dir.id_direccion.ToString());
                             }
+                            else
+                            {
+                                GeneroActualizacion = true;
+                            }
                         }
-                        var OldDireccionFactEdit = (Direccion)Session["DireccionFactEdit"];
+                        var OldDireccionFactEdit = (Direccion)Session["DireccionFacturacionEdit"];
                         _dirFacturacion.id_direccion = Convert.ToInt32(hdIdDireccionFacturacion.Value);
                         if (Extentions.CompareObject(OldDireccionFactEdit, _dirFacturacion))
                         {
@@ -229,28 +254,42 @@ namespace SistCotizacion
                             {
                                 throw new Exception("No se pudo actualizar registro Direccion Id: " + _dirFacturacion.id_direccion.ToString());
                             }
+                            else
+                            {
+                                GeneroActualizacion = true;
+                            }
                         }
 
                         var OldInfoEmpresa = (Informacion_Empresa)Session["InfoEmpresaEdit"];
-                        _infoEmpresa.id = Convert.ToInt32(hdIdInfoEmpresa.Value);
+                        _infoEmpresa.id = Convert.ToInt32(hdIdInfoEmpresa.Value);                        
                         if (Extentions.CompareObject(OldInfoEmpresa, _infoEmpresa))
                         {
                             if (!Cliente.UpdateInfoEmpresa(_infoEmpresa))
                             {
                                 throw new Exception("No se pudo actualizar registro Informacion empresa Id: " + _infoEmpresa.id.ToString());
                             }
+                            else
+                            {
+                                GeneroActualizacion = true;
+                            }
+
                         }
                         var OldInfoFacturacionEdit = (Informacion_Facturacion)Session["InfoFacturacionEdit"];
                         _infoFact.id = Convert.ToInt32(hdIdInfoFactura.Value);
+                        
                         if (Extentions.CompareObject(OldInfoFacturacionEdit, _infoFact))
                         {
                             if (!Cliente.UpdateInfoFacturacion(_infoFact))
                             {
                                 throw new Exception("No se pudo actualizar registro Informacion de Facturacion Id: " + _cli.id.ToString());
                             }
+                            else
+                            {
+                                GeneroActualizacion = true;
+                            }
                         }
                         var OldClienteEdit = (Cliente)Session["ClienteEdit"];
-                        _cli.id = Convert.ToInt32(hdIdCliente.Value);
+                        _cli.id = Convert.ToInt32(hdIdCliente.Value);                        
                         if (Extentions.CompareObject(OldClienteEdit, _cli))
                         {
                             if (!Cliente.UpdateCliente(_cli))
@@ -258,12 +297,18 @@ namespace SistCotizacion
                                 throw new Exception("No se pudo actualizar registro Cliente Id: " + _cli.id.ToString());
                             }
                         }
+                        if (GeneroActualizacion)
+                        {
+                            Cliente.UpdateContadorActualizacion(_cli.id);
+                        }
 
+                        (this.Master as NavContenido).MostrarMensaje("Datos Actualizados correctamente.");
+                       // Session.Remove("PasoLoad");
                     }
                     else
                     {
                         _dir = Cliente.AddDireccion(_dir);
-                        _cli.id_direcion = _dir.id_direccion;
+                        _cli.id_direccion = _dir.id_direccion;
 
                         _dirFacturacion = Cliente.AddDireccion(_dirFacturacion);
                         _infoFact.id_direccion = _dirFacturacion.id_direccion;
@@ -276,7 +321,9 @@ namespace SistCotizacion
 
                         _cli = Cliente.AddCliente(_cli);
 
+                        //Session.Remove("PasoLoad");
                         (this.Master as NavContenido).MostrarMensajeRedirect("Datos ingresados correctamente.", "/Proveedor.aspx");
+                       
                     }
 
                     
@@ -287,7 +334,16 @@ namespace SistCotizacion
             catch (Exception ex)
             {
                 (this.Master as NavContenido).MostrarError("Ha ocurrido un error ", "Error", ex);
+               
 
+            }
+            finally
+            {
+                Session.Remove("DireccionFacturacionEdit");
+                Session.Remove("ClienteEdit");
+                Session.Remove("InfoFacturacionEdit");
+                Session.Remove("InfoEmpresaEdit");
+                Session.Remove("DirClienteEdit");
             }
         }
 
@@ -300,17 +356,21 @@ namespace SistCotizacion
                 Cliente _ClienteData = new Cliente();
                 _ClienteData = Cliente.GetClienteById(idRegistro);
                 var _Folio = new GeneraFolioBL(DataUser);
-                var folioData = _Folio.GetFolioFichaById(_ClienteData.codigo_folio);
+                var folioData = _Folio.GetFolioFichaById(_ClienteData.id_codigo_folio);
                 var InfoFacturacion = Cliente.GetInfoFacturacionById(_ClienteData.id_info_factura);
                 var DirFacturacion = Cliente.GetDireccionById(InfoFacturacion.id_direccion.Value);
+
                 var InfoEmpresa = Cliente.GetInfoEmpresaById(_ClienteData.id_info_empresa.Value);
-                var DirCliente = Cliente.GetDireccionById(_ClienteData.id_direcion.Value);
+                var DirCliente = Cliente.GetDireccionById(_ClienteData.id_direccion.Value);
+
                 Session["DireccionFacturacionEdit"] = DirFacturacion;
                 Session["ClienteEdit"] = _ClienteData;
                 Session["InfoFacturacionEdit"] = InfoFacturacion;
                 Session["InfoEmpresaEdit"] = InfoEmpresa;
+                Session["DirClienteEdit"] = DirCliente;
 
                 #region Informacion del documento
+                hdIdFolio.Value = folioData.idFolio.ToString();
                 FolioDoc.Text = folioData.cod_folio;
                 TxtFechaEmision.Text = _ClienteData.fecha_emision.ToString("yyyy-MM-dd");
                 CantActualizacion.Text = _ClienteData.actualizaciones.ToString();
@@ -343,6 +403,7 @@ namespace SistCotizacion
                     #endregion
 
                     #region Cuenta Facturacion
+                    hdIdInfoFactura.Value = InfoFacturacion.id.ToString();
                     txtCtaFactNatNombre.Text = InfoFacturacion.nombre_cuenta;
                     txtCtaFactNatRUT.Text = InfoFacturacion.rut;
                     txtCtaFactNatBanco.Text = InfoFacturacion.banco;
@@ -351,17 +412,6 @@ namespace SistCotizacion
                     txtCtaFactNatEmailConfirm.Text = InfoFacturacion.correo_confirmacion;
 
                     #endregion
-
-                    #region Datos Emisor
-                    DatosEmisor.Text = "Folio " + folioData.cod_folio
-                                     + "; " + DataUser.cod_usuario
-                                     + "; " + DataUser.NombreUsuario
-                                     //+ "; " + Cargo
-                                     + "; " + _ClienteData.fecha_emision.ToString("yyyy-MM-dd hh:mm:ss");
-
-                    #endregion
-
-                 
 
                 }
                 else
@@ -378,15 +428,55 @@ namespace SistCotizacion
                     #endregion
 
                     #region Direccion
-                    hdIdDireccion.Value = Direccion.id_direccion.ToString();
-                    txtNatPais.Text = DirFacturacion.pais;
-                    txtNatRegion.Text = DirFacturacion.region;
-                    txtNatCiudad.Text = DirFacturacion.ciudad;
-                    txtNatDireccion.Text = DirFacturacion.direccion;
-                    txtNatZip.Text = DirFacturacion.zip;
-                    TxtNatGiroActividad.Text = DirFacturacion.giro_actividad;
+                    hdIdDireccion.Value = DirCliente.id_direccion.ToString();
+                    txtPais.Text = DirCliente.pais;
+                    txtRegion.Text = DirCliente.region;
+                    txtCiudad.Text = DirCliente.ciudad;
+                    TxtDirección.Text = DirCliente.direccion;
+                    txtCodigoPostal.Text = DirCliente.zip;
                     #endregion
+
+                    #region Informacion de la empresa
+                    hdIdInfoEmpresa.Value = InfoEmpresa.id.ToString();
+                    TxtInfCompIDRUT.Text = InfoEmpresa.rut;
+                    TxtInfCompRazonSocial.Text = InfoEmpresa.razon_social;
+                    TxtInfCompNombreFantasia.Text = InfoEmpresa.nombre_fantasia;
+                    TxtInfCompFechaFundacion.Text = InfoEmpresa.fecha_fundacion.ToString("yyyy-MM-dd");
+                    TxtInfCompPaginaWeb.Text = InfoEmpresa.pagina_web;
+                    TxtInfCompTelefono.Text = InfoEmpresa.contacto_corp1;
+                    TxtInfCompEmail.Text = InfoEmpresa.contacto_corp2;
+                    #endregion
+
+                    #region Direccion Facturacion
+                    hdIdDireccionFacturacion.Value = DirFacturacion.id_direccion.ToString();
+                    TxtFactPais.Text = DirFacturacion.pais;
+                    TxtFactEstadoRegion.Text = DirFacturacion.region;
+                    TxtFactCiudad.Text = DirFacturacion.ciudad;
+                    TxtFactDir.Text = DirFacturacion.direccion;
+                    TxtFactCodPostal.Text = DirFacturacion.zip;
+                    TxtFactGiroActividad.Text = DirFacturacion.giro_actividad;
+                    #endregion
+
+                    #region Cuenta Facturacion
+                    hdIdInfoFactura.Value = InfoFacturacion.id.ToString();
+                    txtCtaFactNombre.Text = InfoFacturacion.nombre_cuenta;
+                    txtCtaFactRUTID.Text = InfoFacturacion.rut;
+                    txtCtaFactBanco.Text = InfoFacturacion.banco;
+                    txtCtaFactTipoCuenta.Text = InfoFacturacion.tipo_cuenta;
+                    txtCtaFactNumCta.Text = InfoFacturacion.numero_cuenta;
+                    txtCtaFactEmail.Text = InfoFacturacion.correo_confirmacion;
+                    #endregion
+
                 }
+
+                #region Datos Emisor
+                DatosEmisor.Text = "Folio " + folioData.cod_folio
+                                 + "; " + DataUser.cod_usuario
+                                 + "; " + DataUser.NombreUsuario
+                                 //+ "; " + Cargo
+                                 + "; " + _ClienteData.fecha_emision.ToString("yyyy-MM-dd hh:mm:ss");
+
+                #endregion
 
 
             }
@@ -394,30 +484,11 @@ namespace SistCotizacion
             {
 
                 (this.Master as NavContenido).MostrarError("Ha ocurrido un error al obtener registros de la Ficha", "Error", ex);
+                //Session.Remove("PasoLoad");
             }
         }
 
        
-        protected void Page_Preload(object sender, EventArgs e)
-        {
-            if (!IsCallback)
-            {
-                DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
-                var folio = new GeneraFolioBL(DataUser);
-                var numeroFolio = folio.GetFolioFichaProveedor(8, true);
-                FolioDoc.Text = numeroFolio.cod_folio;
-                TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
-
-                var CodProd = Request.QueryString["CodPro"];
-                var Tipo = Request.QueryString["Tipo"];
-                if (!string.IsNullOrEmpty(CodProd))
-                {
-                    hdCodProv.Value = CodProd;
-                    hdTipoProveedor.Value = Tipo;
-                    FillEditCliente(Convert.ToInt32(Tipo), Convert.ToInt32(CodProd));
-                }
-            }
-
-        }
+        
     }
 }

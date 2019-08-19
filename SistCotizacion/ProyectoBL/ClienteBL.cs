@@ -47,6 +47,10 @@ namespace ProyectoBL
                 {
                     id_direccion = IdDireccion
                 };
+                if (IdDireccion == 0)
+                {
+                    return new Direccion();
+                }
                 DataTable DireccionData = new DataTable();
                 DireccionData = dAcces.Direcion(_dir, Accion.SelectById);
                 if (DireccionData.Rows.Count > 0)
@@ -123,6 +127,10 @@ namespace ProyectoBL
                 {
                     id = idInfoEmpresa
                 };
+                if (idInfoEmpresa == 0)
+                {
+                    return new Informacion_Empresa();
+                }
                 DataTable DireccionData = new DataTable();
                 DireccionData = dAcces.InformacionEmpresa(_infoEmpresa, Accion.SelectById);
                 if (DireccionData.Rows.Count > 0)
@@ -278,8 +286,8 @@ namespace ProyectoBL
                     _infoCliente = new Cliente
                     {
                         id = Convert.ToInt32(infoClienteData.Rows[0]["id_cliente"]),
-                        tipo_cliente = Convert.ToInt32(infoClienteData.Rows[0]["id_tipo_cliente"]),
-                        codigo_folio = Convert.ToInt32(infoClienteData.Rows[0]["id_codigo_folio"]),
+                        id_tipo_cliente = Convert.ToInt32(infoClienteData.Rows[0]["id_tipo_cliente"]),
+                        id_codigo_folio = Convert.ToInt32(infoClienteData.Rows[0]["id_codigo_folio"]),
                         fecha_emision = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_emision"]),
                         actualizaciones = Convert.ToInt32(infoClienteData.Rows[0]["actualizaciones"]),
                         fecha_actualizacion = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_actualizacion"]),
@@ -290,7 +298,7 @@ namespace ProyectoBL
                         fecha_nacimiento = Convert.ToDateTime(infoClienteData.Rows[0]["fecha_nacimiento"]),
                         contacto1 = infoClienteData.Rows[0]["contacto1"].ToString(),
                         contacto2 = infoClienteData.Rows[0]["contacto2"].ToString(),
-                        id_direcion = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_direccion"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_direccion"]) : 0,
+                        id_direccion = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_direccion"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_direccion"]) : 0,
                         logo_empresa = infoClienteData.Rows[0]["logo_empresa"].ToString(),
                         estado = Convert.ToInt32(infoClienteData.Rows[0]["estado"].ToString()),
                         id_info_empresa = !string.IsNullOrEmpty(infoClienteData.Rows[0]["id_info_empresa"].ToString()) ? Convert.ToInt32(infoClienteData.Rows[0]["id_info_empresa"]) : 0,
@@ -357,6 +365,21 @@ namespace ProyectoBL
             {
                 DataTable dtProveedor = new DataTable();
                 dtProveedor = dAcces.UpdEstado(_idCliente, nombreEntidad.ToString(), _estado);
+                return dtProveedor;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message, ex);
+            }
+        }
+        public DataTable UpdateContadorActualizacion(int _idCliente)
+        {
+            try
+            {
+                DataTable dtProveedor = new DataTable();
+                dtProveedor = dAcces.UpdContadorActualizaciones(_idCliente);
                 return dtProveedor;
 
             }

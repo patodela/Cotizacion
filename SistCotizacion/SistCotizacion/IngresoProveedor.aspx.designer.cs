@@ -76,6 +76,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.HiddenField hdIdCliente;
         
         /// <summary>
+        /// Control hdIdFolio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdFolio;
+        
+        /// <summary>
         /// Control Image1.
         /// </summary>
         /// <remarks>
@@ -263,6 +272,15 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtInfCompFechaFundacion;
+        
+        /// <summary>
+        /// Control TxtInfCompFechaFundacion_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender TxtInfCompFechaFundacion_CalendarExtender;
         
         /// <summary>
         /// Control TxtInfCompPaginaWeb.

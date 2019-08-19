@@ -15,8 +15,14 @@ namespace ProyectoBL.Utilidades
             PropertyInfo[] fi = val1.GetType().GetProperties();
             foreach (PropertyInfo f in fi)
             {
-               
+                string[] KeyArraysOmitidas = { "id_direccion", "id_usuario", "id_info_empresa",
+                                               "id_info_factura","id_tipo_cliente", "id_codigo_folio",
+                                                "fecha_emision","actualizaciones","estado","fecha_actualizacion","NombreEntidad"};
                 var Prop = f.Name;
+                if (KeyArraysOmitidas.Any(a => Prop.Contains(a)))
+                {
+                    continue;
+                }
                 var valA = f.GetValue(val1);
                 var valB = f.GetValue(val2);
                 if (!Equals(valA,valB))
