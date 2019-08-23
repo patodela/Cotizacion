@@ -8,6 +8,8 @@ using ProyectoBL;
 using ProyectoDA.Model;
 using ProyectoBL.Enum;
 using ProyectoBL.Utilidades;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace SistCotizacion
 {
@@ -488,7 +490,133 @@ namespace SistCotizacion
             }
         }
 
-       
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            var workbook = new XLWorkbook(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Plantillas Excel\", "Plantilla Ficha Proveedor Juridico.xlsx"));
+            var worksheet = workbook.Worksheet(1);
+            int tipoCliente = Convert.ToInt32(hdTipoProveedor.Value);
+
+
+            var _dir = new Direccion
+            {
+                pais = txtPais.Text,
+                region = txtRegion.Text,
+                ciudad = txtCiudad.Text,
+                direccion = TxtDirección.Text,
+                zip = txtCodigoPostal.Text
+            };
+
+            var _cli = new Cliente
+            {
+                id_tipo_cliente = tipoCliente,
+                nombre = TxtRepreNombre.Text,
+                rut = TxtRepreRutID.Text,
+                area_profesion = TxtRepreProfesion.Text,
+                identidad = cmboIdentidad.Text,
+                fecha_nacimiento = Convert.ToDateTime(TxtRepreCumple.Text),
+                contacto1 = TxtRepreTelefono.Text,
+                contacto2 = TxtRepreEmail.Text,
+                NombreEntidad = NombreEntidad.Proveedor.ToString()
+            };
+
+            var _infoEmpresa = new Informacion_Empresa
+            {
+                rut = TxtInfCompIDRUT.Text,
+                razon_social = TxtInfCompRazonSocial.Text,
+                nombre_fantasia = TxtInfCompNombreFantasia.Text,
+                fecha_fundacion = Convert.ToDateTime(TxtInfCompFechaFundacion.Text),
+                pagina_web = TxtInfCompPaginaWeb.Text,
+                contacto_corp1 = TxtInfCompTelefono.Text,
+                contacto_corp2 = TxtInfCompEmail.Text
+            };
+
+            var _dirFacturacion = new Direccion
+            {
+                pais = TxtFactPais.Text,
+                region = TxtFactEstadoRegion.Text,
+                ciudad = TxtFactCiudad.Text,
+                direccion = TxtFactDir.Text,
+                zip = TxtFactCodPostal.Text,
+                giro_actividad = TxtFactGiroActividad.Text
+            };
+
+            var _infoFact = new Informacion_Facturacion
+            {
+                nombre_cuenta = txtCtaFactNombre.Text,
+                rut = txtCtaFactRUTID.Text,
+                banco = txtCtaFactBanco.Text,
+                tipo_cuenta = txtCtaFactTipoCuenta.Text,
+                numero_cuenta = txtCtaFactNumCta.Text,
+                correo_confirmacion = txtCtaFactEmail.Text
+            };
+
+            string direccionPersonal = "(1.) País:" + _dir.pais + ";"
+                + "(1.1.) Estado / Región: " + _dir.region + "; (1.2.) Ciudad: " + _dir.ciudad + ";"
+                + "(1.2.) Dirección: " + _dir.direccion + "; (1.3.) Código Postal: " + _dir.zip;
+
+            string direccionFacturacion = "(1.) País:" + _dirFacturacion.pais + ";"
+                + "(1.1.) Estado / Región: " + _dirFacturacion.region + "; (1.2.) Ciudad: " + _dirFacturacion.ciudad + ";"
+                + "(1.2.) Dirección: " + _dirFacturacion.direccion + "; (1.3.) Código Postal: " + _dirFacturacion.zip;
+
+            string cuentaBancaria = "(1.) Nombre: " + _infoFact.nombre_cuenta + "; (1.1.) RUT (DNI, Tax – ID): " + _infoFact.rut
+                + "; (1.2.) Banco: " + _infoFact.banco + "; (1.3.) Tipo de cuenta: " + _infoFact.tipo_cuenta
+                + "; (1.4.) Número de cuenta: " + _infoFact.numero_cuenta + "; (2.) Correo de confirmación: " + _infoFact.correo_confirmacion;
+
+            worksheet.Cell("E6").Value = FolioDoc.Text;
+            worksheet.Cell("Q6").Value = CantActualizacion.Text;
+            worksheet.Cell("E7").Value = TxtFechaEmision.Text;
+            worksheet.Cell("Q7").Value = TxtFechaActualizacion.Text;
+
+            string pathImage = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Imagenes\logo_impex.jpg" );
+
+            var image = worksheet.AddPicture(pathImage)
+                        .MoveTo(worksheet.Cell("M1"))
+                        .WithSize(310, 80);
+                        
+
+            if (tipoCliente.Equals(TipoCliente.Natural))
+            {
+
+            }
+            else
+            {
+                worksheet.Cell("E9").Value = _cli.nombre;
+                worksheet.Cell("I9").Value = _cli.area_profesion;
+                worksheet.Cell("Q9").Value = _cli.rut;
+                worksheet.Cell("E10").Value = _cli.identidad;
+                worksheet.Cell("I10").Value = _cli.fecha_nacimiento.Value.ToString("yyyy-MM-dd");
+                worksheet.Cell("Q10").Value = _cli.contacto1;
+                worksheet.Cell("U10").Value = _cli.contacto2;
+                worksheet.Cell("E11").Value = direccionPersonal;
+                worksheet.Cell("E14").Value = _infoEmpresa.rut;
+                worksheet.Cell("Q14").Value = _infoEmpresa.razon_social;
+                worksheet.Cell("E15").Value = _infoEmpresa.nombre_fantasia;
+                worksheet.Cell("Q15").Value = _infoEmpresa.fecha_fundacion.ToString("yyyy-MM-dd");
+                worksheet.Cell("E16").Value = _infoEmpresa.pagina_web;
+                worksheet.Cell("Q16").Value = _infoEmpresa.contacto_corp1;
+                worksheet.Cell("U16").Value = _infoEmpresa.contacto_corp2;
+                worksheet.Cell("E17").Value = direccionFacturacion;
+                worksheet.Cell("E19").Value = cuentaBancaria;
+                worksheet.Cell("A23").Value = DatosEmisor.Text;
+            }
         
+
+            string myName = Server.UrlEncode("Ficha_Proveedor_" + "_" + DateTime.Now.ToShortDateString() + ".xlsx");
+            HttpResponse httpResponse = Response;
+            httpResponse.Clear();
+            httpResponse.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            httpResponse.AddHeader("content-disposition", "attachment;filename=" + myName);
+
+            // Flush the workbook to the Response.OutputStream
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                workbook.SaveAs(memoryStream);
+                memoryStream.WriteTo(httpResponse.OutputStream);
+                memoryStream.Close();
+            }
+
+            httpResponse.End();
+        }
+
     }
 }

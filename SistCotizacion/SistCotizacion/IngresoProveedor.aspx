@@ -43,7 +43,7 @@
                    <asp:HiddenField ID="hdIdCliente" runat="server" />
                   <asp:HiddenField ID="hdIdFolio" runat="server" />
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" id="divExport" runat="server">
                     <table id="tablaCabeceraRegistro" class="table table-bordered">
                         <thead>
                             <tr>
@@ -448,9 +448,8 @@
             <div class="panel-footer text-right">
                 <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:150px;" runat="server" Text="Guardar" />
                 <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
-                <button id="ExportToExcel" class="btn btn-success" onclick="exportTableToExcel('TablaProveedorNatural')">
-                    Exportar a Excel
-                </button>
+                <asp:Button ID="btnExport" runat="server" CssClass="btn btn-success" OnClick="btnExport_Click" Text="Exportar" />
+
             </div>
         </div>
     
