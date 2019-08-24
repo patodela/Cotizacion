@@ -446,9 +446,9 @@
                 </div>
             </div>
             <div class="panel-footer text-right">
-                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:150px;" runat="server" Text="Guardar" />
-                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
-                <asp:Button ID="btnExport" runat="server" CssClass="btn btn-success" OnClick="btnExport_Click" Text="Exportar" />
+                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:100px;" runat="server" Text="Guardar" />
+                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:100px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnExport" runat="server" CssClass="btn btn-success" style="width:100px;" Visible="false" OnClick="btnExport_Click" Text="Exportar" />
 
             </div>
         </div>

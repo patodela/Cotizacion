@@ -173,5 +173,11 @@ namespace SistCotizacion
                 (this.Master as NavContenido).MostrarError("Ha ocurrido un error", "Error", ex);
             }
         }
+
+        protected void btnIngresarProveedor_Click(object sender, EventArgs e)
+        {
+            Session.Remove("PasoLoad");
+            Response.Redirect("/IngresoProveedor.aspx");
+        }
     }
 }

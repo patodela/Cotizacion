@@ -83,7 +83,7 @@
             <hr />
             <div class="row">
                 <div class="col-md-3">
-                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-info" PostBackUrl="~/IngresoProveedor.aspx" runat="server">
+                    <asp:LinkButton ID="btnIngresarProveedor" OnClick="btnIngresarProveedor_Click" CssClass="btn btn-info"  runat="server">
                        
 <span aria-hidden="true" class="glyphicon glyphicon-plus"></span> <strong>Ingresar </strong>
                     </asp:LinkButton>
