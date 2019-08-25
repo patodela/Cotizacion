@@ -142,9 +142,11 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\js\FichaCliente.js" />
     <Content Include="Scripts\js\FichaProveedor.js" />
     <Content Include="Scripts\js\MantenedorSKU.js" />
     <Content Include="Scripts\submenu.js" />
+    <Content Include="SearchCliente.aspx" />
     <Content Include="Usuarios\Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -271,6 +273,13 @@
     </Compile>
     <Compile Include="relacionProductoSKU.aspx.designer.cs">
       <DependentUpon>relacionProductoSKU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCliente.aspx.cs">
+      <DependentUpon>SearchCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchCliente.aspx.designer.cs">
+      <DependentUpon>SearchCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

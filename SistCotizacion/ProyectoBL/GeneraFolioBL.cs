@@ -21,12 +21,12 @@ namespace ProyectoBL
             dAcces = new FolioDocumentosDA(DataUser);
         }
 
-        public Folio GetFolioFichaProveedor(int idioma,bool temporal) {
+        public Folio GetFolioFicha(int tipoDoc,int idioma,bool temporal) {
             var response = new Folio();
             try
             {
                 DataTable FolioData = new DataTable();
-                FolioData = dAcces.GetFolio(3, idioma, temporal);
+                FolioData = dAcces.GetFolio(tipoDoc, idioma, temporal);
                 if (FolioData.Rows.Count > 0)
                 {
                     response = new Folio

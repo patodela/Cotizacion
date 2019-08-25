@@ -65,7 +65,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="EntidadAlmacen.aspx">Almacen</a></li>
                                     <li><a href="EntidadCliente.aspx">Cliente</a></li>
-                                    <li><a href="EntidadPersonal.aspx">Peronal</a></li>
+                                    <li><a href="SearchCliente.aspx">Personal</a></li>
                                     <li><a href="Proveedor.aspx">Proveedor</a></li>
                                     <li><a href="Usuarios\Users.aspx">Usuario</a></li>
                                 </ul>

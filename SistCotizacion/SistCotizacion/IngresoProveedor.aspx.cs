@@ -29,7 +29,7 @@ namespace SistCotizacion
                 Session["PasoLoad"] = 1;
                 DataUser = (MSSQLSUL.Seguridad.Usuario)Session["Usuario"];
                 var folio = new GeneraFolioBL(DataUser);
-                var numeroFolio = folio.GetFolioFichaProveedor(8, true);
+                var numeroFolio = folio.GetFolioFicha(3,8, true);
                 FolioDoc.Text = numeroFolio.cod_folio;
                 TxtFechaEmision.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
@@ -68,7 +68,7 @@ namespace SistCotizacion
                 bool GeneroActualizacion = false;
                 if (!EditProveedor)
                 {
-                    numeroFolio = folio.GetFolioFichaProveedor(8, false);
+                    numeroFolio = folio.GetFolioFicha(3,8, false);
                 }
                 
 
