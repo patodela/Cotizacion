@@ -22,6 +22,78 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.HiddenField hdTipoProveedor;
         
         /// <summary>
+        /// Control hdCodProv.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdCodProv;
+        
+        /// <summary>
+        /// Control hdIdDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdDireccion;
+        
+        /// <summary>
+        /// Control hdIdDireccionFacturacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdDireccionFacturacion;
+        
+        /// <summary>
+        /// Control hdIdInfoEmpresa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdInfoEmpresa;
+        
+        /// <summary>
+        /// Control hdIdInfoFactura.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdInfoFactura;
+        
+        /// <summary>
+        /// Control hdIdCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdCliente;
+        
+        /// <summary>
+        /// Control hdIdFolio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdIdFolio;
+        
+        /// <summary>
+        /// Control divExport.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divExport;
+        
+        /// <summary>
         /// Control Image1.
         /// </summary>
         /// <remarks>
@@ -211,6 +283,15 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox TxtInfCompFechaFundacion;
         
         /// <summary>
+        /// Control TxtInfCompFechaFundacion_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender TxtInfCompFechaFundacion_CalendarExtender;
+        
+        /// <summary>
         /// Control TxtInfCompPaginaWeb.
         /// </summary>
         /// <remarks>
@@ -283,15 +364,6 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox TxtFactCodPostal;
         
         /// <summary>
-        /// Control TxtFactReferencia.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFactReferencia;
-        
-        /// <summary>
         /// Control TxtFactGiroActividad.
         /// </summary>
         /// <remarks>
@@ -355,24 +427,6 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCtaFactEmail;
         
         /// <summary>
-        /// Control DatosEmisorJuridico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DatosEmisorJuridico;
-        
-        /// <summary>
-        /// Control ImgSelloJuridico.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgSelloJuridico;
-        
-        /// <summary>
         /// Control txtNatNombre.
         /// </summary>
         /// <remarks>
@@ -416,6 +470,15 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNatFechaNac;
+        
+        /// <summary>
+        /// Control txtNatFechaNac_CalendarExtender.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtNatFechaNac_CalendarExtender;
         
         /// <summary>
         /// Control txtNatFono.
@@ -544,22 +607,22 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.TextBox txtCtaFactNatEmailConfirm;
         
         /// <summary>
-        /// Control DatosEmisorNat.
+        /// Control DatosEmisor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label DatosEmisorNat;
+        protected global::System.Web.UI.WebControls.Label DatosEmisor;
         
         /// <summary>
-        /// Control ImageSelloIngresadoNat.
+        /// Control ImageSelloIngresado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageSelloIngresadoNat;
+        protected global::System.Web.UI.WebControls.Image ImageSelloIngresado;
         
         /// <summary>
         /// Control btnRegistroEntidadProveedor.
@@ -578,5 +641,14 @@ namespace SistCotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
+        /// Control btnExport.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExport;
     }
 }

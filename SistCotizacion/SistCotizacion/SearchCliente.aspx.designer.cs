@@ -10,16 +10,16 @@
 namespace SistCotizacion {
     
     
-    public partial class Proveedor {
+    public partial class SearchCliente {
         
         /// <summary>
-        /// Control HFTipoProveedor.
+        /// Control HFTipoCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HFTipoProveedor;
+        protected global::System.Web.UI.WebControls.HiddenField HFTipoCliente;
         
         /// <summary>
         /// Control txtFolio.
@@ -49,12 +49,12 @@ namespace SistCotizacion {
         protected global::System.Web.UI.WebControls.LinkButton btnIngresarProveedor;
         
         /// <summary>
-        /// Control GridListProveedor.
+        /// Control GridListCliente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridListProveedor;
+        protected global::System.Web.UI.WebControls.GridView GridListCliente;
     }
 }

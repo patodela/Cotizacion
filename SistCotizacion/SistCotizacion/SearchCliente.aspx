@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="Proveedor.aspx.cs" Inherits="SistCotizacion.Proveedor" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/NavContenido.Master" AutoEventWireup="true" CodeBehind="SearchCliente.aspx.cs" Inherits="SistCotizacion.SearchCliente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-     <link href="Content/StylePaginacionGridview.css" rel="stylesheet" />
+    <link href="Content/StylePaginacionGridview.css" rel="stylesheet" />
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -31,10 +31,12 @@
             return confirm("¿Estas seguro de realizar esta accion sobre el registro?");
         }
     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolderNavContenido" runat="server">
+
     <div class="panel panel-default">
-        <div class="panel-heading text-center"><strong>PROVEEDOR</strong></div>
+        <div class="panel-heading text-center"><strong>CLIENTE</strong></div>
         <div class="panel-body">
             <h3>Filtros</h3>
             <div class="row">
@@ -45,7 +47,7 @@
                     <div class="form-group has-feedback">
                         <label class="input-group">
                             <span class="input-group-addon">
-                                <input id="Pnatural" checked="checked" type="radio" name="TipoProveedor" value="1" />
+                                <input id="Pnatural" checked="checked" type="radio" name="TipoCliente" value="1" />
                             </span>
                             <div class="form-control form-control-static">
                                 Natural
@@ -56,7 +58,7 @@
                     <div class="form-group has-feedback ">
                         <label class="input-group">
                             <span class="input-group-addon">
-                                <input type="radio" checked="checked" id="Pjuridica" name="TipoProveedor" value="2" />
+                                <input type="radio" checked="checked" id="Pjuridica" name="TipoCliente" value="2" />
                             </span>
                             <div class="form-control form-control-static">
                                 Juridico
@@ -66,7 +68,7 @@
                     </div>
                 </div>
                 </div>
-                <asp:HiddenField ID="HFTipoProveedor" Value="1" runat="server" />
+                <asp:HiddenField ID="HFTipoCliente" Value="1" runat="server" />
             </div>
             <div class="row">
                 <div class="col-md-4">
@@ -90,7 +92,7 @@
                 </div>
             </div>
          <br />
-                <asp:GridView ID="GridListProveedor" CssClass="table table-bordered table-hover" AllowPaging="True" OnRowDataBound="GridListProveedor_RowDataBound" OnPageIndexChanging="GridListProveedor_PageIndexChanging" runat="server" DataKeyNames="id_cliente" AutoGenerateColumns="False">
+                <asp:GridView ID="GridListCliente" CssClass="table table-bordered table-hover" AllowPaging="True" OnRowDataBound="GridListCliente_RowDataBound" OnPageIndexChanging="GridListCliente_PageIndexChanging" runat="server" DataKeyNames="id_cliente" AutoGenerateColumns="False">
                     <Columns>
                         <asp:BoundField HeaderText="ID" DataField="id_cliente"></asp:BoundField>
                         <asp:BoundField HeaderText="Folio" DataField="fd_folio"></asp:BoundField>
@@ -134,5 +136,6 @@
         </div>
  
     </div>
+
 
 </asp:Content>

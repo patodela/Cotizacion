@@ -20,7 +20,7 @@ namespace MSSQLSUL.Seguridad
         private string sPasswd { get; set; }
         public int id_usuario { get; set; }
         private int id_tipo_usuario { get; set; }
-        private string cod_usuario { get; set; }
+        public string cod_usuario { get; set; }
         private string pwd_usuario { get; set; }
         private DateTime fecha_ingreso { get; set; }
         private bool activo { get; set; }

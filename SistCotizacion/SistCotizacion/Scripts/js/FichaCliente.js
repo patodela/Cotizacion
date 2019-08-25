@@ -1,18 +1,18 @@
 ﻿$(document).ready(function () {
 
-    var value = $('input[id$=hdTipoProveedor]').val();
+    var value = $('input[id$=hdTipoCliente]').val();
     value = parseInt(value);
     if (value === 1) {
         ControlByType("#Pnatural");
         $("#Pnatural").prop("checked", true);
         $("#Pjuridica").prop("checked", false);
-    }else{
+    } else {
         ControlByType("#Pjuridica");
         $("#Pnatural").prop("checked", false);
         $("#Pjuridica").prop("checked", true);
     }
-    
-    
+
+
 
     $("#Pnatural").click(function () {
 
@@ -26,13 +26,13 @@
         }
     });
 
-    
+
     $("a[id$=btnAceptarMensaje]").click(function () {
-         window.location.replace("Proveedor.aspx");
+        window.location.replace("SearchCliente.aspx");
     });
 
-    var CodeProv = $('input[id$=hdCodProv]').val();
-        
+    var CodeProv = $('input[id$=hdCodCli]').val();
+
     if (CodeProv != undefined && CodeProv != "") {
         $("#Pjuridica").attr("disabled", "disabled");
         $("#Pnatural").attr("disabled", "disabled");
@@ -40,17 +40,7 @@
         $("#divJuridico").attr("disabled", "disabled");
     }
 
-    //var tipo = $('input[id$=hdTipoProveedor]').val();
-    //if (tipo != undefined) {
-    //    if (tipo == "Natural") {
-    //        $("#Pnatural").prop("checked", true);
-    //        $("#Pjuridica").prop("checked", false);
-    //    } else {
-    //        $("#Pnatural").prop("checked", false);
-    //        $("#Pjuridica").prop("checked", true);
-    //    }
-    //}
-
+    
 });
 
 
@@ -65,9 +55,9 @@ function ControlByType(controll) {
     var type = parseInt($(controll).val());
     if (type === 1) { //Natural
         $("#Tipo").text("NATURAL");
-        $("#TablaProveedorNatural").show();
-        $("#TablaProveedorJuridico").hide();
-        $('input[id$=hdTipoProveedor]').attr('value', $(controll).val());
+        $("#TablaClienteNatural").show();
+        $("#TablaClienteJuridico").hide();
+        $('input[id$=hdTipoCliente]').attr('value', $(controll).val());
         $("input[id$=TxtRepreNombre]").removeAttr('required');
         $("input[id$=TxtRepreRutID]").removeAttr('required');
         $("input[id$=TxtRepreTelefono]").removeAttr('required');
@@ -84,7 +74,7 @@ function ControlByType(controll) {
         $("input[id$=txtCtaFactRUTID]").removeAttr('required');
         $("input[id$=txtCtaFactBanco]").removeAttr('required');
         $("input[id$=txtCtaFactTipoCuenta]").removeAttr('required');
-        $("input[id$=txtCtaFactNumCta]").removeAttr('required'); 
+        $("input[id$=txtCtaFactNumCta]").removeAttr('required');
         $("input[id$=txtNatNombre]").attr('required', 'required');
         $("input[id$=txtNatRut]").attr('required', 'required');
         $("input[id$=txtNatFono]").attr('required', 'required');
@@ -93,16 +83,16 @@ function ControlByType(controll) {
     } else {//Juridica
         $("#Tipo").text("JURIDICO");
 
-        $("#TablaProveedorNatural").hide();
-        $("#TablaProveedorJuridico").show();
-        $('input[id$=hdTipoProveedor]').attr('value', $(controll).val());       
-        $("input[id$=TxtRepreNombre]").attr('required', 'required'); 
-        $("input[id$=TxtRepreRutID]").attr('required', 'required'); 
-        $("input[id$=TxtRepreTelefono]").attr('required', 'required'); 
+        $("#TablaClienteNatural").hide();
+        $("#TablaClienteJuridico").show();
+        $('input[id$=hdTipoCliente]').attr('value', $(controll).val());
+        $("input[id$=TxtRepreNombre]").attr('required', 'required');
+        $("input[id$=TxtRepreRutID]").attr('required', 'required');
+        $("input[id$=TxtRepreTelefono]").attr('required', 'required');
         $("input[id$=TxtInfCompIDRUT]").attr('required', 'required');
         $("input[id$=TxtInfCompRazonSocial]").attr('required', 'required');
         $("input[id$=TxtInfCompTelefono]").attr('required', 'required');
-        $("input[id$=TxtFactPais]").attr('required', 'required'); 
+        $("input[id$=TxtFactPais]").attr('required', 'required');
         $("input[id$=TxtFactEstadoRegion]").attr('required', 'required');
         $("input[id$=TxtFactCiudad]").attr('required', 'required');
         $("input[id$=TxtFactCodPostal]").attr('required', 'required');
@@ -119,60 +109,3 @@ function ControlByType(controll) {
     }
 
 }
-
-function exportTableToExcel(tableID, filename){
-    //var downloadLink;
-    //var dataType = 'application/vnd.ms-excel';
-    //var tableSelect = document.getElementById(tableID);
-    //var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-    
-    //// Specify file name
-    //filename = filename?filename+'.xls':'excel_data.xls';
-    
-    //// Create download link element
-    //downloadLink = document.createElement("a");
-    
-    //document.body.appendChild(downloadLink);
-    
-    //if(navigator.msSaveOrOpenBlob){
-    //    var blob = new Blob(['\ufeff', tableHTML], {
-    //        type: dataType
-    //    });
-    //    navigator.msSaveOrOpenBlob( blob, filename);
-    //}else{
-    //    // Create a link to the file
-    //    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-    
-    //    // Setting the file name
-    //    downloadLink.download = filename;
-        
-    //    //triggering the function
-    //    downloadLink.click();
-    //}
-
-    $(tableID).table2excel({
-        exclude: ".noExl",
-        name: "Excel Document Name",
-        filename: "myFileName" + new Date().toISOString().replace(/[\-\:\.]/g, "") + ".xls",
-        fileext: ".xls",
-        exclude_img: true,
-        exclude_links: true,
-        exclude_inputs: true,
-        preserveColors: true
-    });
-}
-
-var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-        }
-    }
-};

@@ -11,27 +11,14 @@ namespace ProyectoDA
     public class FolioDocumentosDA
     {
         private Usuario UsrConn { get; set; }
+        private Conexion vCon;
         public FolioDocumentosDA(Usuario _usrConn) {
             UsrConn = _usrConn;
+            vCon = new Conexion(_usrConn);
         }
 
         public DataTable GetFolio(int TipoDoc,int Idioma,bool Temporal = false,int var1 = 0,int var2 = 0, int var3 = 0)
         {
-       
-
-            // Ahora veremos si podemos ingresar.
-            Conexion vCon = new Conexion(UsrConn);
-            try
-            {
-
-                vCon.IniciarTransaccion();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("No se pudo conectar a la base de datos.<br/>" + ex.Message);
-
-            }
-
             try
             {
                 Dictionary<string, object> vParam = new Dictionary<string, object>();
@@ -43,10 +30,10 @@ namespace ProyectoDA
                 vParam.Add("@var2", var1);
                 vParam.Add("@var3", var1);
 
-      
+                vCon.IniciarTransaccion();
                 string vError = "";
                 DataTable vResp = vCon.Ejecutar("[impexcom_sistema].[sp_genera_folio]", ref vError, vParaMetros: vParam);
-                vCon.Confirmar();
+                vCon.Confirmar();                
                 return vResp;
             }
             catch (Exception ex)
@@ -55,6 +42,28 @@ namespace ProyectoDA
                 throw new Exception("Ocurrio un error al obtener folio .<br/>" + ex.Message, ex);
             }
         }
+
+        public DataTable GetFolioById(int IdFolio)
+        {
+            try
+            {
+                string query = string.Empty;
+
+                query = " SELECT * FROM Folio_Documento WHERE fd_id = " + IdFolio.ToString();
+                
+                vCon.IniciarTransaccion();
+                string vError = "";
+                DataTable vResp = vCon.Ejecutar(query, ref vError, vParaMetros: null, vTimeoutConexion: 90, vEsProcedimiento: false);
+                vCon.Confirmar();
+                return vResp;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocurrio un error al obtener datos del folio .<br/>" + ex.Message, ex);
+            }
+        }
+
 
     }
 }

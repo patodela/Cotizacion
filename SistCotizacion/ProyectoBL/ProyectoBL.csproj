@@ -46,6 +46,7 @@
     <Compile Include="GeneraFolioBL.cs" />
     <Compile Include="OrganizadorBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades\Extentions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSSQLSUL\MSSQLSUL.csproj">

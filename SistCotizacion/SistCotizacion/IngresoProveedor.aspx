@@ -16,7 +16,7 @@
                                 <input id="Pnatural" checked="checked" type="radio" name="TipoProveedor" value="1" />
                                 
                             </span>
-                            <div class="form-control form-control-static">
+                            <div class="form-control form-control-static" id="divNatural">
                                 Natural
                             </div>
                             <span class="glyphicon form-control-feedback "></span>
@@ -28,15 +28,22 @@
                                 <input type="radio"  id="Pjuridica" name="TipoProveedor" value="2" />
                                
                             </span>
-                            <div class="form-control form-control-static">
+                            <div class="form-control form-control-static" id="divJuridico">
                                 Juridico
                             </div>
                             <span class="glyphicon form-control-feedback "></span>
                         </label>
                     </div>
-                  <asp:HiddenField ID="hdTipoProveedor" Value="" runat="server" />
+                  <asp:HiddenField ID="hdTipoProveedor" Value="1" runat="server" />
+                  <asp:HiddenField ID="hdCodProv" Value="" runat="server" />
+                  <asp:HiddenField ID="hdIdDireccion" runat="server" /> 
+                  <asp:HiddenField ID="hdIdDireccionFacturacion" runat="server" />
+                  <asp:HiddenField ID="hdIdInfoEmpresa" runat="server" /> 
+                  <asp:HiddenField ID="hdIdInfoFactura" runat="server" />
+                   <asp:HiddenField ID="hdIdCliente" runat="server" />
+                  <asp:HiddenField ID="hdIdFolio" runat="server" />
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive" id="divExport" runat="server">
                     <table id="tablaCabeceraRegistro" class="table table-bordered">
                         <thead>
                             <tr>
@@ -154,7 +161,10 @@
                                 <td class="active text-center" colspan="6"><strong>Información de la Compañía</strong></td>
                             </tr>
                             <tr>
-                                <td class="active" colspan="2"><strong> (ID)RUT</strong></td>
+                                <td class="active" colspan="2">
+                                   
+                                    <strong> (ID)RUT</strong>
+                                </td>
                                 <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompIDRUT" runat="server"></asp:TextBox></td>
                                 <td class="active"><strong>Razón Social</strong></td>
                                 <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompRazonSocial" runat="server"></asp:TextBox></td>
@@ -163,7 +173,10 @@
                                 <td class="active" colspan="2"><strong>Nombre de Fantasia</strong></td>
                                 <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompNombreFantasia" runat="server"></asp:TextBox></td>
                                 <td class="active"><strong>Fecha de Fundacion</strong></td>
-                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompFechaFundacion" TextMode="Date" runat="server"></asp:TextBox></td>
+                                <td colspan="2">
+                                    <asp:TextBox class="form-control" ID="TxtInfCompFechaFundacion"  runat="server" contentEditable="false"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender runat="server" BehaviorID="TxtInfCompFechaFundacion_CalendarExtender" Format="yyyy-MM-dd" TargetControlID="TxtInfCompFechaFundacion" ID="TxtInfCompFechaFundacion_CalendarExtender"></ajaxToolkit:CalendarExtender>
+                                </td>
                             </tr>
                              <tr>
                                 <td class="active" colspan="2"><strong>Pagina Web</strong></td>
@@ -179,7 +192,8 @@
                                     <div class="form-inline">
                                         <div class="form-group">
                                            <div class="input-group">
-                                                <div class="input-group-addon">(1)País:</div>                                               
+                                                <div class="input-group-addon">(1)País:</div> 
+                                                                                            
                                                <asp:TextBox ID="TxtFactPais" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
@@ -207,12 +221,12 @@
                                                <asp:TextBox ID="TxtFactCodPostal" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                      <%--   <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(2)Referencia(s):</div>                                               
                                                <asp:TextBox ID="TxtFactReferencia" class="form-control input-sm" runat="server"></asp:TextBox>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                          <div class="form-group">
                                            <div class="input-group">
                                                 <div class="input-group-addon">(3)Giro/Actividad:</div>                                               
@@ -266,7 +280,7 @@
                                 </td>
                             </tr>
                             
-                     <tr>
+                 <%--    <tr>
                          <td class="active text-center" colspan="7"><strong>Emision</strong></td>
                         
                      </tr>
@@ -281,7 +295,7 @@
                             </tr>
                             <tr>
                                 <td colspan="7" class="active"></td>
-                            </tr>
+                            </tr>--%>
                         </tbody>
                     </table>
                     <table id="TablaProveedorNatural" class="table table-bordered" style="display:none;">
@@ -307,7 +321,9 @@
                                         <asp:ListItem Value="H">Hombre</asp:ListItem>
                                         <asp:ListItem Value="M">Mujer</asp:ListItem>
                                     </asp:DropDownList></td>
-                                <td><asp:TextBox ID="txtNatFechaNac" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="txtNatFechaNac"  CssClass="form-control" runat="server" contentEditable="false"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender runat="server" Format="yyyy-MM-dd" BehaviorID="txtNatFechaNac_CalendarExtender" TargetControlID="txtNatFechaNac" ID="txtNatFechaNac_CalendarExtender"></ajaxToolkit:CalendarExtender>
+                                </td>
                                 <td class="active"><strong>Telefono / Email</strong></td>
                                 <td><asp:TextBox ID="txtNatFono" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
                                 <td><asp:TextBox ID="txtNatEmail" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
@@ -404,7 +420,12 @@
                                     </div>
                                 </td>
                                  </tr>
-                            <tr>
+                           
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">
+                        <tbody>
+                             <tr>
                                 <td class="active text-center" colspan="7"><strong>Emision</strong></td>
 
                             </tr>
@@ -413,8 +434,8 @@
                             </tr>
                             <tr>
                                 <td colspan="7" class="text-center">
-                                    <asp:Label ID="DatosEmisorNat" runat="server" Text="Datos Emisor"></asp:Label>
-                                    <asp:Image ID="ImageSelloIngresadoNat" ImageUrl="~/Imagenes/selloAprobado2.png" runat="server" />
+                                    <asp:Label ID="DatosEmisor" runat="server" Text="Datos Emisor"></asp:Label>
+                                    <asp:Image ID="ImageSelloIngresado" ImageUrl="~/Imagenes/selloAprobado2.png" runat="server" />
                                 </td>
                             </tr>
                             <tr>
@@ -425,8 +446,10 @@
                 </div>
             </div>
             <div class="panel-footer text-right">
-                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:150px;" runat="server" Text="Ingresar" />
-                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:150px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" OnClick="btnRegistroEntidadProveedor_Click"  style="width:100px;" runat="server" Text="Guardar" />
+                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:100px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
+                <asp:Button ID="btnExport" runat="server" CssClass="btn btn-success" style="width:100px;" Visible="false" OnClick="btnExport_Click" Text="Exportar" />
+
             </div>
         </div>
     
