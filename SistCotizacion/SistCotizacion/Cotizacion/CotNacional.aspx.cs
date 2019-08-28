@@ -42,10 +42,6 @@ namespace SistCotizacion.Cotizacion
             tabla.Columns.Add("vtclp");
             tabla.Columns.Add("vtusd");
             tabla.Columns.Add("vt$");
-            //DataRow row = tabla.NewRow();
-            //row["campo1"] = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            //row["campo2"] = Convert.ToString(dataGridView1.Rows[e.RowIndex].Cells[1].Value);
-            //tabla.Rows.Add(row);
             
             for (int i = 0; i < grvAddProd.Rows.Count; i++)
             {
@@ -63,8 +59,6 @@ namespace SistCotizacion.Cotizacion
                     Tbrow["cantidad"] = tbox.Text;
                     Tbrow["um"]             = row.Cells[7].Text;
                     Tbrow["vtclp"]          = row.Cells[8].Text;
-                    //Tbrow["vtusd"]          = row.Cells[7].Text;
-                    //Tbrow["vt$"] = row.Cells[8].Text;
                     tabla.Rows.Add(Tbrow);                    
                 }
             }
