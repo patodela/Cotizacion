@@ -129,6 +129,8 @@
     <Content Include="NavContenido.Master" />
     <Content Include="Plantillas Excel\Plantilla Ficha Proveedor Juridico.xlsx" />
     <Content Include="Plantillas Excel\Plantilla Ficha Proveedor Natural.xlsx" />
+    <Content Include="Plantillas Excel\Plantilla Ficha Cliente Juridico.xlsx" />
+    <Content Include="Plantillas Excel\Plantilla Ficha Cliente Natural.xlsx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

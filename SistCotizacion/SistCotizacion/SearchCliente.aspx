@@ -5,7 +5,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            var value = $('input[id$=HFTipoProveedor]').val();
+            var value = $('input[id$=HFTipoCliente]').val();
             value = parseInt(value);
             if (value === 1) {
                 $("#Pnatural").prop("checked", true);
@@ -17,12 +17,12 @@
 
             $("#Pnatural").click(function () {
                 if ($(this).prop("checked", true)) {
-                    $('input[id$=HFTipoProveedor]').val($(this).val());
+                    $('input[id$=HFTipoCliente]').val($(this).val());
                 }
             });
             $("#Pjuridica").click(function () {
                 if ($(this).prop("checked", true)) {
-                    $('input[id$=HFTipoProveedor]').val($(this).val());
+                    $('input[id$=HFTipoCliente]').val($(this).val());
                 }
             });
         });
