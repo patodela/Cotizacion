@@ -373,22 +373,22 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Label lblSubtotal;
         
         /// <summary>
-        /// Control lblValorDescuento.
+        /// Control lblValorAjuste.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValorDescuento;
+        protected global::System.Web.UI.WebControls.Label lblValorAjuste;
         
         /// <summary>
-        /// Control lblValTotal.
+        /// Control lblValNeto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValTotal;
+        protected global::System.Web.UI.WebControls.Label lblValNeto;
         
         /// <summary>
         /// Control Label37.
@@ -454,40 +454,40 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Literal Literal4;
         
         /// <summary>
-        /// Control Number1.
+        /// Control NumInteres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl Number1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl NumInteres;
         
         /// <summary>
-        /// Control txtMontoFacturable.
+        /// Control lblValorImpuesto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMontoFacturable;
+        protected global::System.Web.UI.WebControls.Label lblValorImpuesto;
         
         /// <summary>
-        /// Control lblValorIva.
+        /// Control lblValorBruto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValorIva;
+        protected global::System.Web.UI.WebControls.Label lblValorBruto;
         
         /// <summary>
-        /// Control lblTotalBruto.
+        /// Control lblValorInteres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalBruto;
+        protected global::System.Web.UI.WebControls.Label lblValorInteres;
         
         /// <summary>
         /// Control Label7.
@@ -526,15 +526,6 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Literal Literal54;
         
         /// <summary>
-        /// Control Literal55.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal55;
-        
-        /// <summary>
         /// Control Literal69.
         /// </summary>
         /// <remarks>
@@ -553,58 +544,40 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Literal Literal56;
         
         /// <summary>
-        /// Control txbGastosComp.
+        /// Control txbGastosAsum.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txbGastosComp;
+        protected global::System.Web.UI.WebControls.TextBox txbGastosAsum;
         
         /// <summary>
-        /// Control lblTotalGlobal.
+        /// Control lblTotalpagar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalGlobal;
+        protected global::System.Web.UI.WebControls.Label lblTotalpagar;
         
         /// <summary>
-        /// Control lblValorIntSimple.
+        /// Control lblTotalpagarUsd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblValorIntSimple;
+        protected global::System.Web.UI.WebControls.Label lblTotalpagarUsd;
         
         /// <summary>
-        /// Control lblTotalClp.
+        /// Control txtGastoExt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalClp;
-        
-        /// <summary>
-        /// Control Literal75.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal75;
-        
-        /// <summary>
-        /// Control Label63.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label63;
+        protected global::System.Web.UI.WebControls.TextBox txtGastoExt;
         
         /// <summary>
         /// Control Label43.
@@ -623,15 +596,6 @@ namespace SistCotizacion.Cotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label15;
-        
-        /// <summary>
-        /// Control Label16.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
         /// Control Label34.
@@ -661,22 +625,22 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.LinkButton btnRefrescar;
         
         /// <summary>
-        /// Control Label80.
+        /// Control dwlAsesor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label80;
+        protected global::System.Web.UI.WebControls.DropDownList dwlAsesor;
         
         /// <summary>
-        /// Control Label65.
+        /// Control dwlAsesorado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label65;
+        protected global::System.Web.UI.WebControls.DropDownList dwlAsesorado;
         
         /// <summary>
         /// Control Label66.
@@ -749,24 +713,6 @@ namespace SistCotizacion.Cotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label73;
-        
-        /// <summary>
-        /// Control Label44.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label44;
-        
-        /// <summary>
-        /// Control Label45.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label45;
         
         /// <summary>
         /// Control Label46.
@@ -994,13 +940,13 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Label Label102;
         
         /// <summary>
-        /// Control Label103.
+        /// Control lblImpuesto2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label103;
+        protected global::System.Web.UI.WebControls.Label lblImpuesto2;
         
         /// <summary>
         /// Control Label105.
@@ -1012,13 +958,13 @@ namespace SistCotizacion.Cotizacion {
         protected global::System.Web.UI.WebControls.Label Label105;
         
         /// <summary>
-        /// Control Label106.
+        /// Control lblInteres2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label106;
+        protected global::System.Web.UI.WebControls.Label lblInteres2;
         
         /// <summary>
         /// Control grvCuotas.
@@ -1046,6 +992,33 @@ namespace SistCotizacion.Cotizacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        
+        /// <summary>
+        /// Control lblUsuarioEmisor.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsuarioEmisor;
+        
+        /// <summary>
+        /// Control txtUsuarioRecep.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsuarioRecep;
+        
+        /// <summary>
+        /// Control LinkButton1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
         
         /// <summary>
         /// Control PanelAgregar.

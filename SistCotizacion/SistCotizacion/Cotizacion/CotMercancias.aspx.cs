@@ -9,7 +9,14 @@ using System.Web.UI.WebControls;
 namespace SistCotizacion.Cotizacion
 {
     public partial class CotMercancias : System.Web.UI.Page
+
     {
+        public MSSQLSUL.Seguridad.Usuario UsuarioConectado
+        {
+
+            get { return (MSSQLSUL.Seguridad.Usuario)Session["Usuario"]; }
+            set { Session["Usuario"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,6 +26,7 @@ namespace SistCotizacion.Cotizacion
         }
         private void cargaInicial()
         {
+            //lblUsuarioEmisor.Text = UsuarioConectado.NombreUsuario;
             //cotizacion coti = new cotizacion();
             //dtPlazoNacional.Value = DateTime.Now.Date.AddMonths(3).ToString("yyyy/MM/dd");
         }
@@ -95,13 +103,12 @@ namespace SistCotizacion.Cotizacion
             decimal subtotal = 0;
             decimal descuento = 0;
             decimal valDescuento = 0;
+            decimal interes = 0;
             decimal total = 0;
             decimal iva = 19;
             decimal valIva = 0;
-            decimal totalBruto = 0;
+            decimal Bruto = 0;
             decimal totalGlobal = 0;
-            decimal intSimple = 0;
-            decimal totalClp = 0;
 
             try
             {
@@ -130,21 +137,25 @@ namespace SistCotizacion.Cotizacion
                 {
                     valDescuento  = subtotal * descuento;                   
                 }
-                lblValorDescuento.Text = valDescuento.ToString();
-                total = subtotal - valDescuento;
-                lblValTotal.Text = total.ToString();
+                lblValorAjuste.Text = valDescuento.ToString("0.00");
+                total = subtotal + valDescuento;
+                lblValNeto.Text = total.ToString("0.00");
                 iva = decimal.Parse(lblIva.Value)/100;
                 valIva = iva * total;
-                lblValorIva.Text = valIva.ToString();
-                totalBruto = valIva + total;
-                lblTotalBruto.Text = totalBruto.ToString();
-                totalGlobal = decimal.Parse(txbGastosComp.Text) + totalBruto;
-                lblTotalGlobal.Text = totalGlobal.ToString();
-                //intSimple = decimal.Parse(lblIntSimple.Value) / 100;
-                lblValorIntSimple.Text = intSimple.ToString();
-                totalClp = totalGlobal + intSimple;
-                lblTotalClp.Text = totalClp.ToString();
-                //lblTotalUsd.Text = (totalClp / decimal.Parse(lblDolar.Text)).ToString("0.00");
+                lblValorImpuesto.Text = valIva.ToString("0.00");
+                Bruto = valIva + total;
+                lblValorBruto.Text = Bruto.ToString("0.00");
+                interes = decimal.Parse(NumInteres.Value) / 100;
+
+                lblValorInteres.Text = interes.ToString("0.00");
+                totalGlobal = decimal.Parse(txbGastosAsum.Text) + interes + Bruto ;
+                lblTotalpagar.Text = totalGlobal.ToString("0.00");
+                lblTotalpagarUsd.Text = (totalGlobal / decimal.Parse(lblDolar.Text)).ToString("0.00");
+                //amotizacion /impuestos
+                lblImpuesto2.Text = lblDescuento.Value.ToString()+ "%";
+                lblInteres2.Text = NumInteres.Value.ToString()+"%";
+
+
             }
             catch (Exception ex)
             {
@@ -297,11 +308,13 @@ namespace SistCotizacion.Cotizacion
             {
                 DateTime fechaCuotas = DateTime.Now.Date;
                 int cantidad= 0;
-                decimal valorTotalCuotas = decimal.Parse(lblTotalClp.Text) / cuotas;
+                decimal valorTotalCuotas = decimal.Parse(lblTotalpagar.Text) / cuotas;
                 DataTable dtCuotas = new DataTable();
                 dtCuotas.Columns.Add("id");
                 dtCuotas.Columns.Add("Fecha");
                 dtCuotas.Columns.Add("Total");
+                dtCuotas.Columns.Add("TotalUSD");
+                
 
                 switch (forma)
                 {
@@ -345,6 +358,7 @@ namespace SistCotizacion.Cotizacion
                     }
 
                     Tbrow["Total"] = valorTotalCuotas.ToString("0.00");
+                    Tbrow["TotalUSD"] = (valorTotalCuotas / decimal.Parse(lblDolar.Text)).ToString("0.00");
                     dtCuotas.Rows.Add(Tbrow);
                 }
                 grvCuotas.DataSource = dtCuotas;

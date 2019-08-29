@@ -260,7 +260,7 @@
                             <div class="col-md-12 border">
                                 <asp:Literal ID="Literal27" runat="server">Comprador</asp:Literal>
                             </div>
-                            <div class="col-md-12 border" style="height: 110px">
+                            <div class="col-md-12 border" style="height: 88px">
                                 <asp:TextBox ID="TextBox3" runat="server" Height="100%" Width="100%" TextMode="MultiLine"></asp:TextBox>
                             </div>
                         </div>
@@ -297,13 +297,13 @@
                         <div class="row">
                             <div class="col-md-12 border">
                                 <%--<asp:Literal ID="Literal34" runat="server">CLP</asp:Literal>--%>
-                                <asp:Label ID="lblValorDescuento" runat="server" Text="0"></asp:Label>
+                                <asp:Label ID="lblValorAjuste" runat="server" Text="0"></asp:Label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 border">
                                 <%--<asp:Literal ID="Literal36" runat="server">CLP</asp:Literal>--%>
-                                <asp:Label ID="lblValTotal" runat="server" Text="0"></asp:Label>
+                                <asp:Label ID="lblValNeto" runat="server" Text="0"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -350,27 +350,28 @@
                                 <asp:Literal ID="Literal4" runat="server">Interes</asp:Literal>
                             </div>
                             <div class="col-md-4 border ">
-                                <input class="form-control" type="number" value="10" min="0" max="50" step="1" id="Number1" runat="server" style="height: 20px; margin-left: -15px; width: 190%;" />
+                                <input class="form-control" type="number" value="3" min="0" max="50" step="1" id="NumInteres" runat="server" style="height: 20px; margin-left: -15px; width: 190%;" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="row">
                             <div class="col-md-12 border">
-                                <asp:TextBox class="form-control" ID="txtMontoFacturable" runat="server" Text="0" Width="100%" Height="20px" Style="text-align: center"></asp:TextBox>
+                                <%--<asp:TextBox class="form-control" ID="txtMontoFacturable" runat="server" Text="0" Width="100%" Height="20px" Style="text-align: center"></asp:TextBox>--%>
+                                <asp:Label ID="lblValorImpuesto" runat="server" Text="0"></asp:Label>
 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 border">
                                 <%--<asp:Literal ID="Literal46" runat="server">CLP</asp:Literal>--%>
-                                <asp:Label ID="lblValorIva" runat="server" Text="0"></asp:Label>
+                                <asp:Label ID="lblValorBruto" runat="server" Text="0"></asp:Label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12 border">
                                 <%--<asp:Literal ID="Literal47" runat="server">CLP</asp:Literal>--%>
-                                <asp:Label ID="lblTotalBruto" runat="server" Text="0"></asp:Label>
+                                <asp:Label ID="lblValorInteres" runat="server" Text="0"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -402,11 +403,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-md-12 border color2">
                                 <asp:Literal ID="Literal55" runat="server">Total Global</asp:Literal>
                             </div>
-                        </div>
+                        </div>--%>
                         
                         <div class="row">
                             <div class="col-md-12 border Color2" style="height: 44px">
@@ -423,21 +424,21 @@
                     <div class="col-md-5">
                         <div class="row">
                             <div class="col-md-12 border">
-                                <asp:TextBox class="form-control" ID="txbGastosComp" runat="server" Text="0" Width="100%" Height="20px" Style="text-align: center"></asp:TextBox>
+                                <asp:TextBox class="form-control" ID="txbGastosAsum" runat="server" Text="0" Width="100%" Height="20px" Style="text-align: center"></asp:TextBox>
                             </div>
                             <div class="col-md-12 border">
-                                <asp:Label ID="lblTotalGlobal" runat="server" Text="0"></asp:Label>
+                                <asp:Label ID="lblTotalpagar" runat="server" Text="0"></asp:Label>
                             </div>
                             <div class="col-md-12 border">
-                                <asp:Label ID="lblValorIntSimple" runat="server" Text="0"></asp:Label>
+                                <asp:Label ID="lblTotalpagarUsd" runat="server" Text="0"></asp:Label>
                             </div>
                         </div>
 
-                        <div class="row">
+                       <%-- <div class="row">
                             <div class="col-md-12 border">
                                 <asp:Label ID="lblTotalClp" runat="server" Text="0"></asp:Label>
                             </div>
-                        </div>
+                        </div>--%>
                        <%-- <div class="row">
                             <div class="col-md-12 border">
                                 <asp:Label ID="lblTotalUsd" runat="server" Text="0"></asp:Label>
@@ -445,8 +446,8 @@
                         </div>--%>
                         <div class="row">
                             <div class="col-md-12 border">
-                                <asp:Literal ID="Literal75" runat="server">----</asp:Literal>
-                                <asp:Label ID="Label63" runat="server" Text="-----"></asp:Label>
+                                <asp:TextBox class="form-control" ID="txtGastoExt" runat="server" Text="0" Width="100%" Height="20px" Style="text-align: center"></asp:TextBox>
+
                             </div>
                         </div>
                     </div>
@@ -462,11 +463,11 @@
                                 <asp:Label ID="Label15" runat="server" Text="CLP"></asp:Label>
                             </div>
                         </div>
-                        <div class="row">
+                        <%--<div class="row">
                             <div class="col-md-12 border">
                                 <asp:Label ID="Label16" runat="server" Text="CLP"></asp:Label>
                             </div>
-                        </div>
+                        </div>--%>
                        <%-- <div class="row">
                             <div class="col-md-12 border">
                                 <asp:Label ID="Label19" runat="server" Text="CLP"></asp:Label>
@@ -517,16 +518,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 Color1 border">
-                        <asp:Label ID="Label80" runat="server" Text="(Código)"></asp:Label>
+                        <asp:DropDownList class="form-control" ID="dwlAsesor" runat="server" Height="26px" Width="100%" Font-Size="12px" >
+                            <asp:ListItem Selected="True" Value="1">ASESOR</asp:ListItem>
+                            <asp:ListItem Value="2">ENVIA</asp:ListItem>
+                            <asp:ListItem Value="3">ORIGEN</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
-                    <div class="col-md-4 Color1 border">
-                        Parte Emisora
+                    <div class="col-md-4 Color1 border" style="height:28px">
+                        EMISOR
                     </div>
                     <div class="col-md-2 Color1 border">
-                        <asp:Label ID="Label65" runat="server" Text="(Código)"></asp:Label>
+                        <asp:DropDownList class="form-control" ID="dwlAsesorado" runat="server" Height="26px" Width="100%" Font-Size="12px">
+                            <asp:ListItem Selected="True" Value="1">ASESORADO</asp:ListItem>
+                            <asp:ListItem Value="2">RECIBE</asp:ListItem>
+                            <asp:ListItem Value="3">DESTINO</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
-                    <div class="col-md-4 Color1 border">
-                        Contraparte
+                    <div class="col-md-4 Color1 border" style="height:28px">
+                        RECEPTOR
                     </div>
                 </div>
                 <div class="row">
@@ -555,7 +564,7 @@
                         <asp:Label ID="Label73" runat="server" Text="www. ejemplo. com"></asp:Label>
                     </div>
                 </div>
-                <div class="row">
+                <%--<div class="row">
                     <div class="col-md-2 Color1 border">
                         <asp:Label ID="Label44" runat="server" Text="Lista Des."></asp:Label>
                     </div>
@@ -568,7 +577,7 @@
                     <div class="col-md-4 Color1 border">
                         Dirección Comercial
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="row">
                     <div class="col-md-6  border">
@@ -588,10 +597,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 Color4 border">
-                        Representante
+                        GIRAR A CUENTA
                     </div>
                     <div class="col-md-6 Color4 border">
-                        Representante
+                        FACTURAR
                     </div>
                 </div>
                 <div class="row">
@@ -986,19 +995,19 @@
                     </div>
 
                     <div class="col-md-2 border">
-                        <asp:Label ID="Label102" runat="server" Text="CLP 729.00"></asp:Label>
+                        <asp:Label ID="Label102" runat="server" Text="---"></asp:Label>
                     </div>
                     <div class="col-md-2 border ">
-                        <asp:Label ID="Label103" runat="server" Text="CLP 888,887"></asp:Label>
+                        <asp:Label ID="lblImpuesto2" runat="server" Text="0"></asp:Label>
                     </div>
                     <div class="col-md-2 border Color3">
                         Gasto/Interés
                     </div>
                     <div class="col-md-2 border">
-                        <asp:Label ID="Label105" runat="server" Text="CLP 9988"></asp:Label>
+                        <asp:Label ID="Label105" runat="server" Text="---"></asp:Label>
                     </div>
                     <div class="col-md-2 border ">
-                        <asp:Label ID="Label106" runat="server" Text="CLP 888,887"></asp:Label>
+                        <asp:Label ID="lblInteres2" runat="server" Text="0"></asp:Label>
                     </div>
                 </div>
                <%-- <div class="row">
@@ -1023,6 +1032,7 @@
                         <asp:BoundField DataField="id" HeaderText="Numero" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                         <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
                         <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" />
+                        <asp:BoundField DataField="TotalUSD" HeaderText="Total USD" SortExpression="TotalUSD" />
                         <asp:BoundField />
                     </Columns>
                 </asp:GridView>
@@ -1153,15 +1163,23 @@
                         Usuario Emisor
                     </div>
                     <div class="col-md-4 border">
-                        mantenedor
+                       <asp:Label ID="lblUsuarioEmisor" runat="server" Text=""></asp:Label>
                     </div>
-                    <div class="col-md-2 border Color3">
-                        Fecha de pago
+                    <div class="col-md-2 border Color2">
+                        Usuario Receptor
                     </div>
-                    <div class="col-md-4 border">
-                        texto libre
+                    <div class="col-md-4 border" style="height: 22px">
+                        <asp:TextBox class="form-control" ID="txtUsuarioRecep" runat="server" Text="" Width="100%" Height="100%"></asp:TextBox>
+
                     </div>
                 </div>
+                 <span style="float: right">
+                    <asp:LinkButton ID="LinkButton1"
+                        runat="server"
+                        CssClass="btn btn-primary" OnClick="btnRefrescar_Click">
+                                <span aria-hidden="true" class="glyphicon glyphicon-floppy-disk"></span>
+                    </asp:LinkButton>                   
+                </span>
             </div>
             <%--end panel boby--%>
         </div>
