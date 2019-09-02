@@ -525,7 +525,8 @@
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-4 Color1 border" style="height:28px">
-                        EMISOR
+                        <asp:DropDownList class="form-control" ID="dwlEmisor" runat="server" Height="26px" Width="100%" Font-Size="12px" >                            
+                        </asp:DropDownList>
                     </div>
                     <div class="col-md-2 Color1 border">
                         <asp:DropDownList class="form-control" ID="dwlAsesorado" runat="server" Height="26px" Width="100%" Font-Size="12px">
