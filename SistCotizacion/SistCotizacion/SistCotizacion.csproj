@@ -149,6 +149,7 @@
     <Content Include="Scripts\js\MantenedorSKU.js" />
     <Content Include="Scripts\submenu.js" />
     <Content Include="SearchCliente.aspx" />
+    <Content Include="SearchPersonal.aspx" />
     <Content Include="Usuarios\Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -282,6 +283,13 @@
     </Compile>
     <Compile Include="SearchCliente.aspx.designer.cs">
       <DependentUpon>SearchCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPersonal.aspx.cs">
+      <DependentUpon>SearchPersonal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchPersonal.aspx.designer.cs">
+      <DependentUpon>SearchPersonal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

@@ -40,10 +40,10 @@
                             <tr>
                                 <td class="active"><strong>Fecha emision</strong></td>
                                 <td>
-                                    <asp:Label ID="TxtFechaEmision" runat="server" Text="03/04/2019"></asp:Label></td>
+                                    <asp:Label ID="TxtFechaEmision" runat="server" Text="1900/01/01"></asp:Label></td>
                                 <td class="active"><strong>Ultima Actualizacion</strong></td>
                                 <td>
-                                    <asp:Label ID="TxtFechaActualizacion" runat="server" Text="01/01/1900"></asp:Label></td>
+                                    <asp:Label ID="TxtFechaActualizacion" runat="server" Text="1900/01/01"></asp:Label></td>
                             </tr>
                         </tbody>
                     </table>
@@ -257,7 +257,8 @@
                 </div>
             </div>
             <div class="panel-footer text-right">
-                <asp:Button ID="btnRegistroEntidadProveedor" class="btn btn-info" runat="server" Text="Ingresar" />
+                <asp:Button ID="btnGuardar" class="btn btn-info" OnClick="btnGuardar_Click" style="width:100px;" runat="server" Text="Guardar" />
+                <asp:Button ID="btnCancel" class="btn btn-danger" runat="server" style="width:100px;" formnovalidate="formnovalidate"  Text="Cancelar" OnClick="btnCancel_Click" />
             </div>
         </div>
 </asp:Content>

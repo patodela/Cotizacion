@@ -45,6 +45,7 @@
     <Compile Include="Enum\TipoCliente.cs" />
     <Compile Include="GeneraFolioBL.cs" />
     <Compile Include="OrganizadorBL.cs" />
+    <Compile Include="PersonalBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\Extentions.cs" />
   </ItemGroup>
