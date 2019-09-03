@@ -105,7 +105,9 @@
                                         <asp:ListItem Value="H">Hombre</asp:ListItem>
                                         <asp:ListItem Value="M">Mujer</asp:ListItem>
                                     </asp:DropDownList></td>
-                                <td><asp:TextBox ID="TxtRepreCumple" TextMode="Date" CssClass="form-control" runat="server"></asp:TextBox></td>
+                                <td><asp:TextBox ID="TxtRepreCumple" contentEditable="false" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender runat="server" BehaviorID="TxtRepreCumple_CalendarExtender" Format="yyyy-MM-dd" TargetControlID="TxtRepreCumple" ID="TxtRepreCumple_CalendarExtender"></ajaxToolkit:CalendarExtender>
+                                </td>
                                 <td class="active"><strong>Telefono / Email</strong></td>
                                 <td><asp:TextBox ID="TxtRepreTelefono" CssClass="form-control" TextMode="Phone" runat="server"></asp:TextBox></td>
                                 <td><asp:TextBox ID="TxtRepreEmail" CssClass="form-control" TextMode="Email" runat="server"></asp:TextBox></td>
@@ -168,7 +170,9 @@
                                 <td class="active" colspan="2"><strong>Nombre de Fantasia</strong></td>
                                 <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompNombreFantasia" runat="server"></asp:TextBox></td>
                                 <td class="active"><strong>Fecha de Fundacion</strong></td>
-                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompFechaFundacion" TextMode="Date" runat="server"></asp:TextBox></td>
+                                <td colspan="2"><asp:TextBox class="form-control" ID="TxtInfCompFechaFundacion" contentEditable="false" runat="server"></asp:TextBox>
+                                    <ajaxToolkit:CalendarExtender runat="server" BehaviorID="TxtInfCompFechaFundacion_CalendarExtender" Format="yyyy-MM-dd" TargetControlID="TxtInfCompFechaFundacion" ID="TxtInfCompFechaFundacion_CalendarExtender"></ajaxToolkit:CalendarExtender>
+                                </td>
                             </tr>
                              <tr>
                                 <td class="active" colspan="2"><strong>Pagina Web</strong></td>
